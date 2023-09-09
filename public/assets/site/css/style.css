@@ -1,0 +1,214 @@
+@font-face{
+    font-family: light;
+    src: url('../roboto/Roboto-Light.ttf');
+}
+@font-face{
+    font-family: med;
+    src: url('../roboto/Roboto-Medium.ttf');
+}
+@font-face{
+    font-family: regular;
+    src: url('../roboto/Roboto-Regular.ttf');
+}
+@font-face{
+    font-family: bold;
+    src: url('../roboto/Roboto-Bold.ttf');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+    /*background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);*/
+    /*background: radial-gradient(circle at -4% -12.9%, rgb(74, 98, 110) 0.3%, rgb(30, 33, 48) 90.2%);*/
+    font-family: regular;
+}
+
+.nav-link {
+    font-family: med;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.btn-login {
+    font-size: 16px;
+    font-family: bold;
+}
+
+.btn-register {
+    font-size: 16px;
+    font-family: bold;
+}
+
+.heroarea-right {
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.heroarea-right h1 {
+    color: #ffffff;
+    font-family: bold;
+    font-size: 3rem;
+}
+
+.heroarea-right p {
+    font-family: regular;
+    color: gray;
+    font-size: 1.3rem;
+}
+
+.btn-mobile {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(110,110,110,0.3);
+    font-size: 16px;
+}
+
+.btn-mobile i {
+    color: #0a58ca;
+}
+
+.btn-mobile:hover {
+    background-color: #0a58ca;
+}
+
+.btn-mobile:hover i {
+    color: #ffffff;
+}
+
+.trading-section h1 {
+    font-size: 2.4rem;
+    font-family: bold;
+}
+
+.trading-section h3 {
+    font-size: 1.9rem;
+    font-family: med;
+}
+
+.signin-header {
+    color: #ffffff;
+    font-family: bold;
+    text-align: center;
+    margin: 0;
+    /*margin: 1.5rem 0;*/
+}
+
+.singin-box {
+    padding: 2.5rem;
+    background-color: transparent;
+}
+
+.form-label {
+    color: gray;
+}
+
+.form-control {
+    background-color: transparent;
+    border: 1px solid gray;
+    color: #ffffff;
+}
+
+.form-control:focus {
+    background-color: transparent;
+    border: 1px solid gray;
+    color: #ffffff;
+}
+
+.required:after {
+    content: "*" !important;
+    color: red !important;
+}
+
+label.error {
+    color: indianred;
+    font-size: 13px;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
+}
+
+.form-select:focus {
+    box-shadow: none !important;
+}
+.form-check-input:focus{
+    box-shadow: none !important;
+}
+
+.footer-col h6 {
+    font-family: med;
+    color: #ffffff;
+}
+
+.footer-col ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.footer-col ul li a {
+    color: gray;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.footer-txt p {
+    color: gray;
+    font-size: 13px;
+    margin: 0;
+}
+
+.accordion-item, .accordion-header, .accordion-button {
+    background-color: rgba(110,110,110,0.3) !important;
+    color: #ffffff !important;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-body {
+    color: gray;
+}
+
+@media screen and (max-width: 576px) {
+    .heroarea-right {
+        text-align: center;
+    }
+    .heroarea-right h1 {
+        font-size: 1.7rem;
+    }
+
+    .heroarea-right p {
+        font-size: 0.8rem;
+    }
+    .btn-mobile {
+        width: 170px;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(110,110,110,0.3);
+    }
+
+    .trading-section h1 {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 1.7rem;
+        font-family: bold;
+    }
+
+    .trading-section h3 {
+        text-align: center;
+        font-size: 1.2rem;
+        font-family: med;
+    }
+}
