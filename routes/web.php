@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +90,25 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
             Route::get('/modal/{id}', [PaymentMethodController::class, 'modal']);
             Route::post('/store', [PaymentMethodController::class, 'store']);
             Route::post('/status', [PaymentMethodController::class, 'changePaymentStatusStatus']);
+        });
+
+    Route::prefix('roles')
+        ->group(function () {
+            Route::get('/', [RoleController::class, 'index']);
+            Route::get('/modal', [RoleController::class, 'modal']);
+            Route::get('/modal/{id}', [RoleController::class, 'modal']);
+            Route::post('/store', [RoleController::class, 'store']);
+            Route::post('/status', [RoleController::class, 'changePaymentStatusStatus']);
+            Route::get('/permissions/{id}', [RoleController::class, 'permissionModal']);
+        });
+
+    Route::prefix('system-users')
+        ->group(function () {
+            Route::get('/', [RoleController::class, 'index']);
+            Route::get('/modal', [RoleController::class, 'modal']);
+            Route::get('/modal/{id}', [RoleController::class, 'modal']);
+            Route::post('/store', [RoleController::class, 'store']);
+            Route::post('/status', [RoleController::class, 'changePaymentStatusStatus']);
         });
 
     Route::prefix('settings')->group(function () {

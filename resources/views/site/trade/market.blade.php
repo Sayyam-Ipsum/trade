@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row mt-3">
-        <div class="col-md-10">
+        <div class="col-md-10 p-0 px-3" style="height: 600px;">
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget-container">
                 <div id="tradingview_f5eb5"></div>
@@ -39,7 +39,18 @@
             </div>
             <!-- TradingView Widget END -->
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 p-0 pr-3">
+            <div class="card-body p-0 p-2 bg-self border border-secondary">
+                <div class="form-group">
+                    <label class="form-label" for="amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="amount" min="1">
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-success w-50 mr-1">Buy</button>
+                    <button class="btn btn-danger w-50">Sell</button>
+                </div>
+            </div>
         </div>
+
     </div>
 @stop
