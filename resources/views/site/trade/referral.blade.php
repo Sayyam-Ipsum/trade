@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row mt-3">
-        <div class="col-md-4">
+        <div class="col-md-4 mt-2">
             <div class="p-0 shadow bg-dark border-0" style="border-radius: 10px; !important;">
                 <div class="p-2 d-flex justify-content-between align-items-center">
                     <div class="">
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mt-2">
             <div class="p-0 shadow bg-dark border-0" style="border-radius: 10px; !important;">
                 <div class="p-2 d-flex justify-content-between align-items-center">
                     <div class="">

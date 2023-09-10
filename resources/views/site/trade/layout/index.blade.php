@@ -8,35 +8,23 @@
         </div>
 
         <div class="sidebar-header">
-            <h3 class="m-0">Easy Trade</h3>
+            <h3 class="m-0" style="font-family: bold;">Dashboard</h3>
         </div>
 
         <ul class="list-unstyled components">
             <div class="d-flex justify-content-start align-items-start px-2 mb-3">
                 <div>
-                    <img src="{{asset('assets/site/img/user.png')}}" width="45px" height="45px"
-                         class="rounded" style="object-fit: contain;">
+                    @php
+                        $url = auth()->user()->photo ? auth()->user()->photo : asset('assets/site/img/user.png')
+                    @endphp
+                    <img src="{{$url}}" width="45px" height="45px"
+                         class="rounded" style="object-fit: contain; object-position: top;">
                 </div>
                 <div class="pl-2">
-                    <span>{{auth()->user()->name}}</span>
-                    <small class="text-secondary">{{auth()->user()->email}}</small>
+                    <span class="d-block">{{auth()->user()->name}}</span>
+                    <small class="text-secondary d-block">{{auth()->user()->email}}</small>
                 </div>
             </div>
-
-{{--            <li class="active">--}}
-{{--                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>--}}
-{{--                <ul class="collapse list-unstyled" id="homeSubmenu">--}}
-{{--                    <li>--}}
-{{--                        <a href="#">Home 1</a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="#">Home 2</a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="#">Home 3</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
 
             @if(auth()->user()->is_admin)
                 <li class="{{is_active_menu('admin')}}">
@@ -79,38 +67,45 @@
     <div id="content">
 
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid p-0">
-
-                <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary ml-1">
-                    <i class="fas fa-align-left"></i>
-                    <span></span>
-                </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                    </ul>
+            <div class="container-fluid p-0 row">
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary ml-1" style="border: none !important;">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                        <h3 class="text-white m-0 ml-2" style="font-family: bold;">Easy Trade</h3>
+                        <span class="text-secondary ml-2"><i>Web Trading Platform</i></span>
+                    </div>
                 </div>
+                <div class="col-md-6 text-right">
+                    <button class="btn btn-success px-4 py-2"><small>Balance:</small> <b>${{sprintf("%0.2f", (auth()->user()->account_balance))}}</b></button>
+                </div>
+{{--                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
+{{--                    <i class="fas fa-align-justify"></i>--}}
+{{--                </button>--}}
+
+{{--                <div class="collapse navbar-collapse" id="navbarSupportedContent">--}}
+{{--                    <ul class="nav navbar-nav ml-auto">--}}
+{{--                        <li class="nav-item active">--}}
+{{--                            <a class="nav-link" href="#">Page</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="#">Page</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="#">Page</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="#">Page</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
             </div>
         </nav>
 
         <div class="px-3 py-2 text-white">
             <div>
-                <h3 class="m-0 py-3 d-inline-block border-bottom border-light" style="font-family: bold;">@yield('title')</h3>
+                <h3 class="m-0 py-3 d-inline-block border-bottom border-secondary text-success" style="font-family: bold;">@yield('title')</h3>
             </div>
             @yield('content')
         </div>

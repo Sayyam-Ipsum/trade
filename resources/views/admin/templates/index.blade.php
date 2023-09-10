@@ -25,8 +25,6 @@
     <link rel="stylesheet" href="{{asset('assets/admin/dist/css/adminlte.min.css')}}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('assets/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-    <!-- summernote -->
-    <link rel="stylesheet" href="{{asset('assets/admin/plugins/summernote/summernote-bs4.min.css')}}">
     <!-- Sweet alert -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <!-- Select2 -->
@@ -145,15 +143,12 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-{{--                    @if(profilePic())--}}
-{{--                        <img src="{{profilePic()}}" class="img-circle elevation-2" alt="User Image">--}}
-{{--                    @else--}}
-                        <img src="{{asset('assets/admin/dist/img/avatar5.png')}}" class="img-circle elevation-2" alt="User Image">
-{{--                    @endif--}}
-
+                    @php
+                        $url = auth()->user()->photo ? auth()->user()->photo : asset('assets/site/img/user.png')
+                    @endphp
+                    <img src="{{$url}}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-{{--                    <a href="#" class="d-block">{{auth()->user()->name}}</a>--}}
                     <a class="d-block">{{auth()->user()->name}}</a>
                 </div>
             </div>
@@ -202,6 +197,24 @@
                             <i class="nav-icon fab fa-usps"></i>
                             <p>
                                 Payment Methods
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{url('admin/roles')}}" class="nav-link">
+                            <i class="nav-icon fa fa-user-tag"></i>
+                            <p>
+                                Roles
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{url('admin/system-users')}}" class="nav-link">
+                            <i class="nav-icon fa fa-user-shield"></i>
+                            <p>
+                                System Users
                             </p>
                         </a>
                     </li>
@@ -320,8 +333,6 @@
 <script src="{{asset('assets/admin/plugins/moment/moment.min.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{asset('assets/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<!-- Summernote -->
-<script src="{{asset('assets/admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('assets/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 

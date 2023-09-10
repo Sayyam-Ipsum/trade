@@ -140,8 +140,7 @@ class AuthController extends Controller
             } catch (\Exception $e) {
                 DB::rollBack();
 
-                //dd($e);
-                return redirect(url('register'));
+                return redirect()->back()->with("error", "Please contact to Administrator");
             }
 
             if ($newUser) {
@@ -149,7 +148,7 @@ class AuthController extends Controller
                     $request->session()
                         ->regenerate();
 
-                    return redirect(url('/trade'));
+                    return redirect(url('/'));
                 }
             }
         }
