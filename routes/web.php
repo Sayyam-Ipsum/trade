@@ -71,17 +71,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
             Route::get('/', [UserController::class, 'getUsers']);
         });
 
-    Route::prefix('deposits')
-        ->group(function () {
-            Route::get('/', [DepositController::class, 'getDeposits']);
-            Route::post('/status', [DepositController::class, 'changeDepositStatus']);
-        });
+    Route::group(['prefix' => 'deposits', 'middleware' => ['can:PageAccess.Deposits']], function () {
+        Route::get('/', [DepositController::class, 'getDeposits']);
+        Route::post('/status', [DepositController::class, 'changeDepositStatus']);
+    });
 
-    Route::prefix('withdrawals')
-        ->group(function () {
-            Route::get('/', [WithdrawalController::class, 'getWithdrawals']);
-            Route::post('/status', [WithdrawalController::class, 'changeWithdrawalStatus']);
-        });
+    Route::group(['prefix' => 'withdrawals', 'middleware' => ['can:PageAccess.Withdrawals']], function () {
+        Route::get('/', [WithdrawalController::class, 'getWithdrawals']);
+        Route::post('/status', [WithdrawalController::class, 'changeWithdrawalStatus']);
+    });
 
     Route::prefix('payment-methods')
         ->group(function () {
@@ -92,26 +90,25 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
             Route::post('/status', [PaymentMethodController::class, 'changePaymentStatusStatus']);
         });
 
-    Route::prefix('roles')
-        ->group(function () {
-            Route::get('/', [RoleController::class, 'index']);
-            Route::get('/modal', [RoleController::class, 'modal']);
-            Route::get('/modal/{id}', [RoleController::class, 'modal']);
-            Route::post('/store', [RoleController::class, 'store']);
-            Route::post('/status', [RoleController::class, 'changePaymentStatusStatus']);
-            Route::get('/permissions/{id}', [RoleController::class, 'permissionModal']);
-        });
+    Route::group(['prefix' => 'roles', 'middleware' => ['can:PageAccess.Roles']], function () {
+        Route::get('/', [RoleController::class, 'index']);
+        Route::get('/modal', [RoleController::class, 'modal']);
+        Route::get('/modal/{id}', [RoleController::class, 'modal']);
+        Route::post('/store', [RoleController::class, 'store']);
+        Route::post('/status', [RoleController::class, 'changePaymentStatusStatus']);
+        Route::get('/permissions/{id}', [RoleController::class, 'permissionModal']);
+        Route::post('/change-permission', [RoleController::class, 'changePermission']);
+    });
 
-    Route::prefix('system-users')
-        ->group(function () {
-            Route::get('/', [RoleController::class, 'index']);
-            Route::get('/modal', [RoleController::class, 'modal']);
-            Route::get('/modal/{id}', [RoleController::class, 'modal']);
-            Route::post('/store', [RoleController::class, 'store']);
-            Route::post('/status', [RoleController::class, 'changePaymentStatusStatus']);
-        });
+    Route::group(['prefix' => 'system-users', 'middleware' => ['can:PageAccess.SystemUsers']], function () {
+        Route::get('/', [UserController::class, 'systemUserListing']);
+        Route::get('/modal', [UserController::class, 'systemUserModal']);
+        Route::get('/modal/{id}', [UserController::class, 'systemUserModal']);
+        Route::post('/store', [UserController::class, 'storeSystemUser']);
+        Route::post('/edit', [UserController::class, 'editSystemUser']);
+    });
 
-    Route::prefix('settings')->group(function () {
+    Route::group(['prefix' => 'settings', 'middleware' => ['can:PageAccess.Settings']], function () {
         Route::get('/', [SettingController::class, 'index']);
         Route::post('/', [SettingController::class, 'store']);
     });

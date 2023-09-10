@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Setting;
 use App\Models\User;
@@ -44,5 +45,21 @@ class DatabaseSeeder extends Seeder
         $role->name = 'Customer';
         $role->guard_name = 'web';
         $role->save();
+
+        $permissions = [
+            "PageAccess.Deposits",
+            "PageAccess.Withdrawals",
+            "PageAccess.Settings",
+            "PageAccess.Trade",
+            "PageAccess.Roles",
+            "PageAccess.SystemUsers"
+        ];
+
+        foreach ($permissions as $permission) {
+            $p = new Permission();
+            $p->name = $permission;
+            $p->guard_name = 'web';
+            $p->save();
+        }
     }
 }

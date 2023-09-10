@@ -73,10 +73,43 @@ class RoleController extends Controller
 
     public function permissionModal($id)
     {
-        $role = Role::find($id);
-        $res["title"]   = $role->name . ' Permissions';
-        $res["html"]    = view('admin.roles.permissions', compact(['role']))->render();
+        $role = $this->roleInterface->roleListing($id);
+        $permissions = $this->roleInterface->permissionListing();
+        $rolePermissions = $this->roleInterface->getPermissionsByRole($id);
+        $data = [];
+        foreach ($rolePermissions as $d) {
+            $data[$d->permission_id] = $d->role_id;
+        }
+
+        foreach ($permissions as $permission) {
+            $permission['status'] = array_key_exists($permission->id, $data);
+        }
+
+        $res["title"] = $role->name . ' Permissions';
+        $res["html"] = view('admin.roles.permissions', compact(['role', 'permissions']))->render();
 
         return response()->json($res);
+    }
+
+    public function changePermission(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            "role_id" => "required",
+            "perm_id" => "required"
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json([
+                "success" => "error",
+                "message" => "Validation Error"
+            ]);
+        }
+
+        $res = $this->roleInterface->changePermission($request);
+
+        return response()->json([
+            "success" => $res["success"],
+            "message" => $res["message"]
+        ]);
     }
 }

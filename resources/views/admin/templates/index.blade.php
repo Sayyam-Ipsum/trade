@@ -174,6 +174,7 @@
                         </a>
                     </li>
 
+                    @can('PageAccess.Deposits')
                     <li class="nav-item">
                         <a href="{{url('admin/deposits')}}" class="nav-link ">
                             <i class="nav-icon fas fa-money-bill"></i>
@@ -182,7 +183,9 @@
                             </p>
                         </a>
                     </li>
+                    @endcan
 
+                    @can('PageAccess.Withdrawals')
                     <li class="nav-item">
                         <a href="{{url('admin/withdrawals')}}" class="nav-link ">
                             <i class="nav-icon fas fa-funnel-dollar"></i>
@@ -191,6 +194,7 @@
                             </p>
                         </a>
                     </li>
+                    @endcan
 
                     <li class="nav-item">
                         <a href="{{url('admin/payment-methods')}}" class="nav-link">
@@ -201,6 +205,7 @@
                         </a>
                     </li>
 
+                    @can('PageAccess.Roles')
                     <li class="nav-item">
                         <a href="{{url('admin/roles')}}" class="nav-link">
                             <i class="nav-icon fa fa-user-tag"></i>
@@ -209,7 +214,9 @@
                             </p>
                         </a>
                     </li>
+                    @endcan
 
+                    @can('PageAccess.SystemUsers')
                     <li class="nav-item">
                         <a href="{{url('admin/system-users')}}" class="nav-link">
                             <i class="nav-icon fa fa-user-shield"></i>
@@ -218,6 +225,7 @@
                             </p>
                         </a>
                     </li>
+                    @endcan
 
                     <li class="nav-item">
                         <a href="{{url('admin/profile')}}" class="nav-link ">
@@ -228,6 +236,7 @@
                         </a>
                     </li>
 
+                    @can('PageAccess.Settings')
                     <li class="nav-item">
                         <a href="{{url('admin/settings')}}" class="nav-link ">
                             <i class="nav-icon fas fa-cogs"></i>
@@ -236,6 +245,7 @@
                             </p>
                         </a>
                     </li>
+                    @endcan
 
                     <li class="nav-item">
                         <a href="{{url('logout')}}" class="nav-link bg-dark">

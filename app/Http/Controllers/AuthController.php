@@ -126,6 +126,8 @@ class AuthController extends Controller
                 $newUser->name = $request->name;
                 $newUser->role_id = $this->roleInterface->getCustomerRoleID();
                 $newUser->save();
+                $newUser->assignRole('Customer');
+
 
                 if ($request->refCode) {
                     $refAmount = Setting::first()->referral_amount;
