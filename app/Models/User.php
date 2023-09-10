@@ -54,6 +54,10 @@ class User extends Authenticatable
         );
     }
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class, "role_id");
+    }
 //    public function trades()
 //    {
 //        return $this->hasMany(Trade::class, "user_id");

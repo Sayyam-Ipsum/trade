@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class UserRepository implements UserInterface
 {
-    public function listing()
+    public function listing($id = null)
     {
+        if (isset($id)) {
+            return User::find($id);
+        }
+
         return User::where("is_admin", 0)->orderBy("id", "desc")->get();
     }
 
@@ -40,5 +44,16 @@ class UserRepository implements UserInterface
         }
 
         return $res;
+    }
+
+    public function systemUserListing()
+    {
+        return User::with("role")
+            ->join("roles", "users.role_id", "roles.id")
+            ->where("is_admin", 1)
+            ->where("roles.name", "<>", "Super Admin")
+            ->select("users.id", "users.name", "users.email", "role_id")
+            ->orderBy("users.id")
+            ->get();
     }
 }
