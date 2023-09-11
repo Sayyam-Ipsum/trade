@@ -1,4 +1,4 @@
-<form action='{{url("/admin/system-users/store")}}' method="post" class="form" id="user-form" name="user-form">
+<form action='{{url("/admin/system-users/store")}}/{{@$user->id}}' method="post" class="form" id="user-form" name="user-form">
     @csrf
     <div class="row">
         <div class="col-lg-12">
@@ -38,6 +38,9 @@
                 </div>
             </div>
         </div>
+        @if($editable)
+            <input type="hidden" name="role" value="{{$user->role_id}}">
+        @endif
         @if(!$editable)
         <div class="col-lg-12">
             <div class="fv-row">

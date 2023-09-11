@@ -66,6 +66,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
 
     Route::match(['get', 'post'], 'profile', [UserController::class, 'profile']);
 
+    Route::post('change-password', [UserController::class, 'changePassword']);
+
     Route::prefix('users')
         ->group(function () {
             Route::get('/', [UserController::class, 'getUsers']);
@@ -105,7 +107,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
         Route::get('/modal', [UserController::class, 'systemUserModal']);
         Route::get('/modal/{id}', [UserController::class, 'systemUserModal']);
         Route::post('/store', [UserController::class, 'storeSystemUser']);
-        Route::post('/edit', [UserController::class, 'editSystemUser']);
+        Route::post('/store/{id}', [UserController::class, 'storeSystemUser']);
     });
 
     Route::group(['prefix' => 'settings', 'middleware' => ['can:PageAccess.Settings']], function () {
