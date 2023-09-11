@@ -41,11 +41,6 @@ class DatabaseSeeder extends Seeder
         $setting->referral_amount = 10;
         $setting->save();
 
-        $role = new Role();
-        $role->name = 'Customer';
-        $role->guard_name = 'web';
-        $role->save();
-
         $permissions = [
             "PageAccess.Deposits",
             "PageAccess.Withdrawals",
