@@ -52,7 +52,9 @@ class DatabaseSeeder extends Seeder
             "PageAccess.Settings",
             "PageAccess.Trade",
             "PageAccess.Roles",
-            "PageAccess.SystemUsers"
+            "PageAccess.SystemUsers",
+            "PageAccess.Signal",
+            "PageAccess.Trading"
         ];
 
         foreach ($permissions as $permission) {

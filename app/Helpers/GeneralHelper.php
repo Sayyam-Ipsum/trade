@@ -8,7 +8,16 @@ function showDateTime($datetime)
         return '';
     }
 
-    return Carbon::parse($datetime)->format('d-M-Y H:i:s');
+    return Carbon::parse($datetime)->format('d-M-Y h:i:s A');
+}
+
+function showTime($datetime)
+{
+    if (!validateDateFormat($datetime)) {
+        return '';
+    }
+
+    return Carbon::parse($datetime)->format('h:i:s A');
 }
 
 function showDate($datetime)
@@ -42,19 +51,17 @@ function statusBadge($status)
     $color = "secondary";
     switch ($status) {
         case "pending":
-        case "sell":
             $color = "primary";
             break;
         case "active":
         case "approved":
+        case "buy":
             $color = "success";
             break;
         case "disabled":
         case "rejected":
+        case "sell":
             $color = "danger";
-            break;
-        case "buy":
-            $color = "dark";
             break;
         default:
             break;

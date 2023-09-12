@@ -165,6 +165,17 @@
                         </a>
                     </li>
 
+                    @can('PageAccess.Trading')
+                    <li class="nav-item">
+                        <a href="{{url('admin/trading')}}" class="nav-link ">
+                            <i class="nav-icon fas fa-stream"></i>
+                            <p>
+                                Live Trading
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+
                     <li class="nav-item">
                         <a href="{{url('admin/users')}}" class="nav-link ">
                             <i class="nav-icon fas fa-users"></i>
@@ -173,6 +184,28 @@
                             </p>
                         </a>
                     </li>
+
+                    @can('PageAccess.Signal')
+                    <li class="nav-item">
+                        <a href="{{url('admin/signals')}}" class="nav-link ">
+                            <i class="nav-icon fas fa-wave-square"></i>
+                            <p>
+                                Signals
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+
+                    @can('PageAccess.Trade')
+                        <li class="nav-item">
+                            <a href="{{url('admin/trades')}}" class="nav-link ">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <p>
+                                    Trades
+                                </p>
+                            </a>
+                        </li>
+                    @endcan
 
                     @can('PageAccess.Deposits')
                     <li class="nav-item">
