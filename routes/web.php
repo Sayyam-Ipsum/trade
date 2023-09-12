@@ -12,6 +12,8 @@ use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TradeController;
+use App\Http\Controllers\SignalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/withdrawal-account', [WithdrawalController::class, 'storeWithdrawalAccount']);
     Route::get('payment-method/{id}', [PaymentMethodController::class, 'getPaymentMethodDetail']);
     Route::post('change-password', [UserController::class, 'changePassword']);
+    Route::post('/trade', [TradeController::class, 'store']);
 });
 
 /*
@@ -115,6 +118,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
     Route::group(['prefix' => 'settings', 'middleware' => ['can:PageAccess.Settings']], function () {
         Route::get('/', [SettingController::class, 'index']);
         Route::post('/', [SettingController::class, 'store']);
+    });
+
+    Route::group(['prefix' => 'trades', 'middleware' => ['can:PageAccess.Trade']], function () {
+        Route::get('/', [TradeController::class, 'index']);
+        Route::post('/result', [TradeController::class, 'result']);
+    });
+
+    Route::group(['prefix' => 'signals', 'middleware' => ['can:PageAccess.Signal']], function () {
+        Route::get('/', [SignalController::class, 'index']);
+        Route::get('/modal', [SignalController::class, 'modal']);
+        Route::post('/store', [SignalController::class, 'store']);
+    });
+
+    Route::group(['prefix' => 'trading', 'middleware' => ['can:PageAccess.Trading']], function () {
+        Route::get('/', [TradeController::class, 'liveTrading']);
+        Route::post('/store', [TradeController::class, 'liveTradingResult']);
     });
 });
 
