@@ -1,6 +1,17 @@
 @extends('site.layout.index')
 
 @section('content')
+    @if(session()->has('error'))
+        <div class="alert alert-danger">
+            {{session()->get('error')}}
+        </div>
+    @endif
+
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{session()->get('success')}}
+        </div>
+    @endif
     <div class="col-md-4 m-auto my-5">
         <h1 class="signin-header m-0">Sign In To Your Account</h1>
         <div class="singin-box rounded">
@@ -14,7 +25,7 @@
                 <div class="mb-3">
                     <div class="d-flex justify-content-between">
                         <label class="form-label" for="password">Password</label>
-                        <a href="{{url('forgot')}}" style="text-decoration: none; font-size: 14px; font-family: med;">
+                        <a href="{{url('forgot-password')}}" style="text-decoration: none; font-size: 14px; font-family: med;">
                             Forgot Password?
                         </a>
                     </div>
