@@ -182,12 +182,12 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect(url('admin/profile'))->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         $response = $this->userInterface->changePassword($request);
 
-        return redirect('admin/profile')->with($response['type'], $response['message']);
+        return redirect()->back()->with($response['type'], $response['message']);
     }
 
 }

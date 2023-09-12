@@ -1,17 +1,28 @@
 @extends('site.layout.index')
 
 @section('content')
+    @if(session()->has('error'))
+        <div class="alert alert-danger">
+            {{session()->get('error')}}
+        </div>
+    @endif
+
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{session()->get('success')}}
+        </div>
+    @endif
     <div class="col-md-4 m-auto my-5">
         <h1 class="signin-header">Password Recovery</h1>
         <div class="singin-box rounded">
             <p class="text-white text-center mb-4">
                 To change you password, please enter the email address you used when registering your account
             </p>
-            <form method="POST" name="forgot-form" id="forgot-form">
+            <form method="POST" action="{{url('forgot-password')}}" name="forgot-form" id="forgot-form">
                 @csrf
                 <div class="mb-4">
                     <label class="form-label" for="email">Email</label>
-                    <input type="email" class="form-control shadow-none" name="email" id="email" required="" placeholder="Email">
+                    <input type="email" class="form-control shadow-none" name="email" id="email" required placeholder="Email">
                 </div>
 
                 @if ($errors->any())

@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 function showDateTime($datetime)
 {
@@ -8,7 +9,8 @@ function showDateTime($datetime)
         return '';
     }
 
-    return Carbon::parse($datetime)->format('d-M-Y H:i:s');
+    return Carbon::parse($datetime)
+        ->format('d-M-Y H:i:s');
 }
 
 function showDate($datetime)
@@ -17,20 +19,22 @@ function showDate($datetime)
         return '';
     }
 
-    return Carbon::parse($datetime)->format('d-M-Y');
+    return Carbon::parse($datetime)
+        ->format('d-M-Y');
 }
 
-function validateDateFormat($date,$format='')
+function validateDateFormat($date, $format = '')
 {
     $is_valid_date = false;
-    if(!empty($date)){
-        if(!empty($format)){
+    if (!empty($date)) {
+        if (!empty($format)) {
             $dt = DateTime::createFromFormat($format, $date);
             $is_valid_date = $dt !== false && !array_sum($dt->getLastErrors());
-        }
-        else{
+        } else {
             $timestamp = !is_numeric($date) ? strtotime($date) : $date;
-            if(date("Y", $timestamp) > 1970) $is_valid_date = true;
+            if (date("Y", $timestamp) > 1970) {
+                $is_valid_date = true;
+            }
         }
     }
 
@@ -60,10 +64,11 @@ function statusBadge($status)
             break;
     }
 
-    return '<span class="badge badge-'.$color.' p-1 text-capitalize">'.$status.'</span>';
+    return '<span class="badge badge-' . $color . ' p-1 text-capitalize">' . $status . '</span>';
 }
 
-function statusDropdown($entity, $status, $id) {
+function statusDropdown($entity, $status, $id)
+{
     $list = [];
     switch ($entity) {
         case "withdrawal":
@@ -77,10 +82,10 @@ function statusDropdown($entity, $status, $id) {
             break;
     }
 
-    $html = '<select class="form-control btn-status" name="status" id="status-'.$id.'" data-id="'.$id.'">';
+    $html = '<select class="form-control btn-status" name="status" id="status-' . $id . '" data-id="' . $id . '">';
     foreach ($list as $item) {
         $selected = ($item == $status) ? "selected" : '';
-        $html .= '<option value="'.$item.'" '.$selected.'>'.$item.'</option>';
+        $html .= '<option value="' . $item . '" ' . $selected . '>' . $item . '</option>';
     }
     $html .= '</select>';
 
@@ -90,4 +95,30 @@ function statusDropdown($entity, $status, $id) {
 function is_active_menu($link)
 {
     return (request()->is($link)) ? 'active' : '';
+}
+
+/**
+ * @param $to
+ * @param $subject
+ * @param $data
+ * @param $blade
+ * @return bool
+ */
+function send_email($to, $subject, $data, $blade)
+{
+    $sent = true;
+    try {
+        Mail::send(sprintf('mails.%s', $blade), $data, function ($message) use ($to, $subject) {
+            $message->to($to)
+                ->subject($subject);
+            $message->from(
+                env('MAIL_FROM_ADDRESS', 'sarosh.development111@gmail.com'),
+                env('APP_NAME', 'Office Space Sharing system')
+            );
+        });
+    } catch (\Exception $e) {
+        $sent = false;
+    }
+
+    return $sent;
 }

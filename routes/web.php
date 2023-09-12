@@ -32,8 +32,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::match(['get', 'post'], '/login', 'login')
         ->name('login');
     Route::match(['get', 'post'], '/register/{refcode?}', 'register');
-    Route::get('/forgot', 'forgot');
-    Route::get('/reset', 'reset');
+    Route::match(['post', 'get'], '/forgot-password','forgotPassword')->name('forgot-password');
+    Route::post('/reset-password','doResetPassword')->name('do-reset-password');
+    Route::get('/reset-password/{token}', 'resetPassword')->name('reset-password');
     Route::get('/logout', 'logout');
     Route::get('authorized/google', 'redirectToGoogle')
         ->name('auth.google');
@@ -55,6 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile', [UserController::class, 'profile']);
     Route::post('/withdrawal-account', [WithdrawalController::class, 'storeWithdrawalAccount']);
     Route::get('payment-method/{id}', [PaymentMethodController::class, 'getPaymentMethodDetail']);
+    Route::post('change-password', [UserController::class, 'changePassword']);
 });
 
 /*
