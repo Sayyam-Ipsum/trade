@@ -47,5 +47,15 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\UserInterface',
             'App\Repositories\UserRepository'
         );
+
+        $this->app->bind(
+            'App\Interfaces\TradeInterface',
+            'App\Repositories\TradeRepository'
+        );
+
+        $this->app->bind(
+            'App\Interfaces\SignalInterface',
+            'App\Repositories\SignalRepository'
+        );
     }
 }
