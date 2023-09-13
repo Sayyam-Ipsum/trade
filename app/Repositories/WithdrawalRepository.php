@@ -28,7 +28,8 @@ class WithdrawalRepository implements WithdrawalInterface
             "user_withdrawal_accounts.account_no",
             "withdrawals.amount",
             "withdrawals.status",
-            "withdrawals.id"
+            "withdrawals.id",
+            "withdrawals.withdrawal_charges_deducted_amount"
         )
             ->orderBy("withdrawals.id", "desc")
             ->get();
@@ -112,8 +113,11 @@ class WithdrawalRepository implements WithdrawalInterface
             DB::beginTransaction();
             $withdraw = new Withdrawal();
             $withdraw->user_id = $request->user_id;
-            $withdraw->amount = $request->amount;
             $withdraw->user_account_id = $request->account;
+            if($request->amount_after_deduction > 0) {
+                $withdraw->withdrawal_charges_deducted_amount = $request->amount - $request->amount_after_deduction;
+            }
+            $withdraw->amount = $request->amount;
             $withdraw->status = "pending";
             $withdraw->save();
             DB::commit();
@@ -121,7 +125,7 @@ class WithdrawalRepository implements WithdrawalInterface
             $res["message"] = "Withdraw Submitted, Please wait.....";
         } catch (\Exception $e) {
             DB::rollBack();
-            $res["message"] = "Please contact to Administrator";
+            $res["message"] = "Something went wrong, please try again";
         }
 
         return $res;

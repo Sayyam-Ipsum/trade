@@ -46,6 +46,7 @@
                 <th>Account Title</th>
                 <th>Account Number</th>
                 <th>Amount</th>
+                <th>Withdrawal Charges Deducted Amount</th>
                 <th width="10%">Status</th>
             </tr>
             </thead>
@@ -147,6 +148,10 @@
                     {
                         data: 'amount',
                         name: 'amount',
+                    },
+                    {
+                        data: 'withdrawal_charges_deducted_amount',
+                        name: 'withdrawal_charges_deducted_amount',
                     },
                     {
                         data: 'status',

@@ -27,9 +27,18 @@
                         <label id="account-error" class="error" for="account"></label>
                     </div>
                     <div class="col-md-4 form-group">
-                        <label class="form-label required" for="amount">Amount</label>
-                        <input type="number" maxlength="11" class="form-control shadow-none" name="amount" id="amount" required>
+                        <label class="form-label required" for="amount">Withdrawal Amount</label>
+                        @if($withdrawalExtraChargesPercentage > 0)
+                            <small class="text-white">( An extra {{$withdrawalExtraChargesPercentage}}% withdrawal charges will be applied )</small>
+                        @endif
+                        <input type="number" maxlength="11" min="1" class="form-control shadow-none" name="amount" id="amount" required oninput="getAmountAfterDeduction()">
                     </div>
+                    @if($withdrawalExtraChargesPercentage > 0)
+                    <div class="col-md-4 form-group">
+                        <label class="form-label required" for="amount_after_deduction">Amount After Deduction</label>
+                        <input type="text" maxlength="11" readonly class="form-control shadow-none" name="amount_after_deduction" id="amount_after_deduction" required>
+                    </div>
+                    @endif
                 </div>
 
                 <div class="text-center">
@@ -43,6 +52,17 @@
 
 @section('scripts')
     <script>
+        function getAmountAfterDeduction() {
+            @if($withdrawalExtraChargesPercentage > 0) {
+                let deducted_amount = ($('#amount').val() / 100) * {{$withdrawalExtraChargesPercentage}};
+                $('#amount_after_deduction').val($('#amount').val() - deducted_amount);
+            }
+            @else {
+                return true;
+            }
+            @endif
+        }
+
         $(document).ready(function (){
             $("#withdrawal-form").validate({
                 rules:{
