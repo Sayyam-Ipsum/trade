@@ -50,7 +50,8 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind(
             'App\Interfaces\TradeInterface',
-            'App\Repositories\TradeRepository'
+            'App\Repositories\TradeRepository',
+            'App\Interfaces\SignalInterface'
         );
 
         $this->app->bind(

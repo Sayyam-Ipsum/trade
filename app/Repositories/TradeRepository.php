@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\SignalInterface;
 use App\Interfaces\TradeInterface;
 use App\Models\Signal;
 use App\Models\Trade;
@@ -12,9 +13,19 @@ use Illuminate\Support\Facades\DB;
 
 class TradeRepository implements TradeInterface
 {
-    public function listing(Request $request)
+    protected SignalInterface $signalInterface;
+    public function __construct(SignalInterface $signalInterface)
+    {
+        $this->signalInterface = $signalInterface;
+    }
+
+    public function listing(Request $request, $signalID = null)
     {
         $data = Trade::join("users", "trades.user_id", "users.id");
+
+        if (isset($signalID)) {
+            $data = $data->where("signal_id", $signalID);
+        }
 
         if (!empty($request->start_date) && !empty($request->end_date)) {
             $data = $data->whereBetween(DB::raw('DATE(trades.created_at)'), [$request->start_date, $request->end_date]);
@@ -39,12 +50,17 @@ class TradeRepository implements TradeInterface
     {
         $res['status'] = false;
         try {
-            // Todo: check for signal
             $currentDateTime = Carbon::now();
             $checkSignal = Signal::where("start_time", "<=", $currentDateTime)->where("end_time", ">=", $currentDateTime)->first();
             DB::beginTransaction();
             $trade = new Trade();
             if ($checkSignal) {
+                $checkDoubleTrade = Trade::where("signal_id", $checkSignal->id)->where("user_id", $request->user_id)->first();
+                if ($checkDoubleTrade) {
+                    $res['message'] = "You can't make trade at this time.";
+
+                    return $res;
+                }
                 $trade->signal_id = $checkSignal->id;
             }
             $trade->user_id = $request->user_id;
@@ -105,16 +121,7 @@ class TradeRepository implements TradeInterface
         if (count($signals) < 1)    return [];
 
         foreach ($signals as $signal) {
-            $trades = Trade::where("signal_id", $signal->id)
-//                ->where("status", "in-progress")
-                ->select(
-                    "type",
-                    DB::raw("COUNT(*) as trades_count"),
-                    DB::raw("SUM(profitable_amount) as trades_sum")
-                )
-                ->groupBy("type")
-                ->get();
-            $signal->trades = $trades;
+            $signal->trades = $this->signalInterface->details($signal->id);
         }
 
         return $signals;
@@ -132,28 +139,33 @@ class TradeRepository implements TradeInterface
                 return response()->json($res);
             }
 
+            $update = [];
+            $i = 0;
             $trades = $signal->trades;
             if (count($trades) > 0) {
                 foreach ($trades as $trade) {
+                    $update[$i]['id'] = $trade->id;
+                    $update[$i]['user_id'] = $trade->user_id;
+                    $update[$i]['amount'] = $trade->amount;
+                    $update[$i]['profitable_amount'] = $trade->profitable_amount;
                     // $request->result = buy | sell
                     // $request->type = profit | loss
                     if ($trade->type == $request->result) {
-                        $update['result'] = $request->type;
+                        $update[$i]['result'] = $request->type;
                         $this->updateAccountBalance($trade, $request->type);
                     } else {
                         $type = $request->type == "profit" ? "loss" : "profit";
-                        $update['result'] = $type;
+                        $update[$i]['result'] = $type;
                         $this->updateAccountBalance($trade, $type);
                     }
-                    $update['status'] = "completed";
-
-
-                    Trade::where("id", $trade->id)
-                        ->update($update);
+                    $update[$i]['status'] = "completed";
+                    $i++;
                 }
             }
 
+            Trade::upsert($update, ['id'], ['user_id', 'result', 'status', 'amount', 'profitable_amount']);
             $signal->status = "completed";
+            $signal->result = $request->type;
             $signal->save();
 
             $res['status'] = true;

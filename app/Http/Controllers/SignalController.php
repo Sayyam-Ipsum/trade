@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Interfaces\SignalInterface;
+use App\Interfaces\TradeInterface;
 use App\Models\Signal;
+use App\Models\Trade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
 class SignalController extends Controller
 {
     protected SignalInterface $signalInterface;
+    protected TradeInterface $tradeInterface;
 
-    public function __construct(SignalInterface $signalInterface)
+    public function __construct(SignalInterface $signalInterface, TradeInterface $tradeInterface)
     {
         $this->signalInterface = $signalInterface;
+        $this->tradeInterface = $tradeInterface;
     }
 
     public function index(Request $request)
@@ -33,17 +38,18 @@ class SignalController extends Controller
                     return statusBadge($data->type);
                 })
                 ->addColumn('amount', function ($data) {
-                    return $data->amount;
+                    return '$'.$data->amount;
+                })
+//                ->addColumn('status', function ($data) {
+//                    return statusBadge($data->status);
+//                })
+                ->addColumn('result', function ($data) {
+                    return statusBadge($data->result);
                 })
                 ->addColumn('actions', function ($data) {
-//                    if ($data->result == "pending") {
-//                        return '<button class="btn btn-xs btn-outline-success btn-result mr-1" data-id="'.$data->id.'" data-result="profit">Profit</button>
-//                                <button class="btn btn-xs btn-outline-danger btn-result mr-1" data-id="'.$data->id.'" data-result="loss">Loss</button>';
-//                    }
-
-                    return '';
+                    return '<a href="signals/'.$data->id.'" target="_blank" class="btn btn-sm btn-outline-info"><i class="fa fa-eye mr-1"></i>Details</a>';
                 })
-                ->rawColumns(['type', 'actions'])
+                ->rawColumns(['type', 'actions', 'status', 'result'])
                 ->make(true);
         }
 
@@ -74,5 +80,39 @@ class SignalController extends Controller
         $res = $this->signalInterface->store($request);
 
         return redirect()->back()->with($res['type'], $res['message']);
+    }
+
+    public function tradesListing(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $data = $this->tradeInterface->listing($request, $id);
+
+            return DataTables::of($data)
+                ->addColumn('user', function ($data) {
+                    return $data->user;
+                })
+                ->addColumn('amount', function ($data) {
+                    return '$'.$data->amount;
+                })
+                ->addColumn('profitable_amount', function ($data) {
+                    return '$'.$data->profitable_amount;
+                })
+                ->addColumn('type', function ($data) {
+                    return statusBadge($data->type);
+                })
+                ->addColumn("result", function ($data) {
+                    return statusBadge($data->result);
+                })
+                ->rawColumns(['type', 'result'])
+                ->make(true);
+        }
+
+        $signal = $this->signalInterface->listing($id);
+
+        if (!$signal)   abort(404);
+
+        $data = $this->signalInterface->details($id);
+
+        return view("admin.signals.trades", compact(['signal', 'data']));
     }
 }
