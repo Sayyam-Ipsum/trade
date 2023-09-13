@@ -8,4 +8,5 @@ interface SignalInterface
 {
     public function listing($id = null);
     public function store(Request $request);
+    public function details($id);
 }

@@ -24,6 +24,8 @@
                 <th>End Time</th>
                 <th>Type</th>
                 <th>Amount</th>
+{{--                <th>Status</th>--}}
+                <th>Result</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -88,6 +90,14 @@
                     {
                         data: 'amount',
                         name: 'amount',
+                    },
+                    // {
+                    //     data: 'status',
+                    //     name: 'status',
+                    // },
+                    {
+                        data: 'result',
+                        name: 'result',
                     },
                     {
                         data: 'actions',

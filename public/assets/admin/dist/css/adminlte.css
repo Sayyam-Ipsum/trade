@@ -2885,6 +2885,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-primary {
   color: #007bff;
+  background-color: #007bff;
   border-color: #007bff;
 }
 

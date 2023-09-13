@@ -129,6 +129,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
         Route::get('/', [SignalController::class, 'index']);
         Route::get('/modal', [SignalController::class, 'modal']);
         Route::post('/store', [SignalController::class, 'store']);
+        Route::get('/{id}', [SignalController::class, 'tradesListing']);
     });
 
     Route::group(['prefix' => 'trading', 'middleware' => ['can:PageAccess.Trading']], function () {

@@ -8,12 +8,6 @@
     Live Trading
 @stop
 
-@section('page-actions')
-    <a href="javascript:void(0);" class="btn btn-add btn-sm btn-primary">
-        <i class="far fa-eye mr-1"></i>View All
-    </a>
-@stop
-
 @section('content')
     @if(count($signals) > 0)
         <div class="row" id="signals-box">
@@ -28,13 +22,19 @@
                                     <span><small>Signal:</small><span><b>${{$signal->amount}}</b></span></span>
                                 </div>
                             </div>
-                            @if(count($signal->trades) > 0)
-                                @foreach($signal->trades as $trade)
-                                    <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
-                                        <span class="text-capitalize">{{$trade->type}} Trades: ({{$trade->trades_count}})</span>
-                                        <span><b>${{$trade->trades_sum}}</b></span>
-                                    </div>
-                                @endforeach
+                            @if($signal->trades['buy_trades_total'] == 0 && $signal->trades['sell_trades_total'] == 0)
+                                <div class="text-center text-danger px-2 py-1">
+                                    <span>No trade exists for this signal.</span>
+                                </div>
+                            @else
+                                <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
+                                    <span class="text-capitalize">Buy Trades: ({{$signal->trades['buy_trades_total']}})</span>
+                                    <span><b>${{$signal->trades['buy_trades_sum']}}</b></span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
+                                    <span class="text-capitalize">Buy Trades: ({{$signal->trades['sell_trades_total']}})</span>
+                                    <span><b>${{$signal->trades['sell_trades_sum']}}</b></span>
+                                </div>
 
                                 @if($signal->status === "in-progress")
                                     <div class="d-flex justify-content-center align-items-center py-1">
@@ -57,14 +57,11 @@
                                                 data-id="{{$signal->id}}">Loss</button>
                                     </div>
                                 @else
-                                    <div class="text-center text-success px-2 py-1">
-                                        <span>Signal Completed</span>
+                                    <div class="d-flex justify-content-between align-items-center px-2 py-1">
+                                        <span><small class="mr-1">Result:</small>{!! statusBadge($signal->result) !!}</span>
+                                        <a class="link link-primary text-decoration-underline" target="_blank" href="{{url('admin/signals').'/'.$signal->id}}">view details</a>
                                     </div>
                                 @endif
-                            @else
-                                <div class="text-center text-danger px-2 py-1">
-                                    <span>No trade exists for this signal.</span>
-                                </div>
                             @endif
                         </div>
                     </div>

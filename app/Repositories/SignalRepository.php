@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\SignalInterface;
 use App\Models\Signal;
+use App\Models\Trade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,5 +48,38 @@ class SignalRepository implements SignalInterface
         }
 
         return $res;
+    }
+
+    public function details($id)
+    {
+        $details = [
+            'buy_trades_total' => 0,
+            'buy_trades_sum' => 0,
+            'sell_trades_total' => 0,
+            'sell_trades_sum' => 0,
+        ];
+
+        $data = Trade::where("signal_id", $id)
+            ->select(
+                "type",
+                DB::raw("COUNT(id) as total"),
+                DB::raw("SUM(profitable_amount) as sum")
+            )
+            ->groupBy("type")
+            ->get()->toArray();
+
+        if (count($data) < 1)   return $details;
+
+        if (array_key_exists(0, $data)) {
+            $details['buy_trades_total'] = $data[0]['total'];
+            $details['buy_trades_sum'] = $data[0]['sum'];
+        }
+
+        if (array_key_exists(1, $data)) {
+            $details['sell_trades_total'] = $data[1]['total'];
+            $details['sell_trades_sum'] = $data[1]['sum'];
+        }
+
+        return $details;
     }
 }

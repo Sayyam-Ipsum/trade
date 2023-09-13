@@ -56,16 +56,20 @@ function statusBadge($status)
     $color = "secondary";
     switch ($status) {
         case "pending":
+        case "in-progress":
             $color = "primary";
             break;
         case "active":
         case "approved":
         case "buy":
+        case "completed":
+        case "profit":
             $color = "success";
             break;
         case "disabled":
         case "rejected":
         case "sell":
+        case "loss":
             $color = "danger";
             break;
         default:
