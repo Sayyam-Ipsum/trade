@@ -18,7 +18,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label required" for="withdraw_limit">Minimum Withdraw Limit</label>
-                            <input type="number" class="form-control" value="{{@$setting->withdraw_limit}}"
+                            <input type="number" class="form-control" min="0" value="{{@$setting->withdraw_limit}}"
                                    name="withdraw_limit" id="withdraw_limit">
                         </div>
                     </div>
@@ -27,6 +27,13 @@
                             <label class="form-label required" for="referral_amount">Referral Amount</label>
                             <input type="number" class="form-control" min="0" value="{{@$setting->referral_amount}}"
                                    name="referral_amount" id="referral_amount">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label required" for="withdrawal_extra_charges_percentage">Withdrawal Extra Charges (Percentage)</label>
+                            <input type="number" class="form-control" min="0" value="{{@$setting->withdrawal_extra_charges_percentage}}"
+                                   name="withdrawal_extra_charges_percentage" id="withdrawal_extra_charges_percentage">
                         </div>
                     </div>
                 </div>
@@ -45,9 +52,13 @@
                 rules:{
                     withdraw_limit: {
                         required:true,
-                        min: 1
+                        min: 0
                     },
                     referral_amount: {
+                        required:true,
+                        min: 0
+                    },
+                    withdrawal_extra_charges_percentage: {
                         required:true,
                         min: 0
                     }
@@ -60,6 +71,9 @@
                     referral_amount: {
                         required:"Please enter minimum withdrawal limit*",
                         min: "Value must be greater then 0"
+                    },
+                    withdrawal_extra_charges_percentage: {
+                        required:"this is required*",
                     }
                 },
                 submitHandler:function(form){

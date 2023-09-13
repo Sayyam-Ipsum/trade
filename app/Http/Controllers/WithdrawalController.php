@@ -25,7 +25,7 @@ class WithdrawalController extends Controller
             $validate = Validator::make($request->all(), [
                 "user_id" => "required",
                 "amount" => "required",
-                "account" => "required"
+                "account" => "required",
             ]);
 
             if ($validate->fails()) {
@@ -64,8 +64,9 @@ class WithdrawalController extends Controller
         }
 
         $accounts = $this->withdrawalInterface->withdrawalAccountListing(auth()->id());
+        $withdrawalExtraChargesPercentage = $this->settingInterface->show()->withdrawal_extra_charges_percentage;
 
-        return view('site.trade.withdrawal', compact(['accounts']));
+        return view('site.trade.withdrawal', compact(['accounts', 'withdrawalExtraChargesPercentage']));
     }
 
     public function getWithdrawals(Request $request)
@@ -88,6 +89,9 @@ class WithdrawalController extends Controller
                 })
                 ->addColumn('amount', function ($data) {
                     return $data->amount;
+                })
+                ->addColumn('withdrawal_charges_deducted_amount', function ($data) {
+                    return $data->withdrawal_charges_deducted_amount ?: 'withdrawal extra charges (percentage) is not set';
                 })
                 ->addColumn('status', function ($data) {
                     return statusDropdown("withdrawal", $data->status, $data->id);

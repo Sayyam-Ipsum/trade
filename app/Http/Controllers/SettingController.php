@@ -26,7 +26,8 @@ class SettingController extends Controller
     {
         $validate = Validator::make($request->all(), [
             "withdraw_limit" => "required",
-            "referral_amount" => "required"
+            "referral_amount" => "required",
+            "withdrawal_extra_charges_percentage" => "required"
         ]);
 
         if ($validate->fails()) {
