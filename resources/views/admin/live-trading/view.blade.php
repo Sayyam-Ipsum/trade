@@ -32,8 +32,17 @@
                                     <span><b>${{$signal->trades['buy_trades_sum']}}</b></span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
-                                    <span class="text-capitalize">Buy Trades: ({{$signal->trades['sell_trades_total']}})</span>
+                                    <span class="text-capitalize">Sell Trades: ({{$signal->trades['sell_trades_total']}})</span>
                                     <span><b>${{$signal->trades['sell_trades_sum']}}</b></span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
+                                    <span class="text-capitalize">Buy Trades Overprice:</span>
+                                    <span><b>${{$signal->trades['buy_trades_overprice']}}</b></span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
+                                    <span class="text-capitalize">Sell Trades Overprice:</span>
+                                    <span><b>${{$signal->trades['sell_trades_overprice']}}</b></span>
                                 </div>
 
                                 @if($signal->status === "in-progress")

@@ -116,7 +116,6 @@ class TradeRepository implements TradeInterface
     public function liveTrading()
     {
         $signals = Signal::whereDate("signals.created_at", Carbon::today())->get();
-//        $signals = Signal::all();
 
         if (count($signals) < 1)    return [];
 
