@@ -93,6 +93,9 @@ class WithdrawalController extends Controller
                 ->addColumn('withdrawal_charges_deducted_amount', function ($data) {
                     return $data->withdrawal_charges_deducted_amount ?: 'withdrawal extra charges (percentage) is not set';
                 })
+                ->addColumn('payable_amount', function ($data) {
+                    return round($data->amount - $data->withdrawal_charges_deducted_amount, 2);
+                })
                 ->addColumn('status', function ($data) {
                     return statusDropdown("withdrawal", $data->status, $data->id);
                 })

@@ -47,6 +47,7 @@
                 <th>Account Number</th>
                 <th>Amount</th>
                 <th>Withdrawal Charges Deducted Amount</th>
+                <th>Payable Amount</th>
                 <th width="10%">Status</th>
             </tr>
             </thead>
@@ -152,6 +153,10 @@
                     {
                         data: 'withdrawal_charges_deducted_amount',
                         name: 'withdrawal_charges_deducted_amount',
+                    },
+                    {
+                        data: 'payable_amount',
+                        name: 'payable_amount',
                     },
                     {
                         data: 'status',
