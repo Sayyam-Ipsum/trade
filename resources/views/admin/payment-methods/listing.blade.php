@@ -1,11 +1,11 @@
 @extends('admin.templates.index')
 
 @section('page-title')
-    Payment Method
+    Payment Methods
 @stop
 
 @section('title')
-    Payment Method
+    Payment Methods
 @stop
 
 @section('page-actions')

@@ -1,5 +1,9 @@
 @extends('site.layout.index')
 
+@section('page-title')
+    Register
+@stop
+
 @section('content')
     <div class="col-md-4 m-auto my-5">
         <h1 class="signin-header">Sign Up</h1>

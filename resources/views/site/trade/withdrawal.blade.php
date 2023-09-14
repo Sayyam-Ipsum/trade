@@ -1,5 +1,9 @@
 @extends('site.trade.layout.index')
 
+@section('page-title')
+    Withdrawals
+@stop
+
 @section('title')
     Get Withdrawal
 @stop

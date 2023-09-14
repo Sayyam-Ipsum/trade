@@ -127,4 +127,38 @@ class TradeController extends Controller
 
         return response()->json($res);
     }
+
+    public function tradeHistory(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = $this->tradeInterface->getTrades();
+
+            return DataTables::of($data)
+                ->addColumn('created_at', function ($data) {
+                    return showDate($data->created_at);
+                })
+                ->addColumn('amount', function ($data) {
+                    return '$'.$data->amount;
+                })
+                ->addColumn('type', function ($data) {
+                    return statusBadge($data->type);
+                })
+                ->addColumn("status", function ($data) {
+                    return statusBadge($data->status);
+                })
+                ->addColumn('result', function ($data) {
+                    if ($data->result == "profit") {
+                        return '<button class="btn btn-sm btn-success px-2"><i class="far fa-plus mr-1" style="font-size: 11px;"></i>$'.($data->profitable_amount - $data->amount).'<span class="ml-1">Profit</span></button>';
+                    } elseif ($data->result == "loss") {
+                        return '<button class="btn btn-sm btn-danger px-2"><i class="far fa-minus mr-1" style="font-size: 11px;"></i>$'.$data->amount.'<span class="ml-1">Loss</span></button>';
+                    } else {
+                        return '-';
+                    }
+                })
+                ->rawColumns(['type', 'status', 'result'])
+                ->make(true);
+        }
+
+        return view('site.trade.history');
+    }
 }
