@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('withdrawals', function (Blueprint $table) {
-            $table->double('withdrawal_charges_deducted_amount')->nullable()->after('amount');
+            $table->double('withdrawal_charges_deducted_amount')->default(0)->after('amount');
         });
     }
 
