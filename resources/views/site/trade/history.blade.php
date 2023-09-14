@@ -16,8 +16,8 @@
             </div>
             <div class="card-body bg-self border border-dark">
                 <div class="table-responsive p-0">
-                    <table class="table table-sm" id="trading-data-table">
-                        <thead class="">
+                    <table class="table table-sm" id="history-data-table">
+                        <thead>
                         <tr>
                             <th width="20%">Date</th>
                             <th width="20%">Amount Invested</th>
@@ -38,7 +38,7 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('#trading-data-table').DataTable({
+            $('#history-data-table').DataTable({
                 processing: true,
                 serverSide: true,
                 destroy: true,
