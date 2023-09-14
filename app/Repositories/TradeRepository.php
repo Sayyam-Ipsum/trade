@@ -46,6 +46,23 @@ class TradeRepository implements TradeInterface
         return $data;
     }
 
+    public function getTrades($filter = null)
+    {
+        $data = Trade::orderBy("created_at", "desc");
+
+        if (isset($filter)) {
+            switch ($filter) {
+                case "today":
+                    $data = $data->whereDate("created_at", Carbon::today());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return $data->get();
+    }
+
     public function store(Request $request)
     {
         $res['status'] = false;

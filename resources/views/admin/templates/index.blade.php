@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
     <link href="/assets/admin/dist/img/AdminLTELogo.png" rel="apple-touch-icon-precomposed">
     <link href="/assets/admin/dist/img/AdminLTELogo.png" rel="shortcut icon" type="image/png">
-    <title>@yield('page-title') | Easy Trade</title>
+    <title>BTC Ride - @yield('page-title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -135,7 +135,7 @@
     <aside class="main-sidebar sidebar-dark-info elevation-4">
         <!-- Brand Logo -->
         <a href="{{'/'}}" class="brand-link text-center">
-            <span class="brand-text font-weight-bold">Easy Trade</span>
+            <span class="brand-text font-weight-bold">BTC Ride</span>
         </a>
 
         <!-- Sidebar -->

@@ -9,7 +9,7 @@
     <meta name="description" content="Easy Option">
 
     <!-- ========== Page Title ========== -->
-    <title>Easy Trading</title>
+    <title>BTC Ride - @yield('page-title')</title>
     <link rel="shortcut icon" href="assets/site/img/favicon.png" type="image/x-icon">
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{asset('assets/site/css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -31,15 +31,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-white me-3" href="{{url('/market')}}">Market</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white me-3" href="{{url('/deposit')}}">Deposit</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white me-3" href="{{url('/withdrawal')}}">Withdrawal</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-white me-3" href="{{url('/')}}#about">About</a>
                     </li>

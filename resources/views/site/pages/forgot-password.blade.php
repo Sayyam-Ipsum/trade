@@ -1,5 +1,9 @@
 @extends('site.layout.index')
 
+@section('page-title')
+    Forgot Password
+@stop
+
 @section('content')
     @if(session()->has('error'))
         <div class="alert alert-danger">

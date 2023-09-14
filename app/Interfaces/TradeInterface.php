@@ -11,4 +11,5 @@ interface TradeInterface
     public function result(Request $request);
     public function liveTrading();
     public function storeSignalResult(Request $request);
+    public function getTrades($filter = null);
 }
