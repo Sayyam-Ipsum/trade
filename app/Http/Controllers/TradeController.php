@@ -161,4 +161,12 @@ class TradeController extends Controller
 
         return view('site.trade.history');
     }
+
+    public function getTrades($filter = null)
+    {
+        return response()->json([
+            'status' => true,
+            'data' => $this->tradeInterface->getTrades($filter)
+        ]);
+    }
 }

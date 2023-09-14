@@ -73,7 +73,7 @@
                         <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary ml-1" style="border: none !important;">
                             <i class="fas fa-align-left"></i>
                         </button>
-                        <h3 class="text-white m-0 ml-2" style="font-family: bold;">BTC Ride</h3>
+                        <h3 class="text-white m-0 ml-2" style="font-family: med;">BTC<span class="text-success">Ride</span></h3>
                         <span class="text-secondary ml-2"><i>Web Trading Platform</i></span>
                     </div>
                 </div>

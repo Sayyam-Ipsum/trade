@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{url('/')}}">
-                <h2 class="text-white m-0"><span style="font-family: bold;">BTC</span><span class="text-success" style="font-family: bold;">Ride</span></h2>
+                <h2 class="text-white m-0" style="font-family: bold;"><span>BTC</span><span class="text-success">Ride</span></h2>
 {{--                <img src="{{asset('assets/site/img/logo-2.png')}}" width="120px" height="60px">--}}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">

@@ -54,6 +54,7 @@ class TradeRepository implements TradeInterface
             switch ($filter) {
                 case "today":
                     $data = $data->whereDate("created_at", Carbon::today());
+                    $data = $data->take(7);
                     break;
                 default:
                     break;

@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('payment-method/{id}', [PaymentMethodController::class, 'getPaymentMethodDetail']);
     Route::post('change-password', [UserController::class, 'changePassword']);
     Route::post('/trade', [TradeController::class, 'store']);
+    Route::get('/trades/list/{filter?}', [TradeController::class, 'getTrades']);
 });
 
 /*
