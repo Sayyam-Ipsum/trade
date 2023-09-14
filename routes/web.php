@@ -48,15 +48,18 @@ Route::controller(AuthController::class)->group(function () {
  */
 Route::get('/', [SiteController::class, 'index']);
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/get-account-balance', [SiteController::class, 'getAccountBalance']);
     Route::get('/market', [SiteController::class, 'market']);
     Route::match(['get', 'post'], '/deposit', [DepositController::class, 'index']);
     Route::match(['get', 'post'], '/withdrawal', [WithdrawalController::class, 'index']);
     Route::get('/account', [SiteController::class, 'account']);
+    Route::get('/withdrawal-account', [SiteController::class, 'withdrawalAccount']);
     Route::get('/referral', [SiteController::class, 'referral']);
     Route::get('/transactions', [SiteController::class, 'transactions']);
     Route::get('/trade-history', [TradeController::class, 'tradeHistory']);
     Route::post('/profile', [UserController::class, 'profile']);
     Route::post('/withdrawal-account', [WithdrawalController::class, 'storeWithdrawalAccount']);
+    Route::get('/get-withdrawal-accounts', [WithdrawalController::class, 'getWithdrawalAccount']);
     Route::get('payment-method/{id}', [PaymentMethodController::class, 'getPaymentMethodDetail']);
     Route::post('change-password', [UserController::class, 'changePassword']);
     Route::post('/trade', [TradeController::class, 'store']);

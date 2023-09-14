@@ -11,7 +11,7 @@
 @section('content')
     <div class="card border-0">
         <div class="card-body bg-self shadow-sm p-0 px-2 py-3">
-            <form method="post" name="withdrawal-form" id="withdrawal-form" action="{{url('withdrawal')}}">
+            <form method="post" autocomplete="off" name="withdrawal-form" id="withdrawal-form" action="{{url('withdrawal')}}">
                 @csrf
                 <input type="hidden" name="user_id" value="{{auth()->id()}}">
                 @if(count($accounts) < 1)
@@ -57,6 +57,10 @@
 @section('scripts')
     <script>
         function getAmountAfterDeduction() {
+            if($('#amount').val() > {{auth()->user()->account_balance}}){
+                toast('Withdrawal amount should be less than account balance', 'warning');
+                return true;
+            }
             @if($withdrawalExtraChargesPercentage > 0) {
                 let deducted_amount = ($('#amount').val() / 100) * {{$withdrawalExtraChargesPercentage}};
                 $('#amount_after_deduction').val($('#amount').val() - deducted_amount);

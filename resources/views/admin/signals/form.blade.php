@@ -41,7 +41,7 @@
                     <label for="amount" class="form-label">
                         <span class="required">Amount</span>
                     </label>
-                    <input type="number" step="any" class="form-control" id="amount" name="amount">
+                    <input type="number" step="any" min="1" class="form-control" id="amount" name="amount">
                 </div>
             </div>
         </div>

@@ -9,6 +9,8 @@ use App\Models\Withdraw;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use stdClass;
 
 class WithdrawalRepository implements WithdrawalInterface
 {
@@ -46,8 +48,8 @@ class WithdrawalRepository implements WithdrawalInterface
             $withdrawal->status = $request->status;
             $withdrawal->save();
             DB::commit();
-            if ($withdrawal->status == "approved") {
-                $this->withdrawFromUserAccount($withdrawal);
+            if ($withdrawal->status == "rejected") {
+                $this->withdrawFromUserAccount($withdrawal, '+');
             }
             $res["type"] = "success";
             $res["message"] = "Status Updated Successfully";
@@ -59,17 +61,22 @@ class WithdrawalRepository implements WithdrawalInterface
         return $res;
     }
 
-    public function withdrawFromUserAccount($data)
+    public function withdrawFromUserAccount($data, $opt = '-')
     {
         try {
             DB::beginTransaction();
             $user = User::find($data->user_id);
-            $user->account_balance -= $data->amount;
+            if($opt == '+'){
+                $user->account_balance += $data->amount;
+            }
+            elseif($opt == '-'){
+                $user->account_balance -= $data->amount;
+            }
             $user->save();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
+            log::debug($e->getMessage());
         }
     }
 
@@ -120,7 +127,15 @@ class WithdrawalRepository implements WithdrawalInterface
             $withdraw->amount = $request->amount;
             $withdraw->status = "pending";
             $withdraw->save();
+
+            $user = User::find(auth()->user()->id);
+            $data = new stdClass();
+            $data->amount = $request->amount;
+            $data->user_id = $user->id;
+            $this->withdrawFromUserAccount($data);
+
             DB::commit();
+
             $res["type"] = "success";
             $res["message"] = "Withdraw Submitted, Please wait.....";
         } catch (\Exception $e) {

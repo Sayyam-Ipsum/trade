@@ -49,6 +49,9 @@
             <li class="{{is_active_menu('referral')}}">
                 <a href="{{url('referral')}}"><i class="fal fa-link mr-2"></i>Referrals</a>
             </li>
+            <li class="{{is_active_menu('withdrawal-account')}}">
+                <a href="{{url('withdrawal-account')}}"><i class="fal fa-dollar-sign mr-2"></i>Withdrawal Account</a>
+            </li>
             <li class="{{is_active_menu('account')}}">
                 <a href="{{url('account')}}"><i class="fal fa-user mr-2"></i>My Account</a>
             </li>
@@ -78,7 +81,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-right">
-                    <button class="btn btn-success px-4 py-2"><small>Balance:</small> <b>${{sprintf("%0.2f", (auth()->user()->account_balance))}}</b></button>
+                    <button class="btn btn-success px-4 py-2"><span id="balance">Balance:<b>${{sprintf("%0.2f", (auth()->user()->account_balance))}}</b></span></button>
                 </div>
 {{--                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
 {{--                    <i class="fas fa-align-justify"></i>--}}
@@ -115,3 +118,23 @@
 <div class="overlay"></div>
 
 @include('site.trade.layout.footer')
+
+<script>
+    function setAccountBalance(){
+        $.ajax({
+            url: "{{url('get-account-balance')}}",
+            type: "GET",
+            cache: false,
+            processData: false,
+            contentType: "application/json; charset=UTF-8",
+            success: function (res) {
+                if (res.success == true) {
+                        $('#balance').html('Balance:$<b>' + parseFloat(res.data.account_balance).toFixed(2) + '</b>');
+                    }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(textStatus+' : '+errorThrown);
+            }
+        });
+    }
+</script>

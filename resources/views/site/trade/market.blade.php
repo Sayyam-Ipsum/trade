@@ -143,6 +143,7 @@
                             $("#amount").val('');
                             $("#profit").val('');
                             $("#profitable-amount").val('');
+                            setAccountBalance();
                             buildTrades();
                         }
                     }
