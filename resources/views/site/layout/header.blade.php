@@ -27,7 +27,7 @@
                 <h2 class="text-white m-0" style="font-family: bold;"><span>BTC</span><span class="text-success">Ride</span></h2>
 {{--                <img src="{{asset('assets/site/img/logo-2.png')}}" width="120px" height="60px">--}}
             </a>
-            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+            <button class="navbar-toggler btn btn-outline-secondary border-secondary py-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-align-left text-success"></i>
             </button>
