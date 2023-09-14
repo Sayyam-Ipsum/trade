@@ -52,7 +52,7 @@ class AuthController extends Controller
                     'email' => $user->email,
                     'role_id' => $this->roleInterface->getCustomerRoleID(),
                     'google_id' => $user->id,
-                    'password' => encrypt('easytradepasswd')
+                    'password' => encrypt('btcridepasswd')
                 ]);
 
                 Auth::login($newUser);
@@ -81,7 +81,7 @@ class AuthController extends Controller
                 $request->session()
                     ->regenerate();
 
-                return redirect(url('/trade'));
+                return redirect(url('/'));
             }
 
             return back()
