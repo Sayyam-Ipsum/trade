@@ -342,11 +342,11 @@ div.dataTables_filter input:focus {
     outline: none !important;
 }
 
-#deposit-data-table thead, #withdrawal-data-table thead, #trading-data-table thead {
+#deposit-data-table thead, #withdrawal-data-table thead, #history-data-table thead {
     background: #6C757D !important;
     border: none;
 }
 
-#deposit-data-table tbody tr, #withdrawal-data-table tbody tr, #trading-data-table tbody tr {
+#deposit-data-table tbody tr, #withdrawal-data-table tbody tr, #history-data-table tbody tr {
     background: var(--bg) !important;
 }
