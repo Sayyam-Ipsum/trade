@@ -10,7 +10,7 @@
         {{--        <h6 class="m-0 font-weight-bold">Create Deposit</h6>--}}
         {{--    </div>--}}
         <div class="card-body bg-self shadow-sm p-0 px-2 py-3">
-            <form method="post" name="deposit-form" id="deposit-form" action="{{url('deposit')}}" enctype="multipart/form-data">
+            <form method="post" autocomplete="off" name="deposit-form" id="deposit-form" action="{{url('deposit')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="user_id" value="{{auth()->id()}}">
                 <div class="row">
@@ -36,17 +36,32 @@
                 <div id="detail-box">
                     <small class="text-success">Here is Account Details where you can send money. Once Admin approve deposit, you can do trading. Thank you</small>
                     <div class="row mt-2">
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-4">
                             <label class="form-label required" for="bank">Bank</label>
-                            <input type="text" readonly class="form-control shadow-none" name="bank" id="bank">
+                            <div class="input-group">
+                                <input type="text" readonly class="form-control shadow-none bg-secondary" name="bank" id="bank">
+                                <span class="input-group-text cursor-pointer bg-transparent" style="border: 1px solid gray;">
+                            <i class="fal fa-clipboard copy-bank"></i>
+                        </span>
                         </div>
-                        <div class="col-md-4 form-group">
+                        </div>
+                        <div class="col-md-4">
                             <label class="form-label required" for="account_name">Account Title</label>
-                            <input type="text" readonly class="form-control shadow-none" name="account_name" id="account_name">
+                            <div class="input-group">
+                                <input type="text" readonly class="form-control shadow-none bg-secondary" name="account_name" id="account_name">
+                                <span class="input-group-text cursor-pointer bg-transparent" style="border: 1px solid gray;">
+                            <i class="fal fa-clipboard copy-account-name"></i>
+                        </span>
+                            </div>
                         </div>
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-4">
                             <label class="form-label required" for="account_number">Account Number</label>
-                            <input type="text" readonly class="form-control shadow-none" name="account_number" id="account_number">
+                            <div class="input-group">
+                                <input type="text" readonly class="form-control shadow-none bg-secondary" name="account_number" id="account_number">
+                                <span class="input-group-text cursor-pointer bg-transparent" style="border: 1px solid gray;">
+                            <i class="fal fa-clipboard copy-account-number"></i>
+                        </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,5 +158,48 @@
                 $("#photo-box").show();
             }
         }
+
+        $('.copy-bank').click(function() {
+                const textToCopy = $('#bank').val();
+
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                textarea.style.position = 'fixed';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                toast('bank name copied to clipboard', 'success');
+        });
+
+        $('.copy-account-name').click(function() {
+            const textToCopy = $('#account_name').val();
+
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            toast('account name copied to clipboard', 'success');
+        });
+
+        $('.copy-account-number').click(function() {
+            const textToCopy = $('#account_number').val();
+
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            toast('bank name copied to clipboard', 'success');
+        });
+
     </script>
 @stop

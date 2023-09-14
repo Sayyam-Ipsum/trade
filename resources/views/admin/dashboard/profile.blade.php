@@ -11,7 +11,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form method="post" name="setting-form" id="setting-form" enctype="multipart/form-data" action="{{url('admin/profile')}}">
+            <form method="post" autocomplete="off" name="setting-form" id="setting-form" enctype="multipart/form-data" action="{{url('admin/profile')}}">
                 @csrf
                 <input type="hidden" name="id" value="{{auth()->id()}}">
                 <div class="d-flex justify-content-end">

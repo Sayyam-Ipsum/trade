@@ -11,7 +11,7 @@
                 <div class="col-md-4 mt-2" style="border-right: 1px dashed #6c757d;">
                     <h5 style="font-family: bold;" class="text-white m-0">Personal Info:</h5>
                     <div class="mt-3">
-                        <form method="post" name="user-form" id="user-form" enctype="multipart/form-data" action="{{url('profile')}}">
+                        <form method="post" autocomplete="off" name="user-form" id="user-form" enctype="multipart/form-data" action="{{url('profile')}}">
                             @csrf
                             <input type="hidden" name="id" value="{{auth()->user()->id}}">
                             <div class="row">
@@ -85,7 +85,7 @@
                 <div class="col-md-4 mt-2" style="">
                     <h5 style="font-family: bold;" class="text-white m-0">Withdrawal Accounts:</h5>
                     <div class="mt-3">
-                        <form method="post" name="withdrawal-account-form" id="withdrawal-account-form" action="{{url('withdrawal-account')}}">
+                        <form method="post" autocomplete="off" name="withdrawal-account-form" id="withdrawal-account-form" action="{{url('withdrawal-account')}}">
                             @csrf
                             <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                             <div class="row">
@@ -113,7 +113,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label required" for="mobile_no">Phone Number</label>
-                                        <input type="text" class="form-control shadow-none" name="mobile_no" id="mobile_no"
+                                        <input type="number" min="0" class="form-control shadow-none" name="mobile_no" id="mobile_no"
                                                placeholder="xxxxxxxxxx">
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                 },
                 messages:{
                     bank: {
-                        required: "Please select Bank*"
+                        required: "Please enter Bank*"
                     },
                     account_title: {
                         required: "Please enter Account Name*"
@@ -161,7 +161,7 @@
                         required: "Please enter Account Number*"
                     },
                     mobile_no: {
-                        required: "Please select Phone Number*"
+                        required: "Please enter Phone Number*"
                     }
                 },
                 submitHandler:function(form){

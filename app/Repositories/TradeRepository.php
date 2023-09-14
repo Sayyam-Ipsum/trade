@@ -68,6 +68,11 @@ class TradeRepository implements TradeInterface
             $trade->amount = $request->amount;
             $trade->profitable_amount = $request->profitable_amount;
             $trade->save();
+
+            $user = User::find($request->user_id);
+            $user->account_balance -= $request->amount;
+            $user->save();
+
             DB::commit();
             $res['status'] = true;
             $res['message'] = "Trade Submitted";

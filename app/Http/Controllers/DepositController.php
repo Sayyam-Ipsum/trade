@@ -47,7 +47,7 @@ class DepositController extends Controller
                     return showDate($data->created_at);
                 })
                 ->addColumn('amount', function ($data) {
-                    return $data->amount;
+                    return '$'.$data->amount;
                 })
                 ->addColumn('status', function ($data) {
                     return statusBadge($data->status);
@@ -74,7 +74,7 @@ class DepositController extends Controller
                     return $data->bank;
                 })
                 ->addColumn('amount', function ($data) {
-                    return $data->amount;
+                    return '$'.$data->amount;
                 })
                 ->addColumn('photo', function ($data) {
                     $html = "N/A";

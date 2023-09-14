@@ -63,7 +63,7 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $("#amount").on('keyup', function () {
+            $("#amount").on('oninput', function () {
                 let amount = Number($("#amount").val());
                 let user_balance = Number({{auth()->user()->account_balance}});
 
@@ -120,6 +120,7 @@
                             $("#amount").val('');
                             $("#profit").val('');
                             $("#profitable-amount").val('');
+                            setAccountBalance();
                         }
                     }
                 });

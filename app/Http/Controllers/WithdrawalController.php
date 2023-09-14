@@ -54,7 +54,7 @@ class WithdrawalController extends Controller
                     return showDate($data->created_at);
                 })
                 ->addColumn('amount', function ($data) {
-                    return $data->amount;
+                    return '$'.$data->amount;
                 })
                 ->addColumn('status', function ($data) {
                     return statusBadge($data->status);
@@ -88,13 +88,13 @@ class WithdrawalController extends Controller
                     return $data->account_no;
                 })
                 ->addColumn('amount', function ($data) {
-                    return $data->amount;
+                    return '$'.$data->amount;
                 })
                 ->addColumn('withdrawal_charges_deducted_amount', function ($data) {
-                    return $data->withdrawal_charges_deducted_amount ?: 'withdrawal extra charges (percentage) is not set';
+                    return '$'.$data->withdrawal_charges_deducted_amount ?: 0;
                 })
                 ->addColumn('payable_amount', function ($data) {
-                    return round($data->amount - $data->withdrawal_charges_deducted_amount, 2);
+                    return '$'.round($data->amount - $data->withdrawal_charges_deducted_amount, 2);
                 })
                 ->addColumn('status', function ($data) {
                     return statusDropdown("withdrawal", $data->status, $data->id);
@@ -145,5 +145,27 @@ class WithdrawalController extends Controller
         $res = $this->withdrawalInterface->storeWithdrawalAccount($request);
 
         return redirect()->back()->with($res['type'], $res['message']);
+    }
+
+    public function getWithdrawalAccount(Request $request){
+
+       if ($request->ajax()) {
+           $data = $this->withdrawalInterface->withdrawalAccountListing(auth()->user()->id);
+
+           return DataTables::of($data)
+               ->addColumn('bank', function ($data) {
+                   return $data->bank;
+               })
+               ->addColumn('account_title', function ($data) {
+                   return $data->account_title;
+               })
+               ->addColumn('account_number', function ($data) {
+                   return $data->account_no;
+               })
+               ->addColumn('phone_number', function ($data) {
+                   return $data->mobile_no;
+               })
+               ->make(true);
+       }
     }
 }
