@@ -1,5 +1,9 @@
 @extends('site.trade.layout.index')
 
+@section('page-title')
+    My Account
+@stop
+
 @section('title')
     My Account
 @stop

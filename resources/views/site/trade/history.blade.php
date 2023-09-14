@@ -1,5 +1,9 @@
 @extends('site.trade.layout.index')
 
+@section('page-title')
+    Trading History
+@stop
+
 @section('title')
     Trading History
 @stop
@@ -12,15 +16,13 @@
             </div>
             <div class="card-body bg-self border border-dark">
                 <div class="table-responsive p-0">
-                    <table class="table table-sm table-dark table-striped table-hover" id="trading-data-table">
-                        <thead class="">
+                    <table class="table table-sm" id="history-data-table">
+                        <thead>
                         <tr>
-                            <th width="20%">Coin</th>
+                            <th width="20%">Date</th>
                             <th width="20%">Amount Invested</th>
-                            <th width="20%">Starting Price</th>
-                            <th width="20%">Closing Price</th>
-                            <th width="20%">Time Period</th>
-                            <th width="20%">Type</th>
+                            <th width="20%">Trade</th>
+                            <th width="20%">Status</th>
                             <th width="20%">Result</th>
                         </tr>
                         </thead>
@@ -36,7 +38,7 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('#trading-data-table').DataTable({
+            $('#history-data-table').DataTable({
                 processing: true,
                 serverSide: true,
                 destroy: true,
@@ -44,14 +46,12 @@
                 columnsDefs: [{
                     orderable: true
                 }],
-                ajax: {url: "{{url('trading/history').'/'}}"},
+                ajax: {url: "{{url('trade-history')}}"},
                 columns: [
-                    {data: 'coin', name: 'coin'},
-                    {data: 'amount_invested', name: 'amount_invested'},
-                    {data: 'starting_price', name: 'starting_price'},
-                    {data: 'closing_price', name: 'closing_price'},
-                    {data: 'time_period', name: 'time_period'},
+                    {data: 'created_at', name: 'created_at'},
+                    {data: 'amount', name: 'amount'},
                     {data: 'type', name: 'type'},
+                    {data: 'status', name: 'status'},
                     {data: 'result', name: 'result'}
                 ]
             });

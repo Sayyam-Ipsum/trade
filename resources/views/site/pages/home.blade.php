@@ -1,5 +1,9 @@
 @extends('site.layout.index')
 
+@section('page-title')
+    Home
+@stop
+
 @section('content')
     <div class="container">
         <div class="row">

@@ -56,13 +56,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/withdrawal-account', [SiteController::class, 'withdrawalAccount']);
     Route::get('/referral', [SiteController::class, 'referral']);
     Route::get('/transactions', [SiteController::class, 'transactions']);
-    Route::get('/trade-history', [SiteController::class, 'tradeListing']);
+    Route::get('/trade-history', [TradeController::class, 'tradeHistory']);
     Route::post('/profile', [UserController::class, 'profile']);
     Route::post('/withdrawal-account', [WithdrawalController::class, 'storeWithdrawalAccount']);
     Route::get('/get-withdrawal-accounts', [WithdrawalController::class, 'getWithdrawalAccount']);
     Route::get('payment-method/{id}', [PaymentMethodController::class, 'getPaymentMethodDetail']);
     Route::post('change-password', [UserController::class, 'changePassword']);
     Route::post('/trade', [TradeController::class, 'store']);
+    Route::get('/trades/list/{filter?}', [TradeController::class, 'getTrades']);
 });
 
 /*

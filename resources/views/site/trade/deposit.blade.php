@@ -1,5 +1,9 @@
 @extends('site.trade.layout.index')
 
+@section('page-title')
+    Deposits
+@stop
+
 @section('title')
     Make Deposit
 @stop

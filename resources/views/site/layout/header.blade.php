@@ -9,7 +9,7 @@
     <meta name="description" content="Easy Option">
 
     <!-- ========== Page Title ========== -->
-    <title>Easy Trading</title>
+    <title>BTC Ride - @yield('page-title')</title>
     <link rel="shortcut icon" href="assets/site/img/favicon.png" type="image/x-icon">
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{asset('assets/site/css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -24,22 +24,15 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{url('/')}}">
-                <img src="{{asset('assets/site/img/logo-2.png')}}" width="120px" height="60px">
+                <h2 class="text-white m-0" style="font-family: bold;"><span>BTC</span><span class="text-success">Ride</span></h2>
+{{--                <img src="{{asset('assets/site/img/logo-2.png')}}" width="120px" height="60px">--}}
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler btn btn-outline-secondary border-secondary py-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-align-left text-success"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-white me-3" href="{{url('/market')}}">Market</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white me-3" href="{{url('/deposit')}}">Deposit</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white me-3" href="{{url('/withdrawal')}}">Withdrawal</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-white me-3" href="{{url('/')}}#about">About</a>
                     </li>

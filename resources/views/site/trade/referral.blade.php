@@ -1,5 +1,9 @@
 @extends('site.trade.layout.index')
 
+@section('page-title')
+    Referrals
+@stop
+
 @section('title')
     Referrals
 @stop

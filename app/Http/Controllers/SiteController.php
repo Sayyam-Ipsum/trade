@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Interfaces\DepositInterface;
 use App\Interfaces\PaymentMethodInterface;
 use App\Models\User;
+use App\Interfaces\TradeInterface;
+use App\Models\Referral;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -23,6 +26,8 @@ class SiteController extends Controller
 
     public function market()
     {
+
+
         return view('site.trade.market');
     }
 
@@ -33,12 +38,10 @@ class SiteController extends Controller
 
     public function referral()
     {
-        return view('site.trade.referral');
-    }
+        $referrals = Referral::where("referred_by", auth()->user()->id)->count();
+        $referrer_amount = Setting::select("referral_amount")->pluck("referral_amount")->first();
 
-    public function tradeListing()
-    {
-        return view('site.trade.listing');
+        return view('site.trade.referral', compact(['referrals', 'referrer_amount']));
     }
 
     public function transactions()
