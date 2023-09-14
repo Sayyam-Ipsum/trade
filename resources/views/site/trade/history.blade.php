@@ -21,7 +21,7 @@
                         <tr>
                             <th width="20%">Date</th>
                             <th width="20%">Amount Invested</th>
-                            <th width="20%">Type</th>
+                            <th width="20%">Trade</th>
                             <th width="20%">Status</th>
                             <th width="20%">Result</th>
                         </tr>

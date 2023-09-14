@@ -14,13 +14,6 @@ use Yajra\DataTables\DataTables;
 
 class SiteController extends Controller
 {
-    protected TradeInterface $tradeInterface;
-
-    public function __construct(TradeInterface $tradeInterface)
-    {
-        $this->tradeInterface = $tradeInterface;
-    }
-
     public function index()
     {
         if (Auth::check()) {
@@ -32,9 +25,9 @@ class SiteController extends Controller
 
     public function market()
     {
-        $trades = $this->tradeInterface->getTrades("today");
 
-        return view('site.trade.market', compact(['trades']));
+
+        return view('site.trade.market');
     }
 
     public function account()
