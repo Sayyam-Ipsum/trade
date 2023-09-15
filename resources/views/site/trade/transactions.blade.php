@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-body bg-self border border-dark">
                     <div class="table-responsive p-0">
-                        <table class="table table-sm" id="deposit-data-table">
+                        <table class="table table-sm data-table" id="deposit-data-table">
                             <thead>
                             <tr>
                                 <th width="35%">Date</th>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="card-body bg-self border border-dark">
                     <div class="table-responsive p-0">
-                        <table class="table table-sm" id="withdrawal-data-table">
+                        <table class="table table-sm data-table" id="withdrawal-data-table">
                             <thead class="">
                             <tr>
                                 <th width="35%">Date</th>

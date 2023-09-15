@@ -16,11 +16,11 @@
             </div>
             <div class="card-body bg-self border border-dark">
                 <div class="table-responsive p-0">
-                    <table class="table table-sm" id="history-data-table">
+                    <table class="table table-sm data-table" id="history-data-table">
                         <thead>
                         <tr>
                             <th width="20%">Date</th>
-                            <th width="20%">Amount Invested</th>
+                            <th width="20%">Amount</th>
                             <th width="20%">Trade</th>
                             <th width="20%">Status</th>
                             <th width="20%">Result</th>

@@ -40,36 +40,42 @@
                 <div id="detail-box">
                     <small class="text-success">Here is Account Details where you can send money. Once Admin approve deposit, you can do trading. Thank you</small>
                     <div class="row mt-2">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <label class="form-label required" for="bank">Bank</label>
                             <div class="input-group">
                                 <input type="text" readonly class="form-control shadow-none bg-secondary" name="bank" id="bank">
-                                <span class="input-group-text cursor-pointer bg-transparent" style="border: 1px solid gray;">
-                            <i class="fal fa-clipboard copy-bank"></i>
+                                <span class="input-group-text cursor-pointer bg-transparent copy-bank"
+                                      style="border: 1px solid gray; border-radius: 0 !important; cursor: pointer;
+                                      border-top-right-radius: 4px !important; border-bottom-right-radius: 4px !important;">
+                                    <i class="fal fa-clipboard "></i>
                         </span>
                         </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <label class="form-label required" for="account_name">Account Title</label>
                             <div class="input-group">
                                 <input type="text" readonly class="form-control shadow-none bg-secondary" name="account_name" id="account_name">
-                                <span class="input-group-text cursor-pointer bg-transparent" style="border: 1px solid gray;">
-                            <i class="fal fa-clipboard copy-account-name"></i>
+                                <span class="input-group-text cursor-pointer bg-transparent copy-account-name"
+                                      style="border: 1px solid gray; border-radius: 0 !important; cursor: pointer;
+                                        border-top-right-radius: 4px !important; border-bottom-right-radius: 4px !important;">
+                                    <i class="fal fa-clipboard "></i>
                         </span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <label class="form-label required" for="account_number">Account Number</label>
                             <div class="input-group">
                                 <input type="text" readonly class="form-control shadow-none bg-secondary" name="account_number" id="account_number">
-                                <span class="input-group-text cursor-pointer bg-transparent" style="border: 1px solid gray;">
-                            <i class="fal fa-clipboard copy-account-number"></i>
+                                <span class="input-group-text cursor-pointer bg-transparent copy-account-number"
+                                      style="border: 1px solid gray; border-radius: 0 !important; cursor: pointer;
+                                        border-top-right-radius: 4px !important; border-bottom-right-radius: 4px !important;">
+                                    <i class="fal fa-clipboard "></i>
                         </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-4 form-group" id="file-box">
                         <label class="form-label required" for="photo">Photo</label>
                         <input type="file" class="form-control" id="photo" name="photo" required onchange="setPhoto(this)">
@@ -174,7 +180,7 @@
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
 
-                toast('bank name copied to clipboard', 'success');
+                toast('Bank Name copied!', 'success');
         });
 
         $('.copy-account-name').click(function() {
@@ -188,7 +194,7 @@
             document.execCommand('copy');
             document.body.removeChild(textarea);
 
-            toast('account name copied to clipboard', 'success');
+            toast('Account Title copied!', 'success');
         });
 
         $('.copy-account-number').click(function() {
@@ -202,7 +208,7 @@
             document.execCommand('copy');
             document.body.removeChild(textarea);
 
-            toast('bank name copied to clipboard', 'success');
+            toast('Account Number copied!', 'success');
         });
 
     </script>

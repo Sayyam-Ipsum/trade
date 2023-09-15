@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="row mt-3">
-        <div class="col-md-9 p-0 px-3" style="height: 600px;">
+        <div class="col-md-9">
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget-container">
                 <div id="tradingview_f5eb5"></div>
@@ -43,7 +43,7 @@
             </div>
             <!-- TradingView Widget END -->
         </div>
-        <div class="col-md-3 p-0 pr-3">
+        <div class="col-md-3">
             <div class="card-body border border-secondary rounded p-0">
                 <div class="p-2">
                     <input type="hidden" name="profit" id="profit" value="">

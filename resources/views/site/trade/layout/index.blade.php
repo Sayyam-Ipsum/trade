@@ -70,18 +70,24 @@
     <div id="content">
 
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid p-0 row">
-                <div class="col-md-6">
+            <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
+                <div class="">
                     <div class="d-flex justify-content-start align-items-center">
                         <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary ml-1" style="border: none !important;">
                             <i class="fas fa-align-left"></i>
                         </button>
-                        <h3 class="text-white m-0 ml-2" style="font-family: med;">BTC<span class="text-success">Ride</span></h3>
-                        <span class="text-secondary ml-2"><i>Web Trading Platform</i></span>
+                        <h3 class="text-white m-0 ml-1" style="font-family: med;">BTC<span class="text-success">Ride</span></h3>
+                        <span class="text-secondary ml-1 my-title" style="font-size: 14px;"><i>Web Trading Platform</i></span>
                     </div>
                 </div>
-                <div class="col-md-6 text-right">
-                    <button class="btn btn-success px-4 py-2"><span id="balance">Balance:<b>${{sprintf("%0.2f", (auth()->user()->account_balance))}}</b></span></button>
+                <div class=" text-right">
+                    <button class="btn btn-success px-4 py-2">
+                        <span><small>Balance:</small>
+                            <span style="font-family: med;" id="balance">
+                                ${{sprintf("%0.2f", (auth()->user()->account_balance))}}
+                            </span>
+                        </span>
+                    </button>
                 </div>
 {{--                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
 {{--                    <i class="fas fa-align-justify"></i>--}}

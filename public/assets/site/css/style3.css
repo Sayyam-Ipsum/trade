@@ -342,11 +342,22 @@ div.dataTables_filter input:focus {
     outline: none !important;
 }
 
-#deposit-data-table thead, #withdrawal-data-table thead, #history-data-table thead {
+.data-table thead {
     background: #6C757D !important;
     border: none;
 }
 
-#deposit-data-table tbody tr, #withdrawal-data-table tbody tr, #history-data-table tbody tr {
+.data-table tbody tr {
     background: var(--bg) !important;
+    color: #fff !important;
+}
+
+.data-table tbody tr td{
+    font-size: 14px !important;
+}
+
+@media screen and (max-width: 576px) {
+    .my-title {
+        display: none !important;
+    }
 }

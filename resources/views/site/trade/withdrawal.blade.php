@@ -15,8 +15,9 @@
                 @csrf
                 <input type="hidden" name="user_id" value="{{auth()->id()}}">
                 @if(count($accounts) < 1)
-                    <small class="text-danger">No withdrawal account is configure in settings. Please go to Account menu to set the withdrawal account.</small>
+                    <span class="text-danger">No withdrawal account is configure in settings. Please go to Account menu to set the withdrawal account.</span>
                 @endif
+
                 <div class="row">
                     <div class="col-md-4 form-group">
                         <label class="form-label required" for="account">Account</label>
@@ -31,10 +32,13 @@
                         <label id="account-error" class="error" for="account"></label>
                     </div>
                     <div class="col-md-4 form-group">
-                        <label class="form-label required" for="amount">Withdrawal Amount</label>
-                        @if($withdrawalExtraChargesPercentage > 0)
-                            <small class="text-white">( An extra {{$withdrawalExtraChargesPercentage}}% withdrawal charges will be applied )</small>
-                        @endif
+                        <label class="form-label required" for="amount">
+                            Withdrawal Amount
+                            @if($withdrawalExtraChargesPercentage > 0)
+                                <small class="text-success">({{$withdrawalExtraChargesPercentage}}% withdrawal charges will be applied )</small>
+                            @endif
+                        </label>
+
                         <input type="number" maxlength="11" min="1" class="form-control shadow-none" name="amount" id="amount" required oninput="getAmountAfterDeduction()">
                     </div>
                     @if($withdrawalExtraChargesPercentage > 0)
