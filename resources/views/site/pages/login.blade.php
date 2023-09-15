@@ -22,8 +22,8 @@
             <form method="POST" action="{{url('login')}}" name="login-form" id="login-form">
                 @csrf
                 <div class="mb-4">
-                    <label class="form-label" for="username">Email</label>
-                    <input type="email" class="form-control shadow-none" name="email" id="email" required="" placeholder="Email">
+                    <label class="form-label" for="identifier">Email or Phone</label>
+                    <input type="text" class="form-control shadow-none" name="identifier" id="identifier" required placeholder="Enter Email or Phone">
                 </div>
 
                 <div class="mb-3">
@@ -92,8 +92,7 @@
         $(document).ready(function (){
             $("#login-form").validate({
                 rules:{
-                    email: {
-                        email: true,
+                    identifier: {
                         required:true
                     },
                     password: {
@@ -101,9 +100,8 @@
                     }
                 },
                 messages:{
-                    email: {
-                        required:"Email is Required*",
-                        email: "Please enter Valid Email*"
+                    identifier: {
+                        required:"This is Required*",
                     },
                     password: {
                         required: "Password is Required*",

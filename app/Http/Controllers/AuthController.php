@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
@@ -68,16 +69,20 @@ class AuthController extends Controller
     {
         if ($request->post()) {
             $credentials = $request->validate([
-                'email' => ['required'],
+                'identifier' => ['required'],
                 'password' => ['required'],
             ]);
 
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_admin' => 1])) {
+            if (Auth::attempt(['email' => $request->identifier, 'password' => $request->password, 'is_admin' => 1])
+                || Auth::attempt(
+                    ['phone_number' => $request->identifier, 'password' => $request->password, 'is_admin' => 1]
+                )) {
                 $request->session()
                     ->regenerate();
 
                 return redirect(url('/admin'));
-            } elseif (Auth::attempt($credentials)) {
+            } elseif (Auth::attempt(['email' => $request->identifier, 'password' => $request->password])
+                || Auth::attempt(['phone_number' => $request->identifier, 'password' => $request->password])) {
                 $request->session()
                     ->regenerate();
 
@@ -86,7 +91,7 @@ class AuthController extends Controller
 
             return back()
                 ->withErrors([
-                    'email' => 'The provided credentials do not match our record.',
+                    'email' => 'The provided credentials does not match our records.',
                 ])
                 ->onlyInput('email');
         }
@@ -113,23 +118,27 @@ class AuthController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required | max:50',
                 'email' => 'required | email | max:200 | unique:users',
-                'password' => 'required | min:8'
+                'password' => 'required | min:8',
+                'phone_number' => 'required | digits:11 | unique:users'
             ]);
 
             if ($validator->fails()) {
-                return back()->withErrors($validator);
+                return redirect()->back()->withErrors($validator);
             }
 
             DB::beginTransaction();
             try {
+                $lastId = User::get()->last() ? User::get()->last()->id : 0;
+
                 $newUser = new User();
                 $newUser->email = preg_replace('/\s+/', '', strtolower($request->email));
                 $newUser->password = password_hash($request->password, PASSWORD_DEFAULT);
                 $newUser->name = $request->name;
                 $newUser->role_id = $this->roleInterface->getCustomerRoleID();
+                $newUser->uuid = 1000 . $lastId + 1;
+                $newUser->phone_number = $request->phone_number;
                 $newUser->save();
                 $newUser->assignRole('Customer');
-
 
                 if ($request->refCode) {
                     $refAmount = Setting::first()->referral_amount;
@@ -143,7 +152,7 @@ class AuthController extends Controller
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();
-
+                log::debug($e->getMessage());
                 return redirect()->back()->with("error", "Please contact to Administrator");
             }
 

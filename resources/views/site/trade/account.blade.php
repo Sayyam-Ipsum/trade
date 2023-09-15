@@ -36,8 +36,15 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
+                                        <label class="form-label required" for="phone_number">Phone Number</label>
+                                        <input type="number" min="0" class="form-control shadow-none" name="phone_number" id="phone_number"
+                                               placeholder="03xxxxxxxxx" value="{{auth()->user()->phone_number}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
                                         <label class="form-label required" for="email">Email</label>
-                                        <input type="email" class="form-control shadow-none" name="email" id="email"
+                                        <input type="email" readonly class="form-control shadow-none" name="email" id="email"
                                                placeholder="xxxxxxxx@gmail.com" value="{{auth()->user()->email}}" required>
                                     </div>
                                 </div>
@@ -139,6 +146,23 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
+
+            $("#user-form").validate({
+                rules:{
+                    name: {
+                        required:true
+                    },
+                    phone_number: {
+                        required:true,
+                        maxlength: 11,
+                        minLength: 11
+                    }
+                },
+                submitHandler:function(form){
+                    return true;
+                }
+            });
+
             $("#withdrawal-account-form").validate({
                 rules:{
                     bank: {
