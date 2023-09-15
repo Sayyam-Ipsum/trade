@@ -76,7 +76,7 @@ class AuthController extends Controller
                 $request->session()
                     ->regenerate();
 
-                return redirect()->intended('admin');
+                return redirect(url('/admin'));
             } elseif (Auth::attempt($credentials)) {
                 $request->session()
                     ->regenerate();
