@@ -78,7 +78,7 @@ class UserController extends Controller
         if ($request->post()) {
             $validate = Validator::make($request->all(), [
                 "name" => "required",
-                "email" => "required"
+                "phone_number" => "required | digits:11"
             ]);
 
             if ($validate->fails()) {

@@ -41,7 +41,7 @@ class UserRepository implements UserInterface
             DB::beginTransaction();
             $user = User::find($request->id);
             $user->name = $request->name;
-            $user->email = $request->email;
+            $user->phone_number = $request->phone_number;
             if (isset($request->photo)) {
                 $photo = $request->file('photo');
                 $name = time() . '_customer_' . $request->id . '_photo' . '_' . $photo->getClientOriginalName();

@@ -31,6 +31,10 @@
                     <input type="email" class="form-control shadow-none" name="email" placeholder="email" id="email" required="">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="phone_number">Phone Number</label>
+                    <input type="number" min="0" maxlength="11" class="form-control shadow-none" name="phone_number" placeholder="phone_number" id="phone_number" required="">
+                </div>
+                <div class="mb-3">
                     <label class="form-label" for="password">Password</label>
                     <div class="input-group">
                         <input type="password" class="form-control shadow-none"
@@ -105,9 +109,11 @@
                     gender: {
                         required:true
                     },
-                    // mobile_no: {
-                    //     required:true
-                    // },
+                    phone_number: {
+                        required:true,
+                        minlength:11,
+                        maxlength:11
+                    },
                     email: {
                         required: true,
                         email: true
