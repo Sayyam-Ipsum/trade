@@ -150,7 +150,7 @@ class WithdrawalRepository implements WithdrawalInterface
     {
         $data = Withdrawal::with("user");
 
-        if (!empty($user_id)) {
+        if (!empty($userID)) {
             $data = $data->where("user_id", $userID);
         }
 

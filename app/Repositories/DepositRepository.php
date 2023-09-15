@@ -103,7 +103,7 @@ class DepositRepository implements DepositInterface
     {
         $data = Deposit::with("user", "payment_method");
 
-        if (!empty($user_id)) {
+        if (isset($userID)) {
             $data = $data->where("user_id", $userID);
         }
 

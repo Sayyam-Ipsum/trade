@@ -48,7 +48,7 @@ class TradeRepository implements TradeInterface
 
     public function getTrades($filter = null)
     {
-        $data = Trade::orderBy("created_at", "desc");
+        $data = Trade::where("user_id", auth()->user()->id)->orderBy("created_at", "desc");
 
         if (isset($filter)) {
             switch ($filter) {
