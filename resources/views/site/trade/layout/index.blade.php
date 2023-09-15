@@ -80,7 +80,7 @@
                         <span class="text-secondary ml-1 my-title" style="font-size: 14px;"><i>Web Trading Platform</i></span>
                     </div>
                 </div>
-                <div class=" text-right">
+                <div class="text-right">
                     <button class="btn btn-success px-4 py-2">
                         <span><small>Balance:</small>
                             <span style="font-family: med;" id="balance">
