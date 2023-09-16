@@ -141,10 +141,6 @@ class AuthController extends Controller
                 $newUser->assignRole('Customer');
 
                 if ($request->refCode) {
-                    $refAmount = Setting::first()->referral_amount;
-                    $u = User::where("id", base64_decode($request->refCode))->first();
-                    $u->account_balance +=  $refAmount;
-                    $u->save();
                     # adding record in referral table
                     Referral::create(['referred_by' => base64_decode($request->refCode), 'referral' => $newUser->id]);
                 }

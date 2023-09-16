@@ -39,9 +39,9 @@ class SiteController extends Controller
     public function referral()
     {
         $referrals = Referral::where("referred_by", auth()->user()->id)->count();
-        $referrer_amount = Setting::select("referral_amount")->pluck("referral_amount")->first();
+        $referralEarning = User::find(auth()->user()->id)->referral_earning;
 
-        return view('site.trade.referral', compact(['referrals', 'referrer_amount']));
+        return view('site.trade.referral', compact(['referrals', 'referralEarning']));
     }
 
     public function transactions()
