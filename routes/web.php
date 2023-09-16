@@ -49,6 +49,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::get('/', [SiteController::class, 'index']);
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-account-balance', [SiteController::class, 'getAccountBalance']);
+    Route::get('/dashboard', [SiteController::class, 'dashboard']);
     Route::get('/market', [SiteController::class, 'market']);
     Route::match(['get', 'post'], '/deposit', [DepositController::class, 'index']);
     Route::match(['get', 'post'], '/withdrawal', [WithdrawalController::class, 'index']);

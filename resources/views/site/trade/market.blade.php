@@ -13,7 +13,7 @@
         <div class="col-md-9">
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget-container">
-                <div id="tradingview_f5eb5"></div>
+                <div id="tradingview_ca040"></div>
                 <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                 <script type="text/javascript">
@@ -22,21 +22,15 @@
                             "width": '100%',
                             "height": 720,
                             "autosize": false,
-                            "symbol": "BITSTAMP:BTCUSD",
+                            "symbol": "BINANCE:BTCUSDT",
                             "interval": "5",
                             "timezone": "Etc/UTC",
                             "theme": "dark",
                             "style": "1",
                             "locale": "en",
                             "enable_publishing": false,
-                            "backgroundColor": "rgba(0, 0, 0, 1)",
-                            "hide_side_toolbar": false,
                             "allow_symbol_change": true,
-                            "details": true,
-                            "studies": [
-                                "STD;24h%Volume"
-                            ],
-                            "container_id": "tradingview_f5eb5"
+                            "container_id": "tradingview_ca040"
                         }
                     );
                 </script>

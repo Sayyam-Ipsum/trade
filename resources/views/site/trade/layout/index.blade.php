@@ -31,6 +31,9 @@
                     <a href="{{url('/admin')}}"><i class="fal fa-tachometer-alt mr-2"></i>Admin Dashboard</a>
                 </li>
             @endif
+            <li class="{{is_active_menu('dashboard')}}">
+                <a href="{{url('dashboard')}}"><i class="fal fa-tachometer mr-2"></i>Dashboard</a>
+            </li>
             <li class="{{is_active_menu('market')}}">
                 <a href="{{url('market')}}"><i class="fal fa-analytics mr-2"></i>Market</a>
             </li>
@@ -112,11 +115,31 @@
             </div>
         </nav>
 
-        <div class="px-3 py-2 text-white">
+        <div class="px-3 py-2 text-white context-box">
             <div>
                 <h3 class="m-0 py-3 d-inline-block border-bottom border-secondary text-success" style="font-family: bold;">@yield('title')</h3>
             </div>
             @yield('content')
+        </div>
+        <div id="mobile-menu" class="bg-success">
+            <div class="mobile-menu-content">
+                <a href="{{url('dashboard')}}" class="mr-2 {{is_active_menu('dashboard')}}">
+                    <i class="fal fa-tachometer"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="{{url('market')}}" class="{{is_active_menu('market')}}">
+                    <i class="fal fa-analytics"></i>
+                    <span>Market</span>
+                </a>
+                <a href="{{url('deposit')}}" class="ml-2 {{is_active_menu('deposit')}}">
+                    <i class="fal fa-wallet"></i>
+                    <span>Deposit</span>
+                </a>
+                <a href="{{url('withdrawal')}}" class="{{is_active_menu('withdrawal')}}">
+                    <i class="fab fa-get-pocket"></i>
+                    <span>Withdraw</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
