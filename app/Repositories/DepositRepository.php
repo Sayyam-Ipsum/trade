@@ -4,9 +4,13 @@ namespace App\Repositories;
 
 use App\Interfaces\DepositInterface;
 use App\Models\Deposit;
+use App\Models\Referral;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use stdClass;
 
 class DepositRepository implements DepositInterface
 {
@@ -41,14 +45,30 @@ class DepositRepository implements DepositInterface
             $deposit = Deposit::find($request->id);
             $deposit->status = $request->status;
             $deposit->save();
-            DB::commit();
             if ($deposit->status == "approved") {
+                $referral = Referral::where('referral', $deposit->user_id)
+                    ->where('status', 0)
+                    ->first();
+
+                if ($referral) {
+                    $setting = Setting::first();
+                    $referralAmount = ($deposit->amount / 100) * $setting->referral_percentage;
+                    $user = User::find($referral->referred_by);
+                    $user->account_balance = $user->account_balance + $referralAmount;
+                    $user->referral_earning = $user->referral_earning + $referralAmount;
+                    $referral->status = 1;
+                    $user->save();
+                    $referral->save();
+                }
+                
                 $this->rechargeUserAccount($deposit);
             }
+            DB::commit();
             $res["type"] = "success";
             $res["message"] = "Status Updated Successfully";
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::debug($e->getMessage());
             $res["message"] = "Internal Server Error";
         }
 
@@ -65,7 +85,7 @@ class DepositRepository implements DepositInterface
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
+            Log::debug($e->getMessage());
         }
     }
 
