@@ -41,8 +41,8 @@
                     </li>
                 </ul>
                 <div>
-                    <a href="{{url('login')}}" class="btn btn-secondary btn-lg btn-login px-4 py-2 me-2">Log in</a>
-                    <a href="{{url('register')}}" class="btn btn-lg btn-success btn-register px-4 py-2">Sign up</a>
+                    <a href="{{url('login')}}" class="btn btn-success btn-lg btn-login px-4 py-2 me-2">Log in</a>
+                    <a href="{{url('register')}}" class="btn btn-lg btn-outline-success btn-register px-4 py-2">Sign up</a>
                 </div>
             </div>
         </div>

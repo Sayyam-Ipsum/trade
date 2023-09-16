@@ -355,8 +355,57 @@ div.dataTables_filter input:focus {
 .data-table tbody tr td{
     font-size: 14px !important;
 }
+.context-box {
+    margin-bottom: 0px;
+}
+#mobile-menu {
+    height: 60px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    visibility: hidden;
+}
+.mobile-menu-content {
+    display: flex;
+    /*justify-content: space-between;*/
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.mobile-menu-content a {
+    width: 25%;
+    text-align: center;
+    color: #ffffff;
+}
+.mobile-menu-content span {
+    display: block;
+    font-size: 13px;
+    font-family: regular;
+}
+.mobile-menu-content i {
+    color: #ffffff;
+}
+.mobile-menu-content a:hover span{
+    color: var(--bg);
+}
+.mobile-menu-content a:hover i{
+    color: var(--bg);
+}
+.mobile-menu-content a.active span{
+    color: var(--bg);
+}
+.mobile-menu-content a.active i{
+    color: var(--bg);
+}
 
 @media screen and (max-width: 576px) {
+    .context-box {
+        margin-bottom: 70px;
+    }
+    #mobile-menu {
+        visibility: visible;
+    }
     .my-title {
         display: none !important;
     }

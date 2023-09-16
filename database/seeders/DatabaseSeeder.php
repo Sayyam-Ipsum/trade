@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
 
         $user = new User();
         $user->name = 'Admin';
-        $user->email = 'admin@easytrade.com';
+        $user->email = 'admin@btcride.com';
         $user->is_admin = 1;
         $user->role_id = $role->id;
-        $user->password = Hash::make('admin@easytrade');
+        $user->password = Hash::make('admin@btcride');
         $user->uuid = 10001;
         $user->phone_number = '03211234567';
         $user->save();

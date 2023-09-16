@@ -13,8 +13,9 @@
             <div class="col-md-6">
                 <div class="heroarea-right">
                     <h1>Innovative platform for <br> small investments</h1>
-                    <p class="m-0 my-4">Register and get $ 10,000 on a demo <br> account for learning to trade</p>
-                    <a href="{{url('register')}}" class="btn btn-lg btn-success btn-register px-5 py-3">Registration</a>
+{{--                    <p class="m-0 my-4">Register and get $ 10,000 on a demo <br> account for learning to trade</p>--}}
+                    <a href="{{url('login')}}" class="btn btn-lg btn-success btn-register px-5 py-3">Log in</a>
+                    <a href="{{url('register')}}" class="btn btn-lg btn-outline-success btn-register px-5 py-3">Registration</a>
                 </div>
             </div>
         </div>
@@ -43,12 +44,12 @@
                 <p class="m-0" style="color: gray;">Our platform runs on the most modern technology and delivers incredible speed.</p>
             </div>
         </div>
-        <hr style="background: gray; margin: 0;">
-        <div class="text-center mt-4">
-            <a class="btn btn-lg btn-success p-4" style="font-family: regular; font-size: 14px;">
-                Try playing on a demo account<i class="fas fa-arrow-circle-right ms-2"></i>
-            </a>
-        </div>
+{{--        <hr style="background: gray; margin: 0;">--}}
+{{--        <div class="text-center mt-4">--}}
+{{--            <a class="btn btn-lg btn-success p-4" style="font-family: regular; font-size: 14px;">--}}
+{{--                Try playing on a demo account<i class="fas fa-arrow-circle-right ms-2"></i>--}}
+{{--            </a>--}}
+{{--        </div>--}}
     </div>
 
     <div class="container">
@@ -60,7 +61,7 @@
                 <div class="heroarea-right">
                     <h1>Mobile application is <br> always ready to hand</h1>
                     <p class="m-0 my-4">Download our user-friendly application for <br>iPhone or Android and start trading!</p>
-                    <a href="{{url('register')}}" class="btn btn-lg btn-mobile">
+                    <a href="javascript:void(0);" class="btn btn-lg btn-mobile" title="Coming Soon">
                         <div>
                             <i class="fab fa-google-play" style="font-size: 1.9rem;"></i>
                         </div>
@@ -119,7 +120,7 @@
                             </h2>
                             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
                                 <div class="accordion-body">
-                                    Sign up and train on a demo account. It is exactly the same as real trading, but for free.
+                                    Sign up and start earning. It is exactly the same as real trading, but for free.
                                 </div>
                             </div>
                         </div>
@@ -166,34 +167,34 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mt-3">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                                    <h5 style="font-family: bold;">What is a trading platform and why it is needed?</h5>
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
-                                <div class="accordion-body">
-                                    Trading platform - a software complex that allows the Client to conduct trades (operations) using different financial instruments. It has also accesses to various information such as the value of quotations, real-time market positions, actions of the Company, etc.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingSix">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
-                                    <h5 style="font-family: bold;">Is there any fee for depositing and withdrawing funds from the account?</h5>
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
-                                <div class="accordion-body">
-                                    No. The company does not charge any fee for either the deposit or for the withdrawal operations.<br>However, it is worth considering that payment systems can charge their fee and use the internal currency conversion rate.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="col-md-6 mt-3">--}}
+{{--                        <div class="accordion-item">--}}
+{{--                            <h2 class="accordion-header" id="panelsStayOpen-headingFive">--}}
+{{--                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">--}}
+{{--                                    <h5 style="font-family: bold;">What is a trading platform and why it is needed?</h5>--}}
+{{--                                </button>--}}
+{{--                            </h2>--}}
+{{--                            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">--}}
+{{--                                <div class="accordion-body">--}}
+{{--                                    Trading platform - a software complex that allows the Client to conduct trades (operations) using different financial instruments. It has also accesses to various information such as the value of quotations, real-time market positions, actions of the Company, etc.--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-6 mt-3">--}}
+{{--                        <div class="accordion-item">--}}
+{{--                            <h2 class="accordion-header" id="panelsStayOpen-headingSix">--}}
+{{--                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">--}}
+{{--                                    <h5 style="font-family: bold;">Is there any fee for depositing and withdrawing funds from the account?</h5>--}}
+{{--                                </button>--}}
+{{--                            </h2>--}}
+{{--                            <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">--}}
+{{--                                <div class="accordion-body">--}}
+{{--                                    No. The company does not charge any fee for either the deposit or for the withdrawal operations.<br>However, it is worth considering that payment systems can charge their fee and use the internal currency conversion rate.--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>

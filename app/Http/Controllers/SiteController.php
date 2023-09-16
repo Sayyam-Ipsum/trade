@@ -18,16 +18,24 @@ class SiteController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            return redirect()->intended('/market');
+            return redirect()->intended('/dashboard');
         }
 
         return view('site.pages.home');
     }
 
+    public function dashboard()
+    {
+        $data['count_deposits'] = auth()->user()->countDeposit();
+        $data['count_withdrawals'] = auth()->user()->countWithdraw();
+        $data['count_trades'] = auth()->user()->countTrades();
+        $data['count_referrals'] = auth()->user()->countReferral();
+
+        return view('site.trade.dashboard', compact(['data']));
+    }
+
     public function market()
     {
-
-
         return view('site.trade.market');
     }
 
