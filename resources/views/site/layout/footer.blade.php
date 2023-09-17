@@ -2,6 +2,11 @@
 <div class="container py-2 mt-2">
     <div class="row py-2">
         <div class="col-md-3 col-sm-6 col-xs-6 footer-col">
+            <a href="{{url('/')}}" style="text-decoration-line: none;">
+                <h2 class="text-white m-0" style="font-family: bold;"><span>BTC</span><span class="text-success">Ride</span></h2>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6 footer-col">
             <h6>Affiliates</h6>
             <ul>
                 <li><a href="{{url('register')}}">Sign up</a></li>
@@ -20,17 +25,6 @@
                 <li><a href="#">General questions</a></li>
                 <li><a href="#">Financial questions</a></li>
                 <li><a href="#">Verification</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-6 footer-col">
-            <h6>Regulations</h6>
-            <ul>
-                <li><a href="#">Privacy policy</a></li>
-                <li><a href="#">Payment policy</a></li>
-                <li><a href="#">Service agreement</a></li>
-                <li><a href="#">Risk disclosure</a></li>
-                <li><a href="#">Rules of trading operations</a></li>
-                <li><a href="#">Non-trading operation regulations</a></li>
             </ul>
         </div>
     </div>

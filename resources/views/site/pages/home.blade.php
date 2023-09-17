@@ -80,23 +80,23 @@
             <h1 class="text-white">Start trading</h1>
             <h3 style="color: dimgray;">3 steps</h3>
             <div class="row mb-4">
-                <div class="col-md-4 text-center mt-4 mb-4">
+                <div class="col-md-4 text-center my-4">
                     <img src="{{asset('assets/site/img/start-trading-1@3x.png')}}" width="120px" height="120px">
                     <h4 class="mt-4" style="font-family: bold; color: lightgrey;">Sign up</h4>
                     <p style="color: gray;">Open an account for free in just a <br> few minutes</p>
-                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Trade on demo <br> account in 1 click</a>
+{{--                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Trade on demo <br> account in 1 click</a>--}}
                 </div>
-                <div class="col-md-4 text-center mt-4 mb-4">
-                    <img src="{{asset('assets/site/img/start-trading-2@3x.png')}}" width="120px" height="120px">
-                    <h4 class="mt-4" style="font-family: bold; color: lightgrey;">Practice</h4>
-                    <p style="color: gray;">Get your skills better with a demo <br> account and training materials</p>
-                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Start training with demo <br> account</a>
-                </div>
-                <div class="col-md-4 text-center mt-4 mb-4">
+                <div class="col-md-4 text-center my-4">
                     <img src="{{asset('assets/site/img/start-trading-3@3x.png')}}" width="120px" height="120px">
                     <h4 class="mt-4" style="font-family: bold; color: lightgrey;">Deposit and trade</h4>
                     <p style="color: gray;">Over 410 instruments and a minimum <br>  deposit of $5 for optimal trading</p>
-                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Go to Deposit option</a>
+{{--                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Go to Deposit option</a>--}}
+                </div>
+                <div class="col-md-4 text-center my-4">
+                    <img src="{{asset('assets/site/img/start-trading-2@3x.png')}}" width="120px" height="120px">
+                    <h4 class="mt-4" style="font-family: bold; color: lightgrey;">Earn</h4>
+                    <p style="color: gray;">Earn smart profits im minimum time</p>
+                    {{--                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Start training with demo <br> account</a>--}}
                 </div>
             </div>
         </div>
