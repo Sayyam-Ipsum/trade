@@ -3,7 +3,7 @@
     <div class="row py-2">
         <div class="col-md-3 col-sm-6 col-xs-6 footer-col">
             <a href="{{url('/')}}" style="text-decoration-line: none;">
-                <h2 class="text-white m-0" style="font-family: bold;"><span>BTC</span><span class="text-success">Ride</span></h2>
+                <h2 class="text-white m-0 mb-3" style="font-family: bold;"><span>BTC</span><span class="text-success">Ride</span></h2>
             </a>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-6 footer-col">
