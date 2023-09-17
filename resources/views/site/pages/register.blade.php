@@ -32,7 +32,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="phone_number">Phone Number</label>
-                    <input type="number" min="0" maxlength="11" class="form-control shadow-none" name="phone_number" placeholder="phone_number" id="phone_number" required="">
+                    <input type="number" min="0" maxlength="11" class="form-control shadow-none" name="phone_number" placeholder="Phone Number" id="phone_number" required="">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">Password</label>

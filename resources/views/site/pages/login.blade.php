@@ -66,7 +66,7 @@
                 <span class="text-white">
                     Don't have an account?
                     <a href="{{url('/register')}}" style="text-decoration: none; font-family: med; font-size: 16px;">
-                        Register Yourself
+                        Register
                     </a>
                 </span>
             </div>
