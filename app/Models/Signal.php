@@ -12,8 +12,8 @@ class Signal extends Model
     protected $table = "signals";
     protected $guarded = [];
 
-    public function trades()
-    {
-        return $this->hasMany(Trade::class, "signal_id");
-    }
+//    public function trades()
+//    {
+//        return $this->hasMany(Trade::class, "signal_id");
+//    }
 }

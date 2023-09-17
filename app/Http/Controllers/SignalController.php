@@ -115,4 +115,25 @@ class SignalController extends Controller
 
         return view("admin.signals.trades", compact(['signal', 'data']));
     }
+
+    public function generateCoinRateData(Request $request, $id, $dateParam)
+    {
+        ini_set('max_execution_time', 0);
+//        date_default_timezone_set('UTC');
+        $date = strtotime($dateParam . ' 00:00:00');
+        $endDate = strtotime($dateParam . ' 03:59:59');
+        $signalArr = [];
+
+        while ($date <= $endDate) {
+            array_push($arr, ['rate' => $rate, 'coin_id' => $id, 'timestamp' => $date]);
+//            $date = date ("Y-m-d H:i:s", strtotime("+1 second", strtotime($date)));
+            $date = strtotime("+1 second", $date);
+        }
+
+        if (dispatch(new ProcessCoinRate($arr))) {
+            return redirect('admin/dashboard')->with('success', 'data generated !');
+        }
+
+        return redirect('admin/dashboard')->with('error', 'something went wrong !');
+    }
 }
