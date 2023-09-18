@@ -103,9 +103,9 @@ class TradeController extends Controller
 
     public function liveTrading()
     {
-        $signals = $this->tradeInterface->liveTrading();
+//        $signals = $this->tradeInterface->liveTrading();
 
-        return view("admin.live-trading.view", compact(['signals']));
+        return view("admin.live-trading.view");
     }
 
     public function liveTradingResult(Request $request)

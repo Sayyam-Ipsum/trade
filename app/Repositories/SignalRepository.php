@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\SignalInterface;
 use App\Models\Signal;
 use App\Models\Trade;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -104,5 +105,16 @@ class SignalRepository implements SignalInterface
         }
 
         return $details;
+    }
+
+    public function getSignalsForLiveTrading()
+    {
+        $currentTime = date("Y-m-d H:i:s");
+        $duration='-35 minutes';
+        $endTime = date('Y-m-d H:i:s', strtotime($duration, strtotime($currentTime)));
+
+        return Signal::where('start_time', '<=', $currentTime)
+            ->where('end_time', '>=', $endTime)
+            ->get();
     }
 }

@@ -16,7 +16,7 @@
                     <div class="">
                         <div class="d-flex justify-content-start align-items-center">
                             <div>
-                        <span class="d-flex justify-content-center align-items-center bg-info"
+                        <span class="d-flex justify-content-center align-items-center bg-success"
                               style="width: 40px; height: 40px; border-radius: 10px;">
                             <i class="fas fa-link text-white"></i>
                         </span>

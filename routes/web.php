@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('change-password', [UserController::class, 'changePassword']);
     Route::post('/trade', [TradeController::class, 'store']);
     Route::get('/trades/list/{filter?}', [TradeController::class, 'getTrades']);
+    Route::get('/live-trading/get-signals', [SignalController::class, 'getSignalsForLiveTrading']);
 });
 
 /*
@@ -136,6 +137,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
         Route::post('/store', [SignalController::class, 'store']);
         Route::get('/{id}', [SignalController::class, 'tradesListing']);
     });
+
 
     Route::group(['prefix' => 'trading', 'middleware' => ['can:PageAccess.Trading']], function () {
         Route::get('/', [TradeController::class, 'liveTrading']);

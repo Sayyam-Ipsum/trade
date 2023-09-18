@@ -15,7 +15,7 @@
             <thead class="bg-light">
             <tr>
                 <th>Start Time</th>
-{{--                <th>End Time</th>--}}
+                <th>End Time</th>
 {{--                <th>Type</th>--}}
 {{--                <th>Amount</th>--}}
 {{--                <th>Status</th>--}}
@@ -69,14 +69,14 @@
                     url: "{{url('admin/signals')}}",
                 },
                 columns: [
-                    // {
-                    //     data: 'start_time',
-                    //     name: 'start_time',
-                    // },
-                    // {
-                    //     data: 'end_time',
-                    //     name: 'end_time',
-                    // },
+                    {
+                        data: 'start_time',
+                        name: 'start_time',
+                    },
+                    {
+                        data: 'end_time',
+                        name: 'end_time',
+                    },
                     // {
                     //     data: 'type',
                     //     name: 'type',
