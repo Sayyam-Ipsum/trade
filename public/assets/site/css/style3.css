@@ -398,7 +398,25 @@ div.dataTables_filter input:focus {
 .mobile-menu-content a.active i{
     color: var(--bg);
 }
+.brand {
+    color: #ffffff;
+    margin: 0;
+    font-family: med;
+    margin-left: 3px;
+}
+.page-title {
+    display: inline-block;
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 3px;
+}
+.btn-balance {
 
+}
+.profile-box {
+    border-right: 1px dashed #6c757d;
+    margin-top: 13px;
+}
 @media screen and (max-width: 576px) {
     .context-box {
         margin-bottom: 70px;
@@ -408,6 +426,15 @@ div.dataTables_filter input:focus {
     }
     .my-title {
         display: none !important;
+    }
+    .brand {
+        font-size: 24px;
+    }
+    .page-title {
+        font-size: 22px;
+    }
+    .profile-box {
+        border: none;
     }
 }
 
@@ -420,5 +447,14 @@ div.dataTables_filter input:focus {
     }
     #mobile-menu {
         visibility: visible;
+    }
+    .brand {
+        font-size: 24px;
+    }
+    .page-title {
+        font-size: 22px;
+    }
+    .profile-box {
+        border: none;
     }
 }

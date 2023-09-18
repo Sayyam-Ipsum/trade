@@ -76,15 +76,15 @@
             <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
                 <div class="">
                     <div class="d-flex justify-content-start align-items-center">
-                        <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary ml-1" style="border: none !important;">
+                        <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary" style="border: none !important;">
                             <i class="fas fa-align-left"></i>
                         </button>
-                        <h3 class="text-white m-0 ml-1" style="font-family: med;">BTC<span class="text-success">Ride</span></h3>
-                        <span class="text-secondary ml-1 my-title" style="font-size: 14px;"><i>Web Trading Platform</i></span>
+                        <h3 class="brand">BTC<span class="text-success">Ride</span></h3>
+{{--                        <span class="text-secondary ml-1 my-title" style="font-size: 14px;"><i>Web Trading Platform</i></span>--}}
                     </div>
                 </div>
                 <div class="text-right ml-auto">
-                    <button class="btn btn-success px-4 py-2">
+                    <button class="btn btn-success btn-balance">
                         <span><small>Balance:</small>
                             <span style="font-family: med;" id="balance">
                                 ${{sprintf("%0.2f", (auth()->user()->account_balance))}}
@@ -115,9 +115,9 @@
             </div>
         </nav>
 
-        <div class="px-3 py-2 text-white context-box">
+        <div class="px-2 py-2 text-white context-box">
             <div>
-                <h3 class="m-0 py-3 d-inline-block border-bottom border-secondary text-success" style="font-family: bold;">@yield('title')</h3>
+                <h3 class="border-bottom border-secondary text-success page-title" style="font-family: bold;">@yield('title')</h3>
             </div>
             @yield('content')
         </div>

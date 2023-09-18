@@ -83,19 +83,19 @@
                 <div class="col-md-4 text-center my-4">
                     <img src="{{asset('assets/site/img/start-trading-1@3x.png')}}" width="120px" height="120px">
                     <h4 class="mt-4" style="font-family: bold; color: lightgrey;">Sign up</h4>
-                    <p style="color: gray;">Open an account for free in just a <br> few minutes</p>
+{{--                    <p style="color: gray;">Open an account for free in just a <br> few minutes</p>--}}
 {{--                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Trade on demo <br> account in 1 click</a>--}}
                 </div>
                 <div class="col-md-4 text-center my-4">
                     <img src="{{asset('assets/site/img/start-trading-3@3x.png')}}" width="120px" height="120px">
                     <h4 class="mt-4" style="font-family: bold; color: lightgrey;">Deposit and trade</h4>
-                    <p style="color: gray;">Over 410 instruments and a minimum <br>  deposit of $5 for optimal trading</p>
+{{--                    <p style="color: gray;">Over 410 instruments and a minimum <br>  deposit of $5 for optimal trading</p>--}}
 {{--                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Go to Deposit option</a>--}}
                 </div>
                 <div class="col-md-4 text-center my-4">
                     <img src="{{asset('assets/site/img/start-trading-2@3x.png')}}" width="120px" height="120px">
                     <h4 class="mt-4" style="font-family: bold; color: lightgrey;">Earn</h4>
-                    <p style="color: gray;">Earn smart profits im minimum time</p>
+{{--                    <p style="color: gray;">Earn smart profits im minimum time</p>--}}
                     {{--                    <a class="btn mt-4" style="background-color: rgba(110,110,110,0.3); color: #0a58ca; padding: 8px 26px;">Start training with demo <br> account</a>--}}
                 </div>
             </div>
@@ -157,12 +157,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="panelsStayOpen-headingFour">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                                    <h5 style="font-family: bold;">What is the minimum deposit amount?</h5>
+                                    <h5 style="font-family: bold;">Advantages of working with us?</h5>
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
                                 <div class="accordion-body">
-                                    The advantage of the Company’s trading platform is that you don’t have to deposit large amounts to your account. You can start trading by investing a small amount of money. The minimum deposit is 10 US dollars.
+                                    The advantage of the Company’s trading platform is that you don’t have to deposit large amounts to your account. You can start trading by investing a small amount of money.
                                 </div>
                             </div>
                         </div>
