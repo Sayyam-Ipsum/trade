@@ -419,7 +419,7 @@ div.dataTables_filter input:focus {
 }
 @media screen and (max-width: 576px) {
     .context-box {
-        margin-bottom: 70px;
+        margin-bottom: 60px;
     }
     #mobile-menu {
         visibility: visible;
@@ -443,7 +443,7 @@ div.dataTables_filter input:focus {
         display: none !important;
     }
     .context-box {
-        margin-bottom: 70px;
+        margin-bottom: 60px;
     }
     #mobile-menu {
         visibility: visible;
