@@ -14,8 +14,8 @@
                 <div class="heroarea-right">
                     <h1>Innovative platform for <br> small investments</h1>
 {{--                    <p class="m-0 my-4">Register and get $ 10,000 on a demo <br> account for learning to trade</p>--}}
-                    <a href="{{url('login')}}" class="btn btn-lg btn-success btn-register px-5 py-3">Log in</a>
-                    <a href="{{url('register')}}" class="btn btn-lg btn-outline-success btn-register px-5 py-3">Registration</a>
+                    <a href="{{url('login')}}" class="btn btn-lg btn-success btn-register">Log in</a>
+                    <a href="{{url('register')}}" class="btn btn-lg btn-outline-success btn-register">Registration</a>
                 </div>
             </div>
         </div>

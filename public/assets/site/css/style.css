@@ -41,6 +41,7 @@ body {
 .btn-register {
     font-size: 16px;
     font-family: med;
+    padding: 1rem 2rem;
 }
 
 .heroarea-right {
@@ -210,5 +211,8 @@ label.error {
         text-align: center;
         font-size: 1.2rem;
         font-family: med;
+    }
+    .btn-register {
+        padding: 0.5rem 1.5rem;
     }
 }
