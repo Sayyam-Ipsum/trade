@@ -16,8 +16,8 @@
             {{session()->get('success')}}
         </div>
     @endif
-    <div class="col-md-4 m-auto my-5">
-        <h1 class="signin-header m-0">Sign In To Your Account</h1>
+    <div class="col-md-4 mx-auto mt-4">
+        <h1 class="signin-header">Sign In To Your Account</h1>
         <div class="singin-box rounded">
             <form method="POST" action="{{url('login')}}" name="login-form" id="login-form">
                 @csrf

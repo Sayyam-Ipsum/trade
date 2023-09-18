@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="col-md-4 m-auto my-5">
+    <div class="col-md-4 mx-auto mt-4">
         <h1 class="signin-header">Sign Up</h1>
         <div class="singin-box rounded">
             <form method="POST" action="{{url('register')}}" name="register-form" id="register-form">

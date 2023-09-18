@@ -16,10 +16,10 @@
             {{session()->get('success')}}
         </div>
     @endif
-    <div class="col-md-4 m-auto my-5">
+    <div class="col-md-4 mx-auto mt-4">
         <h1 class="signin-header">Password Recovery</h1>
         <div class="singin-box rounded">
-            <p class="text-white text-center mb-4">
+            <p class="text-white text-center m-0 mb-4">
                 To change you password, please enter the email address you used when registering your account
             </p>
             <form method="POST" action="{{url('forgot-password')}}" name="forgot-form" id="forgot-form">
