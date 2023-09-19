@@ -65,7 +65,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('change-password', [UserController::class, 'changePassword']);
     Route::post('/trade', [TradeController::class, 'store']);
     Route::get('/trades/list/{filter?}', [TradeController::class, 'getTrades']);
-    Route::get('/live-trading/get-signals', [SignalController::class, 'getSignalsForLiveTrading']);
 });
 
 /*

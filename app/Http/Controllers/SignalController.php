@@ -116,11 +116,4 @@ class SignalController extends Controller
 
         return view("admin.signals.trades", compact(['signal', 'data']));
     }
-
-    public function getSignalsForLiveTrading(): JsonResponse
-    {
-        $data = $this->signalInterface->getSignalsForLiveTrading();
-
-        return response()->json(['data' => $data]);
-    }
 }

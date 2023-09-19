@@ -16,23 +16,23 @@
 @section('content')
     <div class="row">
 
-        <div class="col-md-4 mt-2">
-            <div class="card">
-                <div class="card-body border border-{{@$signal->type == "buy" ? "success" : "danger"}} rounded">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="m-0">Signal Type</p>
-                        <span class="badge badge-{{@$signal->type == "buy" ? "success" : "danger"}} text-capitalize">
-                            {{@$signal->type}}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @include('partials.signal-detail-card', [
-            'title' => 'Signal Amount',
-            'data' => '$'.@$signal->amount,
-            'border' => "info"
-        ])
+{{--        <div class="col-md-4 mt-2">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-body border border-{{@$signal->type == "buy" ? "success" : "danger"}} rounded">--}}
+{{--                    <div class="d-flex justify-content-between align-items-center">--}}
+{{--                        <p class="m-0">Signal Type</p>--}}
+{{--                        <span class="badge badge-{{@$signal->type == "buy" ? "success" : "danger"}} text-capitalize">--}}
+{{--                            {{@$signal->type}}--}}
+{{--                        </span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        @include('partials.signal-detail-card', [--}}
+{{--            'title' => 'Signal Amount',--}}
+{{--            'data' => '$'.@$signal->amount,--}}
+{{--            'border' => "info"--}}
+{{--        ])--}}
 
         @include('partials.signal-detail-card', [
             'title' => 'Buy Trades',

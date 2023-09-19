@@ -138,7 +138,14 @@ class TradeRepository implements TradeInterface
 
     public function liveTrading()
     {
-        $signals = Signal::whereDate("signals.created_at", Carbon::today())->get();
+        $currentTime = date("Y-m-d H:i:s");
+        $duration='-35 minutes';
+        $endTime = date('Y-m-d H:i:s', strtotime($duration, strtotime($currentTime)));
+
+        $signals = Signal::where('start_time', '<=', $currentTime)
+            ->where('end_time', '>=', $endTime)
+            ->selectRaw("DATE_FORMAT(start_time,'%r') as start_time, DATE_FORMAT(end_time,'%r') as end_time, result, id, status")
+            ->get();
 
         if (count($signals) < 1)    return [];
 
