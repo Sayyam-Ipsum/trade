@@ -8,12 +8,6 @@
     Signals
 @stop
 
-@section('page-actions')
-    <a href="javascript:void(0);" class="btn btn-sm btn-add btn-primary">
-        <i class="far fa-plus-square mr-1"></i>Signal
-    </a>
-@stop
-
 @section('content')
 
     <div class="table-responsive my-3">
@@ -22,8 +16,8 @@
             <tr>
                 <th>Start Time</th>
                 <th>End Time</th>
-                <th>Type</th>
-                <th>Amount</th>
+{{--                <th>Type</th>--}}
+{{--                <th>Amount</th>--}}
 {{--                <th>Status</th>--}}
                 <th>Result</th>
                 <th>Actions</th>
@@ -83,14 +77,14 @@
                         data: 'end_time',
                         name: 'end_time',
                     },
-                    {
-                        data: 'type',
-                        name: 'type',
-                    },
-                    {
-                        data: 'amount',
-                        name: 'amount',
-                    },
+                    // {
+                    //     data: 'type',
+                    //     name: 'type',
+                    // },
+                    // {
+                    //     data: 'amount',
+                    //     name: 'amount',
+                    // },
                     // {
                     //     data: 'status',
                     //     name: 'status',

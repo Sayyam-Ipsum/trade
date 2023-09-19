@@ -101,11 +101,15 @@ class TradeController extends Controller
         ]);
     }
 
-    public function liveTrading()
+    public function liveTrading(Request $request)
     {
-        $signals = $this->tradeInterface->liveTrading();
+        if($request->ajax()){
+            $signals = $this->tradeInterface->liveTrading();
 
-        return view("admin.live-trading.view", compact(['signals']));
+            return response()->json(['data' => $signals]);
+        }
+
+        return view("admin.live-trading.view");
     }
 
     public function liveTradingResult(Request $request)

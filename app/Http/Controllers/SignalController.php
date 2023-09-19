@@ -6,6 +6,7 @@ use App\Interfaces\SignalInterface;
 use App\Interfaces\TradeInterface;
 use App\Models\Signal;
 use App\Models\Trade;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -34,12 +35,12 @@ class SignalController extends Controller
                 ->addColumn('end_time', function ($data) {
                     return showDateTime($data->end_time);
                 })
-                ->addColumn('type', function ($data) {
-                    return statusBadge($data->type);
-                })
-                ->addColumn('amount', function ($data) {
-                    return '$'.$data->amount;
-                })
+//                ->addColumn('type', function ($data) {
+//                    return statusBadge($data->type);
+//                })
+//                ->addColumn('amount', function ($data) {
+//                    return '$'.$data->amount;
+//                })
 //                ->addColumn('status', function ($data) {
 //                    return statusBadge($data->status);
 //                })
@@ -49,7 +50,7 @@ class SignalController extends Controller
                 ->addColumn('actions', function ($data) {
                     return '<a href="signals/'.$data->id.'" target="_blank" class="btn btn-sm btn-outline-info"><i class="fa fa-eye mr-1"></i>Details</a>';
                 })
-                ->rawColumns(['type', 'actions', 'status', 'result'])
+                ->rawColumns(['actions', 'result'])
                 ->make(true);
         }
 

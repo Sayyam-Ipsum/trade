@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\SignalInterface;
 use App\Models\Signal;
 use App\Models\Trade;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,14 +57,14 @@ class SignalRepository implements SignalInterface
             'buy_trades_total' => 0,
             'buy_trades_sum' => 0,
             'sell_trades_total' => 0,
-            'sell_trades_sum' => 0,
-            'buy_trades_overprice' => 0,
-            'sell_trades_overprice' => 0
+            'sell_trades_sum' => 0
+//            'buy_trades_overprice' => 0,
+//            'sell_trades_overprice' => 0
         ];
 
-        $signal = Signal::find($id);
-
-        if (!$signal)   return $details;
+//        $signal = Signal::find($id);
+//
+//        if (!$signal)   return $details;
 
         $data = Trade::where("signal_id", $id)
             ->select(
@@ -86,22 +87,22 @@ class SignalRepository implements SignalInterface
             $details['sell_trades_sum'] = $data[1]['sum'];
         }
 
-        $overPriceTrades = Trade::where("signal_id", $id)
-            ->where("amount", ">", $signal->amount)
-            ->select(
-                "type",
-                DB::raw("COUNT(id) as total"),
-            )
-            ->groupBy("type")
-            ->get()->toArray();
-
-        if (array_key_exists(0, $overPriceTrades)) {
-            $details['buy_trades_overprice'] = $overPriceTrades[0]['total'];
-        }
-
-        if (array_key_exists(1, $overPriceTrades)) {
-            $details['sell_trades_overprice'] = $overPriceTrades[1]['total'];
-        }
+//        $overPriceTrades = Trade::where("signal_id", $id)
+//            ->where("amount", ">", $signal->amount)
+//            ->select(
+//                "type",
+//                DB::raw("COUNT(id) as total"),
+//            )
+//            ->groupBy("type")
+//            ->get()->toArray();
+//
+//        if (array_key_exists(0, $overPriceTrades)) {
+//            $details['buy_trades_overprice'] = $overPriceTrades[0]['total'];
+//        }
+//
+//        if (array_key_exists(1, $overPriceTrades)) {
+//            $details['sell_trades_overprice'] = $overPriceTrades[1]['total'];
+//        }
 
         return $details;
     }

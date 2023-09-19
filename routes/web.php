@@ -137,6 +137,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
         Route::get('/{id}', [SignalController::class, 'tradesListing']);
     });
 
+
     Route::group(['prefix' => 'trading', 'middleware' => ['can:PageAccess.Trading']], function () {
         Route::get('/', [TradeController::class, 'liveTrading']);
         Route::post('/store', [TradeController::class, 'liveTradingResult']);
