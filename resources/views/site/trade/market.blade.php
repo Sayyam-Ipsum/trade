@@ -12,29 +12,29 @@
     <div class="row mt-3">
         <div class="col-md-9">
             <!-- TradingView Widget BEGIN -->
-{{--            <div class="tradingview-widget-container">--}}
-{{--                <div id="tradingview_ca040"></div>--}}
-{{--                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>--}}
-{{--                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>--}}
-{{--                <script type="text/javascript">--}}
-{{--                    new TradingView.widget(--}}
-{{--                        {--}}
-{{--                            "width": '100%',--}}
-{{--                            "height": 720,--}}
-{{--                            "autosize": false,--}}
-{{--                            "symbol": "BINANCE:BTCUSDT",--}}
-{{--                            "interval": "5",--}}
-{{--                            "timezone": "Etc/UTC",--}}
-{{--                            "theme": "dark",--}}
-{{--                            "style": "1",--}}
-{{--                            "locale": "en",--}}
-{{--                            "enable_publishing": false,--}}
-{{--                            "allow_symbol_change": true,--}}
-{{--                            "container_id": "tradingview_ca040"--}}
-{{--                        }--}}
-{{--                    );--}}
-{{--                </script>--}}
-{{--            </div>--}}
+            <div class="tradingview-widget-container">
+                <div id="tradingview_ca040"></div>
+                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget(
+                        {
+                            "width": '100%',
+                            "height": 720,
+                            "autosize": false,
+                            "symbol": "BINANCE:BTCUSDT",
+                            "interval": "5",
+                            "timezone": "Etc/UTC",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "en",
+                            "enable_publishing": false,
+                            "allow_symbol_change": true,
+                            "container_id": "tradingview_ca040"
+                        }
+                    );
+                </script>
+            </div>
             <!-- TradingView Widget END -->
         </div>
         <div class="col-md-3">
