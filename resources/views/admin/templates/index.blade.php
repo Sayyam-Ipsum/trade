@@ -135,18 +135,20 @@
     <aside class="main-sidebar sidebar-dark-info elevation-4">
         <!-- Brand Logo -->
         <a href="{{'/'}}" class="brand-link text-center">
-            <span class="brand-text font-weight-bold">BTC Ride</span>
+            <span class="brand-text font-weight-bold">BTC <span class="text-success">Ride</span></span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="user-panel d-flex py-2">
                 <div class="image">
                     @php
                         $url = auth()->user()->photo ? auth()->user()->photo : asset('assets/site/img/user.png')
                     @endphp
-                    <img src="{{$url}}" class="img-circle elevation-2" alt="User Image">
+                    <img src="{{$url}}" width="45px" height="45px"
+                         class="rounded" style="object-fit: contain; object-position: top;">
+{{--                    <img src="{{$url}}" class="" alt="User Image">--}}
                 </div>
                 <div class="info">
                     <a class="d-block">{{auth()->user()->name}}</a>
@@ -302,11 +304,11 @@
         <!-- Content Header (Page header) -->
         <div class="content-header shadow-sm">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3 class="m-0">@yield('title')</h3>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="m-0">@yield('title')</h4>
                     </div>
-                    <div class="col-sm-6 text-right">
+                    <div>
                         @yield('page-actions')
                     </div>
                 </div>
@@ -493,6 +495,6 @@
 <script>
     @include('partials.response')
 </script>
-@yield('scripts');
+@yield('scripts')
 </body>
 </html>
