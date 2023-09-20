@@ -10,7 +10,7 @@
 
 @section('content')
         <div class="col-md-4 p-0">
-            <div class="card bg-transparent border-transparent rounded shadow">
+            <div class="card bg-transparent border-0 rounded">
                 <div class="card-body p-2">
                     <div class="d-flex justify-content-start align-items-center">
                         <div>

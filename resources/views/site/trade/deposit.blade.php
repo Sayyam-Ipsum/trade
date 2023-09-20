@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div class="card border-0">
+    <div class="card border-0 bg-self px-2">
         <div class="card-body bg-self p-2">
             <form method="post" autocomplete="off" name="deposit-form" id="deposit-form" action="{{url('deposit')}}" enctype="multipart/form-data">
                 @csrf

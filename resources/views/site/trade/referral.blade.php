@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div class="row m-0">
+    <div class="row m-0 p-1">
         <div class="col-md-4 p-0 p-1 p-0 mt-1">
             <div class="p-0 shadow bg-dark border-0" style="border-radius: 10px; !important;">
                 <div class="p-2 d-flex justify-content-between align-items-center">

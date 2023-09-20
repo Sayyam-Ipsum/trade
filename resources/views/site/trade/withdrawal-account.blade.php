@@ -9,8 +9,8 @@
 @stop
 
 @section('content')
-    <div class="card border-0">
-        <div class="card-body bg-self shadow-sm p-2">
+    <div class="card border-0 bg-self px-2">
+        <div class="card-body bg-self p-2">
             <div class="row">
                 <div class="col-md-6 mt-2" style="">
                     <form method="post" name="withdrawal-account-form" id="withdrawal-account-form" autocomplete="off" action="{{url('withdrawal-account')}}">

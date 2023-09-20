@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div class="row m-0">
+    <div class="row m-0 p-0">
         <div class="col-md-9 p-0">
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget-container">
@@ -17,10 +17,17 @@
                 <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                 <script type="text/javascript">
+                    let height;
+                    if (window.innerWidth < 576) {
+                        height = window.innerHeight - 335;
+                    } else {
+                        height = window.innerHeight - 120;
+                    }
+                    console.log(height);
                     new TradingView.widget(
                         {
                             "width": '100%',
-                            "height": 720,
+                            "height": height,
                             "autosize": false,
                             "symbol": "BINANCE:BTCUSDT",
                             "interval": "5",
@@ -38,13 +45,13 @@
             <!-- TradingView Widget END -->
         </div>
         <div class="col-md-3 p-0">
-            <div class="card-body border border-secondary rounded mx-1 mb-1 p-0">
-                <div class="p-2">
-                    <div class="text-right">
+            <div class="card-body rounded p-0">
+                <div class="p-1">
+                    <div class="text-right pt-1">
                         <span id="timer"></span>
                     </div>
                     <input type="hidden" name="profitable-amount" id="profitable-amount" value="">
-                    <div class="form-group">
+                    <div class="form-group pt-1">
                         <label class="form-label" for="amount">Amount</label>
                         <input type="number" step="any" class="form-control" name="amount" id="amount" min="1">
                     </div>
@@ -54,21 +61,23 @@
                     </div>
                 </div>
 
-                <hr style="background: gray; margin: 0; margin: 5px 0px;">
-                <div class="px-2">
-                    <p class="m-0" style="font-family: bold">Recent Trades</p>
-                </div>
-                <hr style="background: gray; margin: 0; margin: 5px 0px;">
-                <div class="p-0">
-                    <table class="table p-0">
-                        <tr class="border-0">
-                            <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="35%">Amount</th>
-                            <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="30%">Trade</th>
-                            <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="35%">Result</th>
-                        </tr>
-                        <tbody id="trades-box" class=" border-0">
-                        </tbody>
-                    </table>
+                <div id="recent-trades-box">
+                    <hr style="background: gray; margin: 0; margin: 5px 0px;">
+                    <div class="px-2">
+                        <p class="m-0" style="font-family: bold">Recent Trades</p>
+                    </div>
+                    <hr style="background: gray; margin: 0; margin: 5px 0px;">
+                    <div class="p-0">
+                        <table class="table p-0">
+                            <tr class="border-0">
+                                <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="35%">Amount</th>
+                                <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="30%">Trade</th>
+                                <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="35%">Result</th>
+                            </tr>
+                            <tbody id="trades-box" class=" border-0">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,6 +89,9 @@
         var end_time, signal_id;
         var canTrade = true;
         $(document).ready(function () {
+            if (window.innerWidth < 576) {
+                $("#recent-trades-box").hide();
+            }
             getSignal();
             buildTrades();
             $("#amount").on('keyup', function () {

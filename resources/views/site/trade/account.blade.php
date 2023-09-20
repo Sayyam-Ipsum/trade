@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div class="card border-0">
+    <div class="card border-0 bg-self px-2">
         <div class="card-body bg-self p-2">
             <div class="row">
                 <div class="col-md-4 profile-box">
@@ -23,7 +23,7 @@
                                     @php
                                         $url = auth()->user()->photo ? auth()->user()->photo : asset('assets/site/img/user.png')
                                     @endphp
-                                    <img src="{{$url}}" id="profile-photo" class="border border-muted p-1 shadow">
+                                    <img src="{{$url}}" id="profile-photo" class="profile-pic border border-muted p-1 shadow">
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">

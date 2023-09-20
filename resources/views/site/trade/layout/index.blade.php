@@ -115,7 +115,7 @@
             </div>
         </nav>
 
-        <div class="px-2 text-white context-box">
+        <div class=" text-white context-box">
             <div class="p-2">
                 <h3 class="border-bottom border-secondary text-success page-title m-0" style="font-family: bold;">
                     @yield('title')
