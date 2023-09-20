@@ -197,14 +197,14 @@
                     @endcan
 
                     @can('PageAccess.Trade')
-                        <li class="nav-item">
-                            <a href="{{url('admin/trades')}}" class="nav-link ">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p>
-                                    Trades
-                                </p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{url('admin/trades')}}" class="nav-link ">--}}
+{{--                                <i class="nav-icon fas fa-chart-line"></i>--}}
+{{--                                <p>--}}
+{{--                                    Trades--}}
+{{--                                </p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     @endcan
 
                     @can('PageAccess.Deposits')

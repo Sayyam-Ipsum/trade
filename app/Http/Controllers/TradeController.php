@@ -59,14 +59,16 @@ class TradeController extends Controller
     {
         $validate = Validator::make($request->all(), [
             "user_id" => "required",
+            "signal_id" => "required",
             "type" => "required",
             "amount" => "required",
             "profitable_amount" => "required"
         ]);
 
         if ($validate->fails()) {
+            dd($validate->getMessageBag());
             return response()->json([
-                "status" => true,
+                "status" => false,
                 "message" => "Validation Error"
             ]);
         }

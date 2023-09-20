@@ -9,9 +9,7 @@ function showDateTime($datetime)
         return '';
     }
 
-    return Carbon::parse($datetime)
-        ->format('d-M-Y H:i:s');
-    return Carbon::parse($datetime)->format('d-M-Y h:i:s A');
+    return Carbon::parse($datetime)->format('d-M-Y h:i A');
 }
 
 function showTime($datetime)

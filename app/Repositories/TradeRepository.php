@@ -27,7 +27,7 @@ class TradeRepository implements TradeInterface
             $data = $data->where("signal_id", $signalID);
         }
 
-        if (!empty($request->start_date) && !empty($request->end_date)) {
+        if (isset($request->start_date) && isset($request->end_date)) {
             $data = $data->whereBetween(DB::raw('DATE(trades.created_at)'), [$request->start_date, $request->end_date]);
         }
 
@@ -68,20 +68,16 @@ class TradeRepository implements TradeInterface
     {
         $res['status'] = false;
         try {
-            $currentDateTime = Carbon::now();
-            $checkSignal = Signal::where("start_time", "<=", $currentDateTime)->where("end_time", ">=", $currentDateTime)->first();
+            $user_balance = User::find($request->user_id)->account_balance;
+            if ($user_balance < $request->amount) {
+                $res['message'] = "Please make recharge";
+
+                return $res;
+            }
             DB::beginTransaction();
             $trade = new Trade();
-            if ($checkSignal) {
-                $checkDoubleTrade = Trade::where("signal_id", $checkSignal->id)->where("user_id", $request->user_id)->first();
-                if ($checkDoubleTrade) {
-                    $res['message'] = "You can't make trade at this time.";
-
-                    return $res;
-                }
-                $trade->signal_id = $checkSignal->id;
-            }
             $trade->user_id = $request->user_id;
+            $trade->signal_id = $request->signal_id;
             $trade->type = $request->type;
             $trade->amount = $request->amount;
             $trade->profitable_amount = $request->profitable_amount;

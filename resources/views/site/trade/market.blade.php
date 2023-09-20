@@ -12,46 +12,45 @@
     <div class="row mt-3">
         <div class="col-md-9">
             <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container">
-                <div id="tradingview_ca040"></div>
-                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                <script type="text/javascript">
-                    new TradingView.widget(
-                        {
-                            "width": '100%',
-                            "height": 720,
-                            "autosize": false,
-                            "symbol": "BINANCE:BTCUSDT",
-                            "interval": "5",
-                            "timezone": "Etc/UTC",
-                            "theme": "dark",
-                            "style": "1",
-                            "locale": "en",
-                            "enable_publishing": false,
-                            "allow_symbol_change": true,
-                            "container_id": "tradingview_ca040"
-                        }
-                    );
-                </script>
-            </div>
+{{--            <div class="tradingview-widget-container">--}}
+{{--                <div id="tradingview_ca040"></div>--}}
+{{--                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>--}}
+{{--                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>--}}
+{{--                <script type="text/javascript">--}}
+{{--                    new TradingView.widget(--}}
+{{--                        {--}}
+{{--                            "width": '100%',--}}
+{{--                            "height": 720,--}}
+{{--                            "autosize": false,--}}
+{{--                            "symbol": "BINANCE:BTCUSDT",--}}
+{{--                            "interval": "5",--}}
+{{--                            "timezone": "Etc/UTC",--}}
+{{--                            "theme": "dark",--}}
+{{--                            "style": "1",--}}
+{{--                            "locale": "en",--}}
+{{--                            "enable_publishing": false,--}}
+{{--                            "allow_symbol_change": true,--}}
+{{--                            "container_id": "tradingview_ca040"--}}
+{{--                        }--}}
+{{--                    );--}}
+{{--                </script>--}}
+{{--            </div>--}}
             <!-- TradingView Widget END -->
         </div>
         <div class="col-md-3">
             <div class="card-body border border-secondary rounded p-0">
                 <div class="p-2">
-                    <input type="hidden" name="profit" id="profit" value="">
+                    <div class="text-right">
+                        <span id="timer"></span>
+                    </div>
+                    <input type="hidden" name="profitable-amount" id="profitable-amount" value="">
                     <div class="form-group">
                         <label class="form-label" for="amount">Amount</label>
                         <input type="number" step="any" class="form-control" name="amount" id="amount" min="1">
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="profitable-amount">Profit</label>
-                        <input type="text" class="form-control bg-secondary" name="profitable-amount" id="profitable-amount" value="" readonly>
-                    </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <button class="btn btn-success w-50 mr-1 btn-trade" data-type="buy">95% Buy</button>
-                        <button class="btn btn-danger w-50 btn-trade" data-type="sell">95% Sell</button>
+                        <button class="btn btn-success w-50 mr-1 btn-trade" data-type="buy">Buy</button>
+                        <button class="btn btn-danger w-50 btn-trade" data-type="sell">Sell</button>
                     </div>
                 </div>
 
@@ -78,40 +77,43 @@
 
 @section('scripts')
     <script>
+        var end_time, signal_id;
+        var canTrade = true;
         $(document).ready(function () {
+            getSignal();
             buildTrades();
             $("#amount").on('keyup', function () {
                 let amount = Number($("#amount").val());
                 let user_balance = Number({{auth()->user()->account_balance}});
 
                 if (user_balance < amount) {
-                    $("#profit").val(0);
                     $("#profitable-amount").val(0);
                     toast("You don't have enough balance. Please deposit money", "warning");
                     return;
                 }
+
                 let profit_percent = 95;
                 let profit = (Number(amount) * (Number(profit_percent) / 100)).toFixed(2);
                 let profitable_amount = (Number(amount) + Number(profit)).toFixed(2);
-                $("#profit").val(profit);
                 $("#profitable-amount").val(profitable_amount);
             });
 
             $(".btn-trade").on('click', function () {
                 let amount = Number($("#amount").val());
-                let profit = Number($("#profit").val());
                 let profitable_amount =  $("#profitable-amount").val();
 
                 if (amount == '') {
                     toast("Please enter amount", "warning");
                     return;
                 }
+
                 if (amount < 1) {
                     toast("Please enter amount greater than 0", "warning");
                     return;
                 }
-                if (profit < 0) {
-                    toast("Please enter valid amount", "warning");
+
+                if (!canTrade) {
+                    toast("Time exceeded", "warning");
                     return;
                 }
 
@@ -124,6 +126,7 @@
                     data: JSON.stringify({
                         _token: "{{ csrf_token() }}",
                         user_id: user_id,
+                        signal_id: signal_id,
                         type: type,
                         amount: amount,
                         profitable_amount: profitable_amount
@@ -135,7 +138,6 @@
                         toast(data.message, data.status ? "success" : "error");
                         if (data.status) {
                             $("#amount").val('');
-                            $("#profit").val('');
                             $("#profitable-amount").val('');
                             setAccountBalance();
                             buildTrades();
@@ -149,7 +151,6 @@
             $("#trades-box").html('');
             let res = await getTrades();
             let trades = res.data;
-            console.log(trades);
             let html = "";
 
             if (trades.length > 0) {
@@ -162,8 +163,7 @@
                         result = `<i class="far fa-minus" style="font-size: 12px;"></i>$${trades[i].amount}<span class="ml-1 text-danger">Loss</span>`;
                     }
                     if (trades[i].status == "in-progress") {
-                        result = `<span id="timer-${trades[i].id}"></span>`;
-                        runTimer(trades[i].id);
+                        result = `<span class="badge badge-primary">${trades[i].status}</span>`;
                     }
                     html += `<tr>
                                 <td class="text-center border-0" style="border-bottom: 1px dashed gray !important;" width="35%"><small>$${trades[i].amount}</small></t>
@@ -178,25 +178,47 @@
             $("#trades-box").append(html);
         }
 
-        function runTimer(id) {
-            let seconds = 5 * 60;
-            let count = new Date();
-            count.setSeconds(count.getSeconds() + seconds);
-            var countDown = count.getTime();
+        function timer() {
             var update = setInterval(function () {
                 var now = new Date().getTime();
-                var diff = countDown - now;
+                var diff = end_time - now;
                 var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                let html = `<small>Time: 0${minutes}: ${seconds}</small>`;
-                $(`#timer-${id}`).html(html);
-                $(`#timer-${id}`).css('color', "#ffffff");
-                $("#time").show();
-                if (diff < 0) {
+                if (minutes < 0 && seconds < 0) {
                     clearInterval(update);
+                    getSignal();
                 }
+
+                if (minutes < 1 && seconds <= 59) {
+                    canTrade = false;
+                }
+
+                let html = `<small>0${minutes}:${seconds<10?0:''}${seconds}</small>`;
+                $("#timer").html(html);
+                $("#timer").css('color', "#ffffff");
+                $("#time").show();
             }, 1000);
+        }
+
+        function getSignal() {
+            $.ajax({
+                url: "{{url('signal')}}",
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (res) {
+                    if (res.status) {
+                        let signal = res.signal;
+                        signal_id = signal.id;
+                        end_time = new Date(signal.end_time).getTime();
+                        canTrade = true;
+                        timer();
+                    }
+                },
+                error: function (error) {
+                }
+            });
         }
 
         function getTrades() {

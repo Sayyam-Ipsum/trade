@@ -158,7 +158,7 @@
             contentType: "application/json; charset=UTF-8",
             success: function (res) {
                 if (res.success == true) {
-                        $('#balance').html('Balance:$<b>' + parseFloat(res.data.account_balance).toFixed(2) + '</b>');
+                        $('#balance').html('$<b>' + parseFloat(res.data.account_balance).toFixed(2) + '</b>');
                     }
             },
             error: function(jqXHR, textStatus, errorThrown) {

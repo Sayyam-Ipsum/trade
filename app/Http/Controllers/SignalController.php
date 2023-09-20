@@ -26,7 +26,7 @@ class SignalController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = $this->signalInterface->listing();
+            $data = $this->signalInterface->listing($request);
 
             return DataTables::of($data)
                 ->addColumn('start_time', function ($data) {
@@ -48,13 +48,16 @@ class SignalController extends Controller
                     return statusBadge($data->result);
                 })
                 ->addColumn('actions', function ($data) {
-                    return '<a href="signals/'.$data->id.'" target="_blank" class="btn btn-sm btn-outline-info"><i class="fa fa-eye mr-1"></i>Details</a>';
+                    return '<a href="signals/'.$data->id.'" target="_blank" class="btn btn-xs btn-outline-info"><i class="fa fa-eye mr-1"></i>Details</a>';
                 })
                 ->rawColumns(['actions', 'result'])
                 ->make(true);
         }
 
-        return view("admin.signals.listing");
+        $start_date = date('Y-m-d');
+        $end_date = date('Y-m-d');
+
+        return view("admin.signals.listing", compact(['start_date', 'end_date']));
     }
 
     public function modal()
@@ -115,5 +118,13 @@ class SignalController extends Controller
         $data = $this->signalInterface->details($id);
 
         return view("admin.signals.trades", compact(['signal', 'data']));
+    }
+
+    public function getSignal()
+    {
+        return response()->json([
+            'status' => true,
+            'signal' => $this->signalInterface->getCurrentSignal()
+        ]);
     }
 }

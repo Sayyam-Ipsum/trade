@@ -34,7 +34,9 @@ class GenerateSignalSeeder extends Seeder
                         $tempTimestamp = $currentTimestamp + $intervalSeconds;
                         $data[] = [
                             'start_time' => date('Y-m-d H:i:s', $currentTimestamp),
-                            'end_time' => date('Y-m-d H:i:s', $tempTimestamp)
+                            'end_time' => date('Y-m-d H:i:s', $tempTimestamp),
+                            'status' => 'in-progress',
+                            'result' => 'none'
                         ];
                         $currentTimestamp += $intervalSeconds;
                     }

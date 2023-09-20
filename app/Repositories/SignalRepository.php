@@ -11,13 +11,26 @@ use Illuminate\Support\Facades\DB;
 
 class SignalRepository implements SignalInterface
 {
-    public function listing($id = null)
+    public function listing(Request $request, $id = null)
     {
         if (isset($id)) {
             return Signal::find($id);
         }
 
-        return Signal::orderBy("id", "desc")->get();
+        $data = Signal::orderBy("id", "desc");
+
+        if (isset($request->start_date) && isset($request->end_date)) {
+            $data = $data->whereBetween(DB::raw('DATE(signals.start_time)'), [$request->start_date, $request->end_date]);
+        }
+
+        return $data->get();
+    }
+
+    public function getCurrentSignal()
+    {
+        $currentTime =  Carbon::now('Asia/Karachi')->format('Y-m-d H:i:s');
+
+        return Signal::where("end_time", ">=", $currentTime)->first();
     }
 
     public function store(Request $request)
