@@ -142,7 +142,7 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
+    padding: 20px 20px 10px 20px;
     background: var(--bg);
     /*background: #6d7fcc;*/
 }
@@ -237,6 +237,8 @@ a.article:hover {
 
 .form-label {
     color: gray;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
 .form-control {
@@ -258,7 +260,7 @@ a.article:hover {
 }
 
 label.error {
-    color: indianred;
+    color: #dc3545;
     font-size: 13px;
 }
 
@@ -347,6 +349,11 @@ div.dataTables_filter input:focus {
     border: none;
 }
 
+.data-table thead tr th{
+    font-size: 14px !important;
+    font-family: regular !important;
+}
+
 .data-table tbody tr {
     background: var(--bg) !important;
     color: #fff !important;
@@ -374,13 +381,13 @@ div.dataTables_filter input:focus {
     height: 100%;
 }
 .mobile-menu-content a {
-    width: 25%;
+    width: 20%;
     text-align: center;
     color: #ffffff;
 }
 .mobile-menu-content span {
     display: block;
-    font-size: 13px;
+    font-size: 12px;
     font-family: regular;
 }
 .mobile-menu-content i {
@@ -415,7 +422,20 @@ div.dataTables_filter input:focus {
 }
 .profile-box {
     border-right: 1px dashed #6c757d;
-    margin-top: 13px;
+    margin-top: 10px;
+}
+.profile-box:nth-child(3) {
+    border-right: none !important;
+}
+#profile-photo {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+}
+.graph-box {
+    padding-right: 5px;
 }
 @media screen and (max-width: 576px) {
     .context-box {
@@ -435,6 +455,13 @@ div.dataTables_filter input:focus {
     }
     .profile-box {
         border: none;
+    }
+    #profile-photo {
+        width: 100px;
+        height: 100px;
+    }
+    .graph-box {
+        padding-right: 0px;
     }
 }
 
@@ -456,5 +483,12 @@ div.dataTables_filter input:focus {
     }
     .profile-box {
         border: none;
+    }
+    #profile-photo {
+        width: 100px;
+        height: 100px;
+    }
+    .graph-box {
+        padding-right: 0px;
     }
 }

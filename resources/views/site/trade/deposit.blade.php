@@ -9,18 +9,15 @@
 @stop
 
 @section('content')
-    <div class="card border-0 bg-danger">
-        {{--    <div class="card-header">--}}
-        {{--        <h6 class="m-0 font-weight-bold">Create Deposit</h6>--}}
-        {{--    </div>--}}
-        <div class="card-body bg-self shadow-sm p-0 px-2 py-3">
+    <div class="card border-0">
+        <div class="card-body bg-self p-2">
             <form method="post" autocomplete="off" name="deposit-form" id="deposit-form" action="{{url('deposit')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="user_id" value="{{auth()->id()}}">
                 <div class="row">
                     <div class="col-md-4 form-group">
                         <label class="form-label required" for="amount">Amount</label>
-                        <input type="number" maxlength="11" class="form-control shadow-none" name="amount" id="amount" required>
+                        <input type="number" maxlength="11" class="form-control shadow-none" placeholder="0" name="amount" id="amount" required>
                     </div>
                     <div class="col-md-4 form-group">
                         <label class="form-label required" for="payment_method">Payment Method</label>
@@ -39,7 +36,7 @@
 
                 <div id="detail-box">
                     <small class="text-success">Here is Account Details where you can send money. Once Admin approve deposit, you can do trading. Thank you</small>
-                    <div class="row mt-2">
+                    <div class="row">
                         <div class="col-md-4 mt-2">
                             <label class="form-label required" for="bank">Bank</label>
                             <div class="input-group">
@@ -48,8 +45,8 @@
                                       style="border: 1px solid gray; border-radius: 0 !important; cursor: pointer;
                                       border-top-right-radius: 4px !important; border-bottom-right-radius: 4px !important;">
                                     <i class="fal fa-clipboard "></i>
-                        </span>
-                        </div>
+                                </span>
+                            </div>
                         </div>
                         <div class="col-md-4 mt-2">
                             <label class="form-label required" for="account_name">Account Title</label>
@@ -59,7 +56,7 @@
                                       style="border: 1px solid gray; border-radius: 0 !important; cursor: pointer;
                                         border-top-right-radius: 4px !important; border-bottom-right-radius: 4px !important;">
                                     <i class="fal fa-clipboard "></i>
-                        </span>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-4 mt-2">
@@ -70,23 +67,23 @@
                                       style="border: 1px solid gray; border-radius: 0 !important; cursor: pointer;
                                         border-top-right-radius: 4px !important; border-bottom-right-radius: 4px !important;">
                                     <i class="fal fa-clipboard "></i>
-                        </span>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-4 form-group" id="file-box">
+                <div class="row">
+                    <div class="col-md-4 mt-2 form-group" id="file-box">
                         <label class="form-label required" for="photo">Photo</label>
                         <input type="file" class="form-control" id="photo" name="photo" required onchange="setPhoto(this)">
                     </div>
-                    <div class="col-md-4" id="photo-box">
+                    <div class="col-md-4 mt-2" id="photo-box">
                         <img src="" width="100%" height="350px" id="profile-photo"
                              style="object-fit: contain;" class="border border-dark p-1 mb-1">
                     </div>
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-success px-4" style="font-family: med;" type="submit" >Deposit</button>
+                    <button class="btn btn-success px-4" type="submit" >Deposit</button>
                 </div>
             </form>
         </div>

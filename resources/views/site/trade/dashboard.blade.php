@@ -9,10 +9,9 @@
 @stop
 
 @section('content')
-    <div class="row mt-3">
-        <div class="col-md-4 mt-3">
+        <div class="col-md-4 p-0">
             <div class="card bg-transparent border-transparent rounded shadow">
-                <div class="card-body p-3">
+                <div class="card-body p-2">
                     <div class="d-flex justify-content-start align-items-center">
                         <div>
                             @php
@@ -53,5 +52,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @stop

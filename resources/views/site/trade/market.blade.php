@@ -9,8 +9,8 @@
 @stop
 
 @section('content')
-    <div class="row mt-3">
-        <div class="col-md-9">
+    <div class="row m-0">
+        <div class="col-md-9 p-0">
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget-container">
                 <div id="tradingview_ca040"></div>
@@ -37,8 +37,8 @@
             </div>
             <!-- TradingView Widget END -->
         </div>
-        <div class="col-md-3">
-            <div class="card-body border border-secondary rounded p-0">
+        <div class="col-md-3 p-0">
+            <div class="card-body border border-secondary rounded mx-1 mb-1 p-0">
                 <div class="p-2">
                     <div class="text-right">
                         <span id="timer"></span>

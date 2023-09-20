@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="card border-0">
-        <div class="card-body bg-self shadow-sm p-0 px-2 py-3">
+        <div class="card-body bg-self p-2">
             <div class="row">
                 <div class="col-md-4 profile-box">
                     <h5 style="font-family: bold;" class="text-white m-0">Personal Info:</h5>
@@ -23,9 +23,7 @@
                                     @php
                                         $url = auth()->user()->photo ? auth()->user()->photo : asset('assets/site/img/user.png')
                                     @endphp
-                                    <img src="{{$url}}" width="130px" height="130px" id="profile-photo"
-                                         style="object-fit: cover;object-position: top;border-radius: 50%;"
-                                         class="border border-muted p-1 shadow">
+                                    <img src="{{$url}}" id="profile-photo" class="border border-muted p-1 shadow">
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
@@ -56,7 +54,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div>
-                                        <button class="btn btn-success px-4" style="font-family: med;" type="submit">Update</button>
+                                        <button class="btn btn-success px-4" type="submit">Update</button>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +83,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div>
-                                        <button class="btn btn-success px-4" style="font-family: med;" type="submit">Save</button>
+                                        <button class="btn btn-success px-4" type="submit">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +128,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div>
-                                        <button class="btn btn-success px-4" style="font-family: med;" type="submit">Add Account</button>
+                                        <button class="btn btn-success px-4" type="submit">Add Account</button>
                                     </div>
                                 </div>
                             </div>

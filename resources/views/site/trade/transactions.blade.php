@@ -9,13 +9,13 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="mt-3 col-md-6">
+    <div class="row m-0">
+        <div class="mt-3 col-md-6 p-0 p-1">
             <div class="card border-0">
                 <div class="card-header bg-secondary">
                     <h6 class="m-0 text-white" style="font-family: med;">Deposit History</h6>
                 </div>
-                <div class="card-body bg-self border border-dark">
+                <div class="card-body bg-self border border-dark p-2">
                     <div class="table-responsive p-0">
                         <table class="table table-sm data-table" id="deposit-data-table">
                             <thead>
@@ -33,12 +33,12 @@
             </div>
         </div>
 
-        <div class="mt-3 col-md-6">
+        <div class="mt-3 col-md-6 p-0 p-1">
             <div class="card border-0">
                 <div class="card-header bg-secondary">
                     <h6 class="m-0 text-white" style="font-family: med;">Withdrawal History</h6>
                 </div>
-                <div class="card-body bg-self border border-dark">
+                <div class="card-body bg-self border border-dark p-2">
                     <div class="table-responsive p-0">
                         <table class="table table-sm data-table" id="withdrawal-data-table">
                             <thead class="">

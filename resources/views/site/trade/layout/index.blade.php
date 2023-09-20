@@ -8,11 +8,11 @@
         </div>
 
         <div class="sidebar-header">
-            <h3 class="m-0" style="font-family: bold;">Dashboard</h3>
+            <h4 class="m-0" style="font-family: med;">Dashboard</h4>
         </div>
 
         <ul class="list-unstyled components">
-            <div class="d-flex justify-content-start align-items-start px-2 mb-3">
+            <div class="d-flex justify-content-start align-items-start px-2 mb-2">
                 <div>
                     @php
                         $url = auth()->user()->photo ? auth()->user()->photo : asset('assets/site/img/user.png')
@@ -21,7 +21,7 @@
                          class="rounded" style="object-fit: contain; object-position: top;">
                 </div>
                 <div class="pl-2">
-                    <span class="d-block">{{auth()->user()->name}}</span>
+                    <span class="d-block" style="font-size: 14px;">{{auth()->user()->name}}</span>
                     <small class="text-secondary d-block">{{auth()->user()->email}}</small>
                 </div>
             </div>
@@ -115,15 +115,17 @@
             </div>
         </nav>
 
-        <div class="px-2 py-2 text-white context-box">
-            <div>
-                <h3 class="border-bottom border-secondary text-success page-title" style="font-family: bold;">@yield('title')</h3>
+        <div class="px-2 text-white context-box">
+            <div class="p-2">
+                <h3 class="border-bottom border-secondary text-success page-title m-0" style="font-family: bold;">
+                    @yield('title')
+                </h3>
             </div>
             @yield('content')
         </div>
         <div id="mobile-menu" class="bg-success">
             <div class="mobile-menu-content">
-                <a href="{{url('dashboard')}}" class="mr-2 {{is_active_menu('dashboard')}}">
+                <a href="{{url('dashboard')}}" class="{{is_active_menu('dashboard')}}">
                     <i class="fal fa-tachometer"></i>
                     <span>Dashboard</span>
                 </a>
@@ -131,13 +133,17 @@
                     <i class="fal fa-analytics"></i>
                     <span>Market</span>
                 </a>
-                <a href="{{url('deposit')}}" class="ml-2 {{is_active_menu('deposit')}}">
+                <a href="{{url('deposit')}}" class="{{is_active_menu('deposit')}}">
                     <i class="fal fa-wallet"></i>
                     <span>Deposit</span>
                 </a>
                 <a href="{{url('withdrawal')}}" class="{{is_active_menu('withdrawal')}}">
                     <i class="fab fa-get-pocket"></i>
                     <span>Withdraw</span>
+                </a>
+                <a href="{{url('account')}}" class="{{is_active_menu('account')}}">
+                    <i class="fal fa-user"></i>
+                    <span>Account</span>
                 </a>
             </div>
         </div>

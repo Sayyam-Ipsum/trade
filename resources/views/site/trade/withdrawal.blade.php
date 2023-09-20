@@ -10,15 +10,17 @@
 
 @section('content')
     <div class="card border-0">
-        <div class="card-body bg-self shadow-sm p-0 px-2 py-3">
+        <div class="card-body bg-self p-2">
             <form method="post" autocomplete="off" name="withdrawal-form" id="withdrawal-form" action="{{url('withdrawal')}}">
                 @csrf
                 <input type="hidden" name="user_id" value="{{auth()->id()}}">
                 @if(count($accounts) < 1)
-                    <span class="text-danger">No withdrawal account is configure in settings. Please go to Account menu to set the withdrawal account.</span>
+                    <small class="text-danger">
+                        No withdrawal account is configure in settings. Please go to Account menu to set the withdrawal account.
+                    </small>
                 @endif
 
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-4 form-group">
                         <label class="form-label required" for="account">Account</label>
                         <select class="form-control bg-self shadow-none" name="account" id="account" required>
@@ -33,24 +35,28 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label class="form-label required" for="amount">
-                            Withdrawal Amount
+                            Amount
                             @if($withdrawalExtraChargesPercentage > 0)
-                                <small class="text-success">({{$withdrawalExtraChargesPercentage}}% withdrawal charges will be applied )</small>
+                                <small class="text-success" style="font-size: 12px;">
+                                    ({{$withdrawalExtraChargesPercentage}}% withdrawal charges will be applied )
+                                </small>
                             @endif
                         </label>
 
-                        <input type="number" maxlength="11" min="1" class="form-control shadow-none" name="amount" id="amount" required oninput="getAmountAfterDeduction()">
+                        <input type="number" maxlength="11" min="1" class="form-control shadow-none" name="amount"
+                               id="amount" placeholder="0" required oninput="getAmountAfterDeduction()">
                     </div>
                     @if($withdrawalExtraChargesPercentage > 0)
                     <div class="col-md-4 form-group">
                         <label class="form-label required" for="amount_after_deduction">Amount After Deduction</label>
-                        <input type="text" maxlength="11" readonly class="form-control shadow-none" name="amount_after_deduction" id="amount_after_deduction" required>
+                        <input type="text" maxlength="11" readonly class="form-control shadow-none"
+                               name="amount_after_deduction" id="amount_after_deduction" required>
                     </div>
                     @endif
                 </div>
 
                 <div class="text-center">
-                    <button class="btn px-4 btn-success" style="font-family: med;" type="submit">Withdraw</button>
+                    <button class="btn px-4 btn-success" type="submit">Withdraw</button>
                 </div>
             </form>
         </div>
