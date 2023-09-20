@@ -48,11 +48,13 @@ class AuthController extends Controller
 
                 return redirect()->intended('/');
             } else {
+                $lastId = User::get()->last() ? User::get()->last()->id : 0;
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'role_id' => $this->roleInterface->getCustomerRoleID(),
                     'google_id' => $user->id,
+                    'uuid' => 1000 . $lastId + 1,
                     'password' => encrypt('btcridepasswd')
                 ]);
 

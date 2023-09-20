@@ -117,7 +117,8 @@
                 processing: true,
                 serverSide: true,
                 destroy: true,
-                stateSave: true,
+                stateSave: false,
+                pageLength: 25,
                 order: [],
                 aaSorting: [],
                 columnsDefs: [{
