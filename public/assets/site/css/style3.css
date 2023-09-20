@@ -473,6 +473,13 @@ input[type=number] {
     .graph-box {
         padding-right: 0px;
     }
+    .trade-box {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        height: 215px;
+        background: red;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -500,5 +507,11 @@ input[type=number] {
     }
     .graph-box {
         padding-right: 0px;
+    }
+    .trade-box {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        height: 215px;
     }
 }

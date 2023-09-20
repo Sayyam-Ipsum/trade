@@ -44,14 +44,14 @@
             </div>
             <!-- TradingView Widget END -->
         </div>
-        <div class="col-md-3 p-0">
+        <div class="col-md-3 p-0 trade-box">
             <div class="card-body rounded p-0">
                 <div class="p-1">
-                    <div class="text-right pt-1">
+                    <div class="text-right">
                         <span id="timer"></span>
                     </div>
                     <input type="hidden" name="profitable-amount" id="profitable-amount" value="">
-                    <div class="form-group pt-1">
+                    <div class="form-group">
                         <label class="form-label" for="amount">Amount</label>
                         <input type="number" step="any" class="form-control" name="amount" id="amount" min="1">
                     </div>
