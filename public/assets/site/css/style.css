@@ -168,6 +168,17 @@ label.error {
     margin: 0;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
+}
+
 .accordion-item, .accordion-header, .accordion-button {
     background-color: rgba(110,110,110,0.3) !important;
     color: #ffffff !important;

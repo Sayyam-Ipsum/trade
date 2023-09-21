@@ -1,7 +1,7 @@
 @extends('site.layout.index')
 
 @section('page-title')
-    Login
+    Sign in
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
         </div>
     @endif
     <div class="col-md-4 mx-auto mt-4">
-        <h1 class="signin-header">Sign In To Your Account</h1>
+        <h1 class="signin-header">Sign in to your account</h1>
         <div class="singin-box rounded">
             <form method="POST" action="{{url('login')}}" name="login-form" id="login-form">
                 @csrf
@@ -53,7 +53,7 @@
                 @endif
                 <div class="d-grid">
                     <button type="submit" class="btn btn-success py-3" style="font-family: med;">
-                        Log in<i class="fas fa-arrow-circle-right ms-2"></i>
+                        Sign in<i class="fas fa-arrow-circle-right ms-2"></i>
                     </button>
                 </div>
                 <div class="text-center mt-3">
@@ -66,7 +66,7 @@
                 <span class="text-white">
                     Don't have an account?
                     <a href="{{url('/register')}}" style="text-decoration: none; font-family: med; font-size: 16px;">
-                        Register
+                        Sign up
                     </a>
                 </span>
             </div>

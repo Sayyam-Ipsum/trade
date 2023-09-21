@@ -1,12 +1,12 @@
 @extends('site.layout.index')
 
 @section('page-title')
-    Register
+    Sign up
 @stop
 
 @section('content')
     <div class="col-md-4 mx-auto mt-4">
-        <h1 class="signin-header">Sign Up</h1>
+        <h1 class="signin-header">Sign up</h1>
         <div class="singin-box rounded">
             <form method="POST" action="{{url('register')}}" name="register-form" id="register-form">
                 @csrf
@@ -58,7 +58,7 @@
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-success py-3" style="font-family: med;">
-                        Registration<i class="fas fa-arrow-circle-right ms-2"></i>
+                        Sign up<i class="fas fa-arrow-circle-right ms-2"></i>
                     </button>
                 </div>
                 <div class="text-center mt-3">
@@ -71,7 +71,7 @@
                 <span class="text-white">
                     Already have an account?
                     <a href="{{url('/login')}}" style="text-decoration: none; font-family: med; font-size: 16px;">
-                        Sign In
+                        Sign in
                     </a>
                 </span>
             </div>

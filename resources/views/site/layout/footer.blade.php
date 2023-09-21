@@ -9,8 +9,8 @@
         <div class="col-md-3 col-sm-6 col-xs-6 footer-col">
             <h6>Affiliates</h6>
             <ul>
-                <li><a href="{{url('register')}}">Sign up</a></li>
                 <li><a href="{{url('login')}}">Log in</a></li>
+                <li><a href="{{url('register')}}">Register</a></li>
             </ul>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-6 footer-col">
