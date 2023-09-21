@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         $role->save();
 
         $setting = new Setting();
-        $setting->withdraw_limit = 100;
+        $setting->withdraw_limit = 30;
         $setting->referral_percentage = 10;
         $setting->withdrawal_extra_charges_percentage = 2.5;
         $setting->save();
