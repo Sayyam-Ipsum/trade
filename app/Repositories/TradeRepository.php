@@ -138,6 +138,7 @@ class TradeRepository implements TradeInterface
             now()->addHours(1)->format('Y-m-d H:00:00')
         ])
             ->selectRaw("DATE_FORMAT(start_time,'%r') as start_time, DATE_FORMAT(end_time,'%r') as end_time, result, id, status")
+            ->take(12)
             ->get();
 
 //        $currentTime = date("Y-m-d H:i:s");
