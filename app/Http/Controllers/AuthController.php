@@ -40,8 +40,9 @@ class AuthController extends Controller
                 ->stateless()
                 ->user();
 
-            $finduser = User::where('google_id', $user->id)
+            $finduser = User::where('google_id', $user->id)->orWhere('email', $user->email)
                 ->first();
+
 
             if ($finduser) {
                 Auth::login($finduser);
@@ -121,7 +122,7 @@ class AuthController extends Controller
                 'name' => 'required | max:50',
                 'email' => 'required | email | max:200 | unique:users',
                 'password' => 'required | min:8',
-                'phone_number' => 'required | digits:11 | unique:users'
+                'phone_number' => 'nullable | digits:11 | unique:users'
             ]);
 
             if ($validator->fails()) {
@@ -138,7 +139,7 @@ class AuthController extends Controller
                 $newUser->name = $request->name;
                 $newUser->role_id = $this->roleInterface->getCustomerRoleID();
                 $newUser->uuid = 1000 . $lastId + 1;
-                $newUser->phone_number = $request->phone_number;
+                $newUser->phone_number = $request->phone_number ?: '';
                 $newUser->save();
                 $newUser->assignRole('Customer');
 

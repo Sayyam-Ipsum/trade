@@ -32,7 +32,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="phone_number">Phone Number</label>
-                    <input type="number" min="0" maxlength="11" class="form-control shadow-none" name="phone_number" placeholder="Phone Number" id="phone_number" required="">
+                    <input type="number" min="0" maxlength="11" class="form-control shadow-none" name="phone_number" placeholder="Phone Number" id="phone_number">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">Password</label>
@@ -60,6 +60,11 @@
                     <button type="submit" class="btn btn-success py-3" style="font-family: med;">
                         Registration<i class="fas fa-arrow-circle-right ms-2"></i>
                     </button>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ url('authorized/google') }}">
+                        <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
+                    </a>
                 </div>
             </form>
             <div class="mt-2 text-center">
@@ -110,7 +115,6 @@
                         required:true
                     },
                     phone_number: {
-                        required:true,
                         minlength:11,
                         maxlength:11
                     },
