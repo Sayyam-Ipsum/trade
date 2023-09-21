@@ -15,48 +15,32 @@
 
 @section('content')
     <div class="row">
+        <div class="col-md-4 mt-2">
+            <div class="card">
+                <div class="card-body border border-primary rounded">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="m-0">Buy Trades ({{@$data['buy_trades_total']}})</p>
+                        <span><b>${{@$data['buy_trades_sum']}}</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-{{--        <div class="col-md-4 mt-2">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-body border border-{{@$signal->type == "buy" ? "success" : "danger"}} rounded">--}}
-{{--                    <div class="d-flex justify-content-between align-items-center">--}}
-{{--                        <p class="m-0">Signal Type</p>--}}
-{{--                        <span class="badge badge-{{@$signal->type == "buy" ? "success" : "danger"}} text-capitalize">--}}
-{{--                            {{@$signal->type}}--}}
-{{--                        </span>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div class="col-md-4 mt-2">
+            <div class="card">
+                <div class="card-body border border-primary rounded">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="m-0">Sell Trades ({{@$data['sell_trades_total']}})</p>
+                        <span><b>${{@$data['sell_trades_sum']}}</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
 {{--        @include('partials.signal-detail-card', [--}}
-{{--            'title' => 'Signal Amount',--}}
-{{--            'data' => '$'.@$signal->amount,--}}
-{{--            'border' => "info"--}}
+{{--            'title' => 'Sell Trades',--}}
+{{--            'data' => @$data['sell_trades_total'],--}}
+{{--            'border' => "secondary"--}}
 {{--        ])--}}
-
-        @include('partials.signal-detail-card', [
-            'title' => 'Buy Trades',
-            'data' => @$data['buy_trades_total'],
-            'border' => "dark"
-        ])
-
-        @include('partials.signal-detail-card', [
-            'title' => 'Buy Trades Total',
-            'data' => '$'.@$data['buy_trades_sum'],
-            'border' => "warning"
-        ])
-
-        @include('partials.signal-detail-card', [
-            'title' => 'Sell Trades',
-            'data' => @$data['sell_trades_total'],
-            'border' => "secondary"
-        ])
-
-        @include('partials.signal-detail-card', [
-            'title' => 'Sell Trades Total',
-            'data' => '$'.@$data['sell_trades_sum'],
-            'border' => "primary"
-        ])
     </div>
     <div class="table-responsive">
         <table id="data-table" class="table table-grid table-striped table-sm" style="width: 100%">

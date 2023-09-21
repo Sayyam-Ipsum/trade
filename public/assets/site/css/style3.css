@@ -447,6 +447,25 @@ input[type=number] {
     appearance: textfield;
     margin: 0;
 }
+.recent-trades-table {
+    padding: 0;
+}
+.recent-trades-table tr {
+
+}
+.recent-trades-table tr th{
+    padding: 0;
+    padding-bottom: 7px;
+    font-family: light;
+    border-bottom: 1px solid gray !important;
+    font-size: 14px;
+}
+.recent-trades-table tr td {
+    padding: 0;
+    padding-top: 5px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed gray !important;
+}
 @media screen and (max-width: 576px) {
     .context-box {
         margin-bottom: 60px;

@@ -53,8 +53,7 @@ class TradeRepository implements TradeInterface
         if (isset($filter)) {
             switch ($filter) {
                 case "today":
-                    $data = $data->whereDate("created_at", Carbon::today());
-                    $data = $data->take(7);
+                    $data = $data->whereDate("created_at", Carbon::today())->take(10);
                     break;
                 default:
                     break;
@@ -134,14 +133,21 @@ class TradeRepository implements TradeInterface
 
     public function liveTrading()
     {
-        $currentTime = date("Y-m-d H:i:s");
-        $duration='-35 minutes';
-        $endTime = date('Y-m-d H:i:s', strtotime($duration, strtotime($currentTime)));
-
-        $signals = Signal::where('start_time', '<=', $currentTime)
-            ->where('end_time', '>=', $endTime)
+        $signals = Signal::whereBetween('start_time', [
+            now()->format('Y-m-d H:00:00'),
+            now()->addHours(1)->format('Y-m-d H:00:00')
+        ])
             ->selectRaw("DATE_FORMAT(start_time,'%r') as start_time, DATE_FORMAT(end_time,'%r') as end_time, result, id, status")
             ->get();
+
+//        $currentTime = date("Y-m-d H:i:s");
+//        $duration='-35 minutes';
+//        $endTime = date('Y-m-d H:i:s', strtotime($duration, strtotime($currentTime)));
+//
+//        $signals = Signal::where('start_time', '<=', $currentTime)
+//            ->where('end_time', '>=', $endTime)
+//            ->selectRaw("DATE_FORMAT(start_time,'%r') as start_time, DATE_FORMAT(end_time,'%r') as end_time, result, id, status")
+//            ->get();
 
         if (count($signals) < 1)    return [];
 

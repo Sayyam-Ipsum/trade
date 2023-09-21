@@ -111,7 +111,7 @@ class SignalController extends Controller
                 ->make(true);
         }
 
-        $signal = $this->signalInterface->listing($id);
+        $signal = $this->signalInterface->listing($request, $id);
 
         if (!$signal)   abort(404);
 

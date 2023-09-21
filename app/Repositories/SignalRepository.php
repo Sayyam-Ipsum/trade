@@ -83,7 +83,7 @@ class SignalRepository implements SignalInterface
             ->select(
                 "type",
                 DB::raw("COUNT(id) as total"),
-                DB::raw("SUM(profitable_amount) as sum")
+                DB::raw("SUM(amount) as sum")
             )
             ->groupBy("type")
             ->get()->toArray();

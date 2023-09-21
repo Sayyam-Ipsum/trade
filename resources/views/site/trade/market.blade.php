@@ -23,7 +23,6 @@
                     } else {
                         height = window.innerHeight - 120;
                     }
-                    console.log(height);
                     new TradingView.widget(
                         {
                             "width": '100%',
@@ -68,13 +67,13 @@
                     </div>
                     <hr style="background: gray; margin: 0; margin: 5px 0px;">
                     <div class="p-0">
-                        <table class="table p-0">
+                        <table class="table recent-trades-table">
                             <tr class="border-0">
-                                <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="35%">Amount</th>
-                                <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="30%">Trade</th>
-                                <th class="text-center border-0" style="border-bottom: 1px solid gray !important;" width="35%">Result</th>
+                                <th class="text-center border-0" width="30%">Amount</th>
+                                <th class="text-center border-0" width="30%">Trade</th>
+                                <th class="text-center border-0" width="40%">Result</th>
                             </tr>
-                            <tbody id="trades-box" class=" border-0">
+                            <tbody id="trades-box" class="border-0">
                             </tbody>
                         </table>
                     </div>
@@ -157,6 +156,8 @@
                     }
                 });
             });
+
+            setInterval(buildTrades, 30000);
         });
 
         async function buildTrades() {
@@ -169,18 +170,18 @@
                 for (let i=0; i<trades.length; i++) {
                     let result = '-';
                     if (trades[i].result == "profit") {
-                        result = `<i class="far fa-plus" style="font-size: 12px;"></i>$${trades[i].profitable_amount}<span class="ml-1 text-success">Profit</span>`;
+                        result = `<button class="btn btn-sm btn-success"><i class="far fa-plus mr-1" style="font-size: 11px;"></i>$${trades[i].profitable_amount} Profit</button>`;
                     }
                     if (trades[i].result == "loss") {
-                        result = `<i class="far fa-minus" style="font-size: 12px;"></i>$${trades[i].amount}<span class="ml-1 text-danger">Loss</span>`;
+                        result = `<button class="btn btn-sm btn-danger"><i class="far fa-minus mr-1" style="font-size: 11px;"></i>$${trades[i].amount} Loss</button>`;
                     }
                     if (trades[i].status == "in-progress") {
                         result = `<span class="badge badge-primary">${trades[i].status}</span>`;
                     }
                     html += `<tr>
-                                <td class="text-center border-0" style="border-bottom: 1px dashed gray !important;" width="35%"><small>$${trades[i].amount}</small></t>
-                                <td class="text-center border-0" style="border-bottom: 1px dashed gray !important;" width="30%"><small class="text-capitalize">${trades[i].type}</small></t>
-                                <td class="text-center border-0" style="border-bottom: 1px dashed gray !important;" width="35%">${result}</td>
+                                <td class="text-center border-0" width="30%"><small>$${trades[i].amount}</small></t>
+                                <td class="text-center border-0" width="30%"><small class="text-capitalize">${trades[i].type}</small></t>
+                                <td class="text-center border-0" width="40%">${result}</td>
                             </tr>`;
                 }
             } else {

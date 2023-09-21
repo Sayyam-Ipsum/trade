@@ -127,7 +127,8 @@
                         function (data) {
                             toast(data.message, data.status ? "success" : "error");
                             if (data.status) {
-                                window.location.reload();
+                                getSignals();
+                                // window.location.reload();
                             }
                         }
                 })
@@ -145,7 +146,6 @@
                 processData: false,
                 contentType: "application/json; charset=UTF-8",
                 success: function (res) {
-                    console.log(res.data);
                     buildSignalsHtml(res.data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -159,64 +159,61 @@
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
                     html += `<div class="col-md-3 signal-box">
-                                        <div class="card">
-                                            <div class="card-body p-0">
-                                                <p class="text-center pt-2">${data[i].start_time} - ${data[i].end_time}</p>
-                                                <div class="d-flex justify-content-between align-items-center px-2 py-1">
-                    <div>
-                    </div>
-                </div>`;
-                    if (data[i].trades.buy_trades_total == 0 && data[i].trades.buy_trades_total == 0) {
-                        html += `  <div class="text-center text-danger px-2 py-1">
-                                        <span>No trade exists for this signal.</span>
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <p class="text-center pt-2">${data[i].start_time} - ${data[i].end_time}</p>
+                                        <div class="d-flex justify-content-between align-items-center px-2 py-1">
+                                            <div>
+                                            </div>
                                         </div>`;
-                    } else {
-                        html += `<div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
-                                        <span class="text-capitalize">Buy Trades: (${data[i].trades.buy_trades_total})</span>
-                                        <span><b>$${data[i].trades.buy_trades_sum}</b></span>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
-                                            <span class="text-capitalize">Sell Trades: (${data[i].trades.sell_trades_total})</span>
-                                            <span><b>$${data[i].trades.sell_trades_sum}</b></span>
-                                        </div>`;
-                    }
-                    if (data[i].trades.buy_trades_total > 0 && data[i].trades.buy_trades_total > 0) {
-                        html += `
-                                <div class="d-flex justify-content-center align-items-center py-1">
-                                    <small class="mr-2">Select result:</small>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="type-${data[i].id}"
-                                               id="buy-${data[i].id}" value="buy">
-                                        <label class="form-check-label" for="buy-${data[i].id}">Buy</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="type-${data[i].id}"
-                                               id="sell-${data[i].id}" value="sell">
-                                        <label class="form-check-label" for="sell-${data[i].id}">Sell</label>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center px-2 py-1">
-                                    <button type="button" class="btn btn-sm btn-success btn-result w-50 mr-1" data-type="profit"
-                                            data-id="${data[i].id}">Profit</button>
-                                    <button type="button" class="btn btn-sm btn-danger btn-result w-50" data-type="loss"
-                                            data-id="${data[i].id}">Loss</button>
-                                </div>`
-                        html += `<div class="d-flex justify-content-between align-items-center px-2 py-1">
-                           <span><small class="mr-1">Result:</small><span class="badge badge-${data[i].result === 'profit' ? 'success' : 'danger'} p-1 text-capitalize">${data[i].result}</span></span>
-                          <span><small class="mr-1">Result:</small>${data[i].result}</span>
-                        <a class="link link-primary text-decoration-underline" target="_blank" href="{{url('admin/signals')}}/${data[i].id}">view details</a>
-                                     </div>`;
-                    }
-                    html += `</div>
-                            </div>
-                            </div>`;
+                                        if (data[i].trades.buy_trades_total == 0 && data[i].trades.buy_trades_total == 0) {
+                                            html += `<div class="text-center text-danger px-2 py-1">
+                                                        <span>No trade exists for this signal.</span>
+                                                     </div>`;
+                                        } else {
+                                            html += `<div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
+                                                        <span class="text-capitalize">Buy Trades: (${data[i].trades.buy_trades_total})</span>
+                                                        <span><b>$${data[i].trades.buy_trades_sum}</b></span>
+                                                     </div>
+                                                     <div class="d-flex justify-content-between align-items-center px-2 py-1 border-bottom border-muted">
+                                                        <span class="text-capitalize">Sell Trades: (${data[i].trades.sell_trades_total})</span>
+                                                        <span><b>$${data[i].trades.sell_trades_sum}</b></span>
+                                                     </div>`;
+                                        }
+
+                                        if ((data[i].trades.buy_trades_total > 0 || data[i].trades.buy_trades_total > 0) && data[i].result == "none") {
+                                            html += `<div class="d-flex justify-content-center align-items-center py-1">
+                                                        <small class="mr-2">Select result:</small>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="type-${data[i].id}" id="buy-${data[i].id}" value="buy">
+                                                            <label class="form-check-label" for="buy-${data[i].id}">Buy</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="type-${data[i].id}" id="sell-${data[i].id}" value="sell">
+                                                            <label class="form-check-label" for="sell-${data[i].id}">Sell</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between align-items-center px-2 py-1">
+                                                        <button type="button" class="btn btn-sm btn-success btn-result w-50 mr-1" data-type="profit"
+                                                            data-id="${data[i].id}">Profit</button>
+                                                        <button type="button" class="btn btn-sm btn-danger btn-result w-50" data-type="loss"
+                                                            data-id="${data[i].id}">Loss</button>
+                                                        </div>`;
+                                        }
+
+                                        if (data[i].trades.buy_trades_total > 0 && data[i].trades.buy_trades_total > 0) {
+                                            html += `<div class="d-flex justify-content-between align-items-center px-2 py-1">
+                                                    <span><small class="mr-1">Result:</small><span class="badge badge-${data[i].result === 'profit' ? 'success' : 'danger'} p-1 text-capitalize">${data[i].result}</span></span>
+                                                    <a class="link link-primary text-decoration-underline" target="_blank" href="{{url('admin/signals')}}/${data[i].id}">view details</a>
+                                                </div>`;
+                                        }
+                            html += `</div></div></div>`;
                 }
             } else {
-                html += `< div class  = "text-center text-danger pt-3" > NoSignal added for today! < /div>`;
+                html += `<div class="text-center text-danger pt-3">No Signal added for today!</div>`;
             }
+
             $('#signals-box').html(html);
         }
-
-
     </script>
 @stop
