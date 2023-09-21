@@ -14,7 +14,7 @@
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget-container">
                 <div id="tradingview_ca040"></div>
-                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+{{--                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>--}}
                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                 <script type="text/javascript">
                     let height;
@@ -48,7 +48,7 @@
             <div class="card-body rounded p-0">
                 <div class="p-1">
                     <div class="text-right">
-                        <span id="timer"></span>
+                        <span id="timer" style="font-size: 14px !important;">00:00</span>
                     </div>
                     <input type="hidden" name="profitable-amount" id="profitable-amount" value="">
                     <div class="form-group">
@@ -206,10 +206,8 @@
                     canTrade = false;
                 }
 
-                let html = `<small>0${minutes}:${seconds<10?0:''}${seconds}</small>`;
+                let html = `0${minutes}:${seconds<10?0:''}${seconds}`;
                 $("#timer").html(html);
-                $("#timer").css('color', "#ffffff");
-                $("#time").show();
             }, 1000);
         }
 
