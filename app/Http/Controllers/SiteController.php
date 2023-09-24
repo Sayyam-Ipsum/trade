@@ -72,4 +72,9 @@ class SiteController extends Controller
 
         return response()->json(['success' => true, 'data' => $user]);
     }
+
+    public function plans()
+    {
+        return view("site.trade.plans");
+    }
 }

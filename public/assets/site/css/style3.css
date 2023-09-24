@@ -498,6 +498,9 @@ input[type=number] {
         bottom: 0;
         height: 215px;
     }
+    .calculate-label {
+        display: none !important;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -531,5 +534,8 @@ input[type=number] {
         right: 0;
         bottom: 0;
         height: 215px;
+    }
+    .calculate-label {
+        display: none !important;
     }
 }

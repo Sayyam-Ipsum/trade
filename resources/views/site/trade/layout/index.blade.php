@@ -52,6 +52,9 @@
             <li class="{{is_active_menu('referral')}}">
                 <a href="{{url('referral')}}"><i class="fal fa-link mr-2"></i>Referrals</a>
             </li>
+            <li class="{{is_active_menu('plans')}}">
+                <a href="{{url('plans')}}"><i class="fal fa-lightbulb-dollar mr-2"></i>Plans</a>
+            </li>
             <li class="{{is_active_menu('withdrawal-account')}}">
                 <a href="{{url('withdrawal-account')}}"><i class="fal fa-dollar-sign mr-2"></i>Withdrawal Account</a>
             </li>
