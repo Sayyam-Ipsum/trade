@@ -7979,7 +7979,7 @@
 
     //! moment.js locale configuration
 
-    moment.defineLocale('ms-my', {
+    moment.defineLocale('ms-global', {
         months: 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split(
             '_'
         ),

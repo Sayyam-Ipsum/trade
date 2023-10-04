@@ -13633,7 +13633,7 @@
 
     //! moment.js locale configuration
 
-    hooks.defineLocale('ms-my', {
+    hooks.defineLocale('ms-global', {
         months: 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split(
             '_'
         ),

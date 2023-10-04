@@ -13,7 +13,7 @@
             <div class="col-md-6">
                 <div class="heroarea-right">
                     <h1>Innovative platform for <br> small investments</h1>
-{{--                    <p class="m-0 my-4">Register and get $ 10,000 on a demo <br> account for learning to trade</p>--}}
+{{--                    <p class="m-0 global-4">Register and get $ 10,000 on a demo <br> account for learning to trade</p>--}}
                     <a href="{{url('login')}}" class="btn btn-lg btn-success btn-register">Log in</a>
                     <a href="{{url('register')}}" class="btn btn-lg btn-outline-success btn-register">Register</a>
                 </div>

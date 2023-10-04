@@ -5,7 +5,7 @@
 
 ( function( factory ) {
 	"use strict";
-	
+
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
@@ -925,7 +925,7 @@ $.fn.position = function( options ) {
 	// Clone to reuse original targetOffset later
 	basePosition = $.extend( {}, targetOffset );
 
-	// Force my and at to have valid horizontal and vertical positions
+	// Force global and at to have valid horizontal and vertical positions
 	// if a value is missing or invalid, it will be converted to center
 	$.each( [ "my", "at" ], function() {
 		var pos = ( options[ this ] || "" ).split( " " ),

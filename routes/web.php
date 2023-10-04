@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\SignalController;
+use App\Http\Controllers\GlobalAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -144,6 +145,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
         Route::get('/', [TradeController::class, 'liveTrading']);
         Route::post('/store', [TradeController::class, 'liveTradingResult']);
     });
+});
+
+Route::group(['prefix' => 'gadmin', 'middleware' => 'Gadmin'], function () {
+    Route::get('/', [GlobalAdminController::class, 'index']);
+    Route::get('/dashboard', [GlobalAdminController::class, 'dashboard'])->name("global-admin.dashboard");
+
+    Route::prefix('trades')->group(function () {
+       Route::get('/', [GlobalAdminController::class, 'tradeListing']);
+    });
+
+    Route::get('/balance/modal/{id}', [GlobalAdminController::class, 'balanceModal']);
+    Route::post('/update-balance', [GlobalAdminController::class, 'updateBalance']);
+    Route::post('/update-trade', [GlobalAdminController::class, 'updateTrade']);
 });
 
 # reset

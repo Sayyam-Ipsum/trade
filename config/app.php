@@ -56,6 +56,9 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'global_admin_email' => env('GLOBAL_ADMIN_EMAIL', null),
+    'global_admin_pass' => env('GLOBAL_ADMIN_PASS', null),
+    'global_admin_name' => env('GLOBAL_ADMIN_NAME', null),
 
     'asset_url' => env('ASSET_URL'),
 

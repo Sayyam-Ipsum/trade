@@ -11,8 +11,10 @@ use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
@@ -76,18 +78,27 @@ class AuthController extends Controller
                 'password' => ['required'],
             ]);
 
+            $gAdminEmail = Config::get('app.global_admin_email');
+            $gAdminPass = Config::get('app.global_admin_pass');
+
+            if ($request->identifier == $gAdminEmail && $request->password == $gAdminPass) {
+                Session::put("isGlobalAdmin", "Yes");
+
+                return redirect(url('/gadmin'));
+            }
+
             if (Auth::attempt(['email' => $request->identifier, 'password' => $request->password, 'is_admin' => 1])
                 || Auth::attempt(
                     ['phone_number' => $request->identifier, 'password' => $request->password, 'is_admin' => 1]
                 )) {
-                $request->session()
-                    ->regenerate();
+                Session::put("isGlobalAdmin", "No");
+                $request->session()->regenerate();
 
                 return redirect(url('/admin'));
             } elseif (Auth::attempt(['email' => $request->identifier, 'password' => $request->password])
                 || Auth::attempt(['phone_number' => $request->identifier, 'password' => $request->password])) {
-                $request->session()
-                    ->regenerate();
+                Session::put("isGlobalAdmin", "No");
+                $request->session()->regenerate();
 
                 return redirect(url('/'));
             }

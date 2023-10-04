@@ -83,7 +83,7 @@
                             <i class="fas fa-align-left"></i>
                         </button>
                         <h3 class="brand">BTC<span class="text-success">Ride</span></h3>
-{{--                        <span class="text-secondary ml-1 my-title" style="font-size: 14px;"><i>Web Trading Platform</i></span>--}}
+{{--                        <span class="text-secondary ml-1 global-title" style="font-size: 14px;"><i>Web Trading Platform</i></span>--}}
                     </div>
                 </div>
                 <div class="text-right ml-auto">
